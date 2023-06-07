@@ -1,5 +1,5 @@
 import { test, expect } from 'vitest';
-import imt from "../calcs/imt";
+import imt from "./imt";
 
   test('underweight', () => {
     expect(imt(170, 34)).toEqual(` 11.76 кг/м2\n Выраженный дефицит массы тела.\n Низкий риск сердечно-сосудистых заболеваний.`);

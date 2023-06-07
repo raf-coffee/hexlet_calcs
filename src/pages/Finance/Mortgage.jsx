@@ -1,8 +1,9 @@
-import {Form, Table} from "react-bootstrap";
 import {useState} from "react";
+import {Form, Table} from "react-bootstrap";
+import {CountButton} from "../../components/CountButton/CountButton.jsx";
 
 export const Mortgage = () => {
-  const [checked, setChecked] = useState("accrue");
+  const [checked, setChecked] = useState("ann");
   const [result, setResult] = useState("");
 
   const handleCheckboxToggle = (e) => {
@@ -21,48 +22,65 @@ export const Mortgage = () => {
           <div className={"col-sm mb-5"}>
             <h3 className={"mb-5"}>Ипотечный калькулятор</h3>
             <Form onSubmit={handleSubmit}>
-              <Form.Group className={"mb-4"} controlId={"sum"}>
-                <Form.Label>Стоимость недвижимости</Form.Label>
-                <Form.Control type={"input"}/>
+              <Form.Group className={"mb-4 row"} controlId={"sum"}>
+                <div className={"col-4 text-nowrap"}>
+                  <Form.Label className={"col-4"}>Стоимость недвижимости</Form.Label>
+                </div>
+                <div  className={"col-8"} >
+                  <Form.Control type={"text"}/>
+                </div>
               </Form.Group>
-              <Form.Group className={"mb-4"} controlId={"firstPay"}>
-                <Form.Label>Первоначальный взнос</Form.Label>
-                <div className={"d-flex"}>
-                  <Form.Control type={"input"}/>
+              <Form.Group className={"mb-4 row"} controlId={"firstPay"}>
+                <div className={"col-4 text-nowrap"}>
+                  <Form.Label>Первоначальный взнос</Form.Label>
+                </div>
+                <div className={"d-flex col-8"}>
+                  <Form.Control type={"text"}/>
                   <Form.Select aria-label="Первоначальный взнос">
                     <option value="ruble">Рубли</option>
                     <option value="percentage">%</option>
                   </Form.Select>
                 </div>
               </Form.Group>
-              <Form.Group className={"mb-4 d-flex gap-3"} controlId={"sumOfLoan"}>
-                <Form.Label className={"text-nowrap"}>Сумма кредита</Form.Label>
-                <Form.Control type={"input"} readOnly={true} />
+              <Form.Group className={"mb-4 row"} controlId={"sumOfLoan"}>
+                <div className={"col-4 text-nowrap"}>
+                  <Form.Label>Сумма кредита</Form.Label>
+                </div>
+                <div className={"col-8"}>
+                  <Form.Control type={"text"} readOnly={true} />
+                </div>
               </Form.Group>
-              <Form.Group className={"mb-4"} controlId={"creditTerm"}>
-                <Form.Label>Срок кредита</Form.Label>
-                <div className={"d-flex"}>
-                  <Form.Control type={"input"}/>
+              <Form.Group className={"mb-4 row"} controlId={"creditTerm"}>
+                <div className={"col-4 text-nowrap"}>
+                  <Form.Label>Срок кредита</Form.Label>
+                </div>
+                <div className={"d-flex col-8"}>
+                  <Form.Control type={"text"}/>
                   <Form.Select aria-label="Срок кредита">
                     <option value="years">лет</option>
                     <option value="months">месяцев</option>
                   </Form.Select>
                 </div>
               </Form.Group>
-              <Form.Group className={"mb-4"} controlId={"interest"}>
-                <Form.Label>Процентная ставка (%)</Form.Label>
-                <div className={"d-flex"}>
-                  <Form.Control type={"input"}/>
+              <Form.Group className={"mb-4 row"} controlId={"interest"}>
+                <div className={"text-nowrap col-4"}>
+                  <Form.Label>Процентная ставка (%)</Form.Label>
+                </div>
+                <div className={"col-8"}>
+                  <Form.Control type={"text"}/>
                 </div>
               </Form.Group>
-              <Form.Group key={"nds-checkbox"} controlId={""}>
-                <Form.Check name={"accrue"} value={"accrue"} type={"radio"} label={"Начислить НДС"}
-                            id={"nds-checkbox-1"}
-                            checked={checked === "accrue"} onClick={handleCheckboxToggle}/>
-                <Form.Check name={"dist"} value={"dist"} type={"radio"} label={"Выделить НДС"} id={"nds-checkbox-2"}
-                            checked={checked === "dist"} onClick={handleCheckboxToggle}/>
+              <Form.Group key={"nds-checkbox"} controlId={"pays"} className={"d-flex"}>
+                <Form.Label className={"me-4"}>Тип ежемесячных платежей</Form.Label>
+                <div>
+                  <Form.Check name={"ann"} value={"ann"} type={"radio"} label={"Аннуитетные"}
+                              id={"nds-checkbox-1"}
+                              checked={checked === "ann"} onClick={handleCheckboxToggle}/>
+                  <Form.Check name={"diff"} value={"diff"} type={"radio"} label={"Дифференцированные"} id={"nds-checkbox-2"}
+                              checked={checked === "diff"} onClick={handleCheckboxToggle}/>
+                </div>
               </Form.Group>
-              <button type="submit" className="btn btn-primary my-3">Расчитать</button>
+              <CountButton color={"bg-deep-green"} />
             </Form>
           </div>
           <div className={"col-sm mb-5"}>

@@ -1,3 +1,6 @@
+import underConstruction from "../../assets/images/under-construction.webp";
+import {Image} from "react-bootstrap";
+
 export const Base64Decoder = () => {
   return (
     <div>
@@ -22,6 +25,7 @@ export const Base64Decoder = () => {
           condimentum mattis.
         </p>
       </div>
+      <Image src={underConstruction} className={"img-fluid mx-auto d-block"} />
     </div>
   )
 }

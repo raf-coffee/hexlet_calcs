@@ -1,3 +1,6 @@
+import underConstruction from "../../assets/images/under-construction.webp";
+import {Image} from "react-bootstrap";
+
 export const Loan = () => {
   return (
     <div>
@@ -21,6 +24,7 @@ export const Loan = () => {
           eleifend est turpis in metus. Donec et risus et elit suscipit convallis ac ac nunc. Vivamus mollis massa eu mi
           condimentum mattis.
         </p>
+        <Image src={underConstruction} className={"img-fluid mx-auto d-block"} />
       </div>
     </div>
   );
