@@ -1,5 +1,5 @@
 import { test, expect } from 'vitest';
-import generatePass from "../tech/genPass.js";
+import generatePass from "./genPass.js";
 
 test('password length', () => {
     expect(generatePass(10, true, false, false, false, false, false, false).length).toEqual(10);
