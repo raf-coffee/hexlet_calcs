@@ -16,6 +16,8 @@
     --custom-secondary: #75ab65;
     --custom-tertiary: rgba(150, 169, 140, 0.41);
     --category-header: #AFFFCA;
+    --active-category-header: #21504D;
+    --active-link-color: #057D59;
 }
 body {
     color: var(--dark-green);
@@ -109,4 +111,10 @@ main {
     border: 1px solid;
     border-radius: 3px;
     border-color: var(--dark-green);
+    color: var(--active-link-color);
+    font-weight: bolder;
+}
+
+.active-category {
+    background-color: var(--active-category-header);
 }
