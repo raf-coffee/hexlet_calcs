@@ -15,6 +15,9 @@
     --custom-primary: rgba(171, 245, 145, 0.8);
     --custom-secondary: #75ab65;
     --custom-tertiary: rgba(150, 169, 140, 0.41);
+    --category-header: #AFFFCA;
+    --active-category-header: #21504D;
+    --active-link-color: #057D59;
 }
 body {
     color: var(--dark-green);
@@ -34,15 +37,17 @@ main {
     font-family: "PT Sans Caption", sans-serif;
 }
 
+.letter-spacing-1 {
+    letter-spacing: 1px;
+}
+
 .bg-white-yellow {
     background-color: var(--white-yellow);
 }
 .bg-color-custom {
-    background-color: var(--custom-primary);
-}
-
-.bg-image-custom {
-    background-image: url("./assets/images/header.webp");
+    font-family: Dorsa, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    background-color: var(--dark-green);
+    color: var(--category-header);
 }
 
 .header-height {
@@ -53,20 +58,30 @@ main {
     height: 98px;
 }
 
+.bg-image-custom {
+    background-image: url("./assets/images/header.webp");
+    background-size: cover;
+}
+
 .bg-image-finance {
     background-image: url("./assets/images/finance.webp");
+    background-size: 100% 100%;
 }
 
 .bg-image-health {
     background-image: url("./assets/images/health.webp");
+    background-size: 100% 100%;
 }
 
 .bg-image-currency {
     background-image: url("./assets/images/currency.webp");
+    background-size: 100% 100%;
 }
 
 .bg-image-tech {
     background-image: url("./assets/images/tech.webp");
+    background-size: 100% 100%;
+
 }
 
 .bg-deep-green {
@@ -96,4 +111,10 @@ main {
     border: 1px solid;
     border-radius: 3px;
     border-color: var(--dark-green);
+    color: var(--active-link-color);
+    font-weight: bolder;
+}
+
+.active-category {
+    background-color: var(--active-category-header);
 }
