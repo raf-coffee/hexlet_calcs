@@ -17,8 +17,6 @@ export const NavigationBar = () => {
     setActiveCategory(location.pathname)
   }, [location])
 
-  console.log(activeCategory)
-
   return (
     <Navbar expand="lg" expanded={expanded} className={"flex-column"}>
       <Container className={"justify-content-end"}>
