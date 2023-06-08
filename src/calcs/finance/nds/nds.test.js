@@ -1,5 +1,5 @@
 import { test, expect } from 'vitest';
-import nds from "../calcs/nds";
+import {nds} from "./nds";
 
 test('accrue', () => {
     expect(nds(40000, 20, 'accrue')).toEqual('48000.00');

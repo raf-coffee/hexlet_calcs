@@ -1,18 +1,21 @@
-import { Form, Table } from 'react-bootstrap';
-import { useState } from 'react';
+import {useState} from 'react';
+import {useForm} from "react-hook-form";
+import {Form, Table} from 'react-bootstrap';
+import {CountButton} from "../../components/CountButton/CountButton.jsx";
+import {nds} from "../../calcs/finance/nds/nds.js";
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const NDS = () => {
   const [checked, setChecked] = useState('accrue');
   const [result, setResult] = useState('');
+  const {register, handleSubmit, formState: {errors}} = useForm();
 
   const handleCheckboxToggle = (e) => {
     setChecked(e.target.value);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setResult("This is a result");
+  const handleFormSubmit = (e) => {
+    setResult(nds(e.sum, e.interest, checked));
   };
 
   return (
@@ -21,14 +24,14 @@ export const NDS = () => {
         <div className={'row mb-4'}>
           <div className={'col-sm mb-5'}>
             <h3 className={'mb-5'}>Калькулятор НДС</h3>
-            <Form onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit(handleFormSubmit)}>
               <Form.Group className={'mb-4'} controlId={'sum'}>
                 <Form.Label>Сумма</Form.Label>
-                <Form.Control type={'input'} />
+                <Form.Control type={'text'} name={"sum"} {...register("sum")} />
               </Form.Group>
               <Form.Group className={'mb-4'} controlId={'interest'}>
                 <Form.Label>Ставка НДС (%)</Form.Label>
-                <Form.Control type={'input'} />
+                <Form.Control type={'text'} name={"interest"} {...register("interest")} />
               </Form.Group>
               <div key={'nds-checkbox'}>
                 <Form.Check
@@ -41,18 +44,16 @@ export const NDS = () => {
                   onClick={handleCheckboxToggle}
                 />
                 <Form.Check
-                  name={'dist'}
-                  value={'dist'}
+                  name={'calc'}
+                  value={'calc'}
                   type={'radio'}
                   label={'Выделить НДС'}
                   id={'nds-checkbox-2'}
-                  checked={checked === 'dist'}
+                  checked={checked === 'calc'}
                   onClick={handleCheckboxToggle}
                 />
               </div>
-              <button type="submit" className="btn btn-primary my-3">
-                Расчитать
-              </button>
+              <CountButton color={"bg-deep-green"} />
             </Form>
           </div>
           <div className={'col-sm mb-5'}>
@@ -62,9 +63,8 @@ export const NDS = () => {
         </div>
       </div>
       <div className={'container'}>
-        <h3 className={'fw-bold mb-3'}>Описание калькулятора</h3>
         <div className={'mb-4 text-start'}>
-          <h4>Что такое НДС</h4>
+          <h3>Что такое НДС</h3>
           <p>
             Любой проданный товар или оказанная услуга на территории России облагаются налогом в пользу государства. Это
             и есть НДС. НДС - это косвенный налог, т.к. он ложится на конечного потребителя. В стоимости любого товара,
@@ -74,7 +74,7 @@ export const NDS = () => {
           </p>
         </div>
         <div className={'mb-4'}>
-          <h4 className={'text-start'}>Какой НДС в России?</h4>
+          <h3 className={'text-start'}>Какой НДС в России?</h3>
           <p className={'text-start'}>В настоящее время действуют 3 ставки налога:</p>
           <div className={'d-flex flex-column flex-md-row text-center'}>
             <div>
@@ -100,55 +100,55 @@ export const NDS = () => {
           </div>
         </div>
         <div className={'mb-4 text-start'}>
-          <h4>История НДС в России</h4>
-          <Table striped responsive className={'table-bordered d-inline-block'} style={{ minWidth: '350px' }}>
+          <h3>История НДС в России</h3>
+          <Table striped responsive className={'table-bordered d-inline-block'} style={{minWidth: '350px'}}>
             <thead>
-              <tr>
-                <th>Дата</th>
-                <th>Изменения</th>
-              </tr>
+            <tr>
+              <th>Дата</th>
+              <th>Изменения</th>
+            </tr>
             </thead>
             <tbody className={'table-group-divider'}>
-              <tr>
-                <td>1 января 1992 года</td>
-                <td> Введен налог на добавленную стоимость в размере 28%.</td>
-              </tr>
-              <tr>
-                <td>1993</td>
-                <td>Размер налога снижен до 20%</td>
-              </tr>
-              <tr>
-                <td>2004</td>
-                <td>Ставка НДС была снижена до 18%</td>
-              </tr>
-              <tr>
-                <td>2019</td>
-                <td>Стандартная ставка вновь была повышена до 20%</td>
-              </tr>
+            <tr>
+              <td>1 января 1992 года</td>
+              <td> Введен налог на добавленную стоимость в размере 28%.</td>
+            </tr>
+            <tr>
+              <td>1993</td>
+              <td>Размер налога снижен до 20%</td>
+            </tr>
+            <tr>
+              <td>2004</td>
+              <td>Ставка НДС была снижена до 18%</td>
+            </tr>
+            <tr>
+              <td>2019</td>
+              <td>Стандартная ставка вновь была повышена до 20%</td>
+            </tr>
             </tbody>
           </Table>
         </div>
         <div>
-          <h4 className={'text-start'}>Вычисление НДС</h4>
+          <h3 className={'text-start'}>Вычисление НДС</h3>
           <div className={'table-responsive-sm'}>
-            <Table striped className={'table-bordered'} style={{ minWidth: '400px' }}>
+            <Table striped className={'table-bordered'} style={{minWidth: '400px'}}>
               <thead>
-                <tr className={'text-center'}>
-                  <th>Как начислить НДС</th>
-                  <th>Как выделить НДС</th>
-                </tr>
+              <tr className={'text-center'}>
+                <th>Как начислить НДС</th>
+                <th>Как выделить НДС</th>
+              </tr>
               </thead>
               <tbody className={'table-group-divider'}>
-                <tr>
-                  <td className={'px-3'}>
-                    Чтобы получить НДС, необходимо сумму без НДС умножить на ставку (например, 18%) и разделить на 100.
-                    Чтобы получить сумму с учетом налога сложите сумму без НДС и полученное значение налога.
-                  </td>
-                  <td className={'px-3'}>
-                    Чтобы выделить НДС из суммы, необходимо сумму разделить сумму на (1-НДС/100), из полученного
-                    результата вычесть исходную сумму и умножить результат на минус 1.
-                  </td>
-                </tr>
+              <tr>
+                <td className={'px-3'}>
+                  Чтобы получить НДС, необходимо сумму без НДС умножить на ставку (например, 18%) и разделить на 100.
+                  Чтобы получить сумму с учетом налога сложите сумму без НДС и полученное значение налога.
+                </td>
+                <td className={'px-3'}>
+                  Чтобы выделить НДС из суммы, необходимо сумму разделить сумму на (1-НДС/100), из полученного
+                  результата вычесть исходную сумму и умножить результат на минус 1.
+                </td>
+              </tr>
               </tbody>
             </Table>
           </div>
