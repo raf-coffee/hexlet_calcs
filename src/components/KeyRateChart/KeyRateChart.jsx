@@ -1,48 +1,20 @@
-import {Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend} from 'chart.js';
-import { Line } from 'react-chartjs-2';
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+  TimeScale,
+  Decimation
+} from 'chart.js';
+import {Line} from 'react-chartjs-2';
 
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, TimeScale, Decimation);
 
-const options = {
-  responsive: true,
-  // scales: {
-    // y: {
-    //   position: "right",
-    //   ticks: {
-    //     callback: function(value, index, ticks) {
-    //       return `${value}%`;
-    //     }
-    //   }
-    // },
-  //   x: {
-  //     type: 'time',
-  //     time: {
-  //       quarter: 'YYYY'
-  //     }
-  //   }
-  // },
-  plugins: {
-    title: {
-      display: true,
-      text: 'График изменения ключевой ставки с 2013 по 2023 год'
-    },
-    legend: {
-      display: false,
-    },
-    tooltip: {
-      callbacks: {
-        label: function(data) {
-          return `Ключевая ставка: ${data.parsed.y}%`
-        }
-      }
-    }
-  }
-}
-
-const labels = ["2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022"];
-
-const data = {
-  labels,
+const dataArray = {
   datasets: [
     {
       label: "",
@@ -75,12 +47,52 @@ const data = {
         {x: "17.06.2019", y: 7.5},
         {x: "29.07.2019", y: 7.25},
         {x: "09.09.2019", y: 7},
-      ]
+      ],
+      backgroundColor: '#21504D',
+      borderColor: '#75ab65',
     }
   ],
-  borderColor: 'rgb(255, 99, 132)',
+}
+
+const options = {
+  scales: {
+    y: {
+      position: "right",
+      ticks: {
+        callback: function (value, index, ticks) {
+          return `${value}%`;
+        }
+      }
+    },
+    x: {
+      ticks: {
+        maxTicksLimit: 10,
+      }
+    }
+  },
+  plugins: {
+    title: {
+      display: true,
+      text: 'График изменения ключевой ставки с 2013 по 2023 год',
+      color: "#21504D",
+      font: {
+        size: 14
+      }
+    },
+    legend: {
+      display: false,
+    },
+    tooltip: {
+      callbacks: {
+        label: function (data) {
+          return `Ключевая ставка: ${data.parsed.y}%`
+        }
+      },
+      intersect: false,
+    }
+  }
 }
 
 export const KeyRateChart = () => {
-  return <Line options={options} data={data} />
+  return <Line options={options} data={dataArray}/>
 }

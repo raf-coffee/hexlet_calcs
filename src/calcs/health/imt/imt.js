@@ -53,5 +53,3 @@ export const imt = (height, weight) => {
 
   return Object.entries(range).filter((func) => func[1]() !== false).flat()[1]();
 };
-
-console.log(imt(170, 54));
