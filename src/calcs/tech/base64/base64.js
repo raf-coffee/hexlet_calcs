@@ -26,8 +26,8 @@ const fromBinary = (binary) => {
 
 export const base64 = (string, action) => {
   const actions = {
-    b64ToUtf8: () => fromBinary(atob(string)),
-    utf8ToB64: () => btoa(toBinary(string)),
+    b64ToUtf16: () => fromBinary(atob(string)),
+    utf16ToB64: () => btoa(toBinary(string)),
   };
   return actions[action]();
 };
