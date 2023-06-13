@@ -6,8 +6,10 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "prepare": "husky install",
+    "lint": "eslint . --fix --max-warnings=0",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "bootstrap": "^5.3.0",
@@ -23,11 +25,25 @@
     "@types/react": "^18.0.37",
     "@types/react-dom": "^18.0.11",
     "@vitejs/plugin-react": "^4.0.0",
-    "eslint": "^8.38.0",
+    "eslint": "^8.42.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.3.4",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.2",
+    "prettier": "^2.8.8",
     "vite": "^4.3.9",
     "vitest": "^0.31.4"
+  },
+  "lint-staged": {
+    "**/*.{js, jsx, json}": [
+      "prettier --write",
+      "npm run lint"
+    ],
+    "*.js": "eslint --cache --fix",
+    "*.--write": "prettier --write"
   }
 }
