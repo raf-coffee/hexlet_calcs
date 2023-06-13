@@ -40,10 +40,8 @@
   },
   "lint-staged": {
     "**/*.{js, jsx, json}": [
-      "prettier --write",
+      "npm run format",
       "npm run lint"
-    ],
-    "*.js": "eslint --cache --fix",
-    "*.--write": "prettier --write"
+    ]
   }
 }
