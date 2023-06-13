@@ -1,6 +1,6 @@
-import {useState} from "react";
-import {Form, Table} from "react-bootstrap";
-import {CountButton} from "../../components/CountButton/CountButton.jsx";
+import { useState } from "react";
+import { Form, Table } from "react-bootstrap";
+import { CountButton } from "../../components/CountButton/CountButton.jsx";
 
 export const Mortgage = () => {
   const [checked, setChecked] = useState("ann");
@@ -8,12 +8,12 @@ export const Mortgage = () => {
 
   const handleCheckboxToggle = (e) => {
     setChecked(e.target.value);
-  }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setResult("This is a result");
-  }
+  };
 
   return (
     <div>
@@ -27,7 +27,7 @@ export const Mortgage = () => {
                   <Form.Label className={"col-4"}>Стоимость недвижимости</Form.Label>
                 </div>
                 <div className={"col-8"}>
-                  <Form.Control type={"text"}/>
+                  <Form.Control type={"text"} />
                 </div>
               </Form.Group>
               <Form.Group className={"mb-4 row"} controlId={"firstPay"}>
@@ -35,7 +35,7 @@ export const Mortgage = () => {
                   <Form.Label>Первоначальный взнос</Form.Label>
                 </div>
                 <div className={"d-flex col-8"}>
-                  <Form.Control type={"text"}/>
+                  <Form.Control type={"text"} />
                   <Form.Select aria-label="Первоначальный взнос">
                     <option value="ruble">Рубли</option>
                     <option value="percentage">%</option>
@@ -47,7 +47,7 @@ export const Mortgage = () => {
                   <Form.Label>Сумма кредита</Form.Label>
                 </div>
                 <div className={"col-8"}>
-                  <Form.Control type={"text"} readOnly={true}/>
+                  <Form.Control type={"text"} readOnly={true} />
                 </div>
               </Form.Group>
               <Form.Group className={"mb-4 row"} controlId={"creditTerm"}>
@@ -55,7 +55,7 @@ export const Mortgage = () => {
                   <Form.Label>Срок кредита</Form.Label>
                 </div>
                 <div className={"d-flex col-8"}>
-                  <Form.Control type={"text"}/>
+                  <Form.Control type={"text"} />
                   <Form.Select aria-label="Срок кредита">
                     <option value="years">лет</option>
                     <option value="months">месяцев</option>
@@ -67,21 +67,33 @@ export const Mortgage = () => {
                   <Form.Label>Процентная ставка (%)</Form.Label>
                 </div>
                 <div className={"col-8"}>
-                  <Form.Control type={"text"}/>
+                  <Form.Control type={"text"} />
                 </div>
               </Form.Group>
               <Form.Group key={"nds-checkbox"} controlId={"pays"} className={"d-flex"}>
                 <Form.Label className={"me-4"}>Тип ежемесячных платежей</Form.Label>
                 <div>
-                  <Form.Check name={"ann"} value={"ann"} type={"radio"} label={"Аннуитетные"}
-                              id={"nds-checkbox-1"}
-                              checked={checked === "ann"} onClick={handleCheckboxToggle}/>
-                  <Form.Check name={"diff"} value={"diff"} type={"radio"} label={"Дифференцированные"}
-                              id={"nds-checkbox-2"}
-                              checked={checked === "diff"} onClick={handleCheckboxToggle}/>
+                  <Form.Check
+                    name={"ann"}
+                    value={"ann"}
+                    type={"radio"}
+                    label={"Аннуитетные"}
+                    id={"nds-checkbox-1"}
+                    checked={checked === "ann"}
+                    onClick={handleCheckboxToggle}
+                  />
+                  <Form.Check
+                    name={"diff"}
+                    value={"diff"}
+                    type={"radio"}
+                    label={"Дифференцированные"}
+                    id={"nds-checkbox-2"}
+                    checked={checked === "diff"}
+                    onClick={handleCheckboxToggle}
+                  />
                 </div>
               </Form.Group>
-              <CountButton color={"bg-deep-green"}/>
+              <CountButton color={"bg-deep-green"} />
             </Form>
           </div>
           <div className={"col-sm mb-5"}>
@@ -98,7 +110,8 @@ export const Mortgage = () => {
             ежемесячный платеж ипотеки. Зная возможную сумму ежемесячных платежей, потенциальный заемщик с легкостью
             сможет сам рассчитать максимальный размер ипотеки, переплату и срок кредитования.
           </p>
-          <p>Для точного расчета платежей ипотеки очень удобно использовать специальную программу, доступную каждому, –
+          <p>
+            Для точного расчета платежей ипотеки очень удобно использовать специальную программу, доступную каждому, –
             ипотечный калькулятор. Эта программа, которая содержит набор математических формул, используется для
             вычисления всех значимых показателей кредита. Важнейшей функцией программы является расчет ипотеки онлайн. С
             помощью калькулятора заемщик без труда сможет рассчитать все ключевые условия ипотеки: платежи, сумму
@@ -133,12 +146,12 @@ export const Mortgage = () => {
         </div>
         <div className={"mb-4 text-start"}>
           <h3>Процентная ставка</h3>
-          <p>Процентная ставка - очень важный параметр при рассчете ипотеки. Измеряется в
-            процентах годовых. Этот параметр показывает сколько процентов начисляется на ваш долг в год. Для наглядности
-            возьмем конкретное значение процентной ставки - 12%. Это значит, что в год к вашему долгу прибавляется ещё
-            12% от суммы долга, НО: при ипотечном кредитовании банк начисляет вам проценты не раз в год, а ежедневно на
-            оставшуюся сумму долга. Не трудно посчитать сколько процентов начисляется каждый день: 12% / 12 месяцев / 30
-            дней = 0.033%.
+          <p>
+            Процентная ставка - очень важный параметр при рассчете ипотеки. Измеряется в процентах годовых. Этот
+            параметр показывает сколько процентов начисляется на ваш долг в год. Для наглядности возьмем конкретное
+            значение процентной ставки - 12%. Это значит, что в год к вашему долгу прибавляется ещё 12% от суммы долга,
+            НО: при ипотечном кредитовании банк начисляет вам проценты не раз в год, а ежедневно на оставшуюся сумму
+            долга. Не трудно посчитать сколько процентов начисляется каждый день: 12% / 12 месяцев / 30 дней = 0.033%.
           </p>
           <p>
             Если вы уже воспользовались нашим ипотечным калькулятором и сделали расчет, вы, наверное заметили, что
@@ -154,43 +167,43 @@ export const Mortgage = () => {
           </p>
         </div>
         <div className={"mb-4 text-start"}>
-          <Table responsive className={"table-bordered d-inline-block"} style={{minWidth: "350px"}}>
+          <Table responsive className={"table-bordered d-inline-block"} style={{ minWidth: "350px" }}>
             <caption className={"caption-top"}>
               Таблица 1. Демонстрация влияния процентной ставки на параметры кредита.
             </caption>
             <thead>
-            <tr className={"table-secondary"}>
-              <th>Сумма кредита</th>
-              <th>2 000 000</th>
-              <th>2 000 000</th>
-              <th>2 000 000</th>
-            </tr>
+              <tr className={"table-secondary"}>
+                <th>Сумма кредита</th>
+                <th>2 000 000</th>
+                <th>2 000 000</th>
+                <th>2 000 000</th>
+              </tr>
             </thead>
             <tbody className={"table-group-divider"}>
-            <tr>
-              <td>Срок кредита</td>
-              <td>10 лет</td>
-              <td>10 лет</td>
-              <td>10 лет</td>
-            </tr>
-            <tr className={"fw-bold"}>
-              <td>Процентная ставка</td>
-              <td>12%</td>
-              <td>12,5%</td>
-              <td>13%</td>
-            </tr>
-            <tr>
-              <td>Ежемесячный платеж (руб.)</td>
-              <td>28 694</td>
-              <td>29 275</td>
-              <td>29 862</td>
-            </tr>
-            <tr>
-              <td>Переплата по кредиту (руб.)</td>
-              <td>1 443 303</td>
-              <td>1 513 028</td>
-              <td>1 583 458</td>
-            </tr>
+              <tr>
+                <td>Срок кредита</td>
+                <td>10 лет</td>
+                <td>10 лет</td>
+                <td>10 лет</td>
+              </tr>
+              <tr className={"fw-bold"}>
+                <td>Процентная ставка</td>
+                <td>12%</td>
+                <td>12,5%</td>
+                <td>13%</td>
+              </tr>
+              <tr>
+                <td>Ежемесячный платеж (руб.)</td>
+                <td>28 694</td>
+                <td>29 275</td>
+                <td>29 862</td>
+              </tr>
+              <tr>
+                <td>Переплата по кредиту (руб.)</td>
+                <td>1 443 303</td>
+                <td>1 513 028</td>
+                <td>1 583 458</td>
+              </tr>
             </tbody>
           </Table>
         </div>
@@ -202,28 +215,26 @@ export const Mortgage = () => {
           </p>
           <p>
             <span className={"fw-bold"}>Плавающая процентная ставка</span> - это ставка по кредиту, которая не является
-            постоянной величиной, а
-            рассчитывается по формуле, которая определена в договоре. Размер ставки состоит из двух частей: Первая
-            составляющая - плавающая, привязана к какому либо рыночному индикатору (например Mosprime3m или ставка
-            рефинансирования ЦБ) и изменяется с периодичностью, определенной в кредитном договоре (например, ежемесячно,
-            ежеквартально или раз в полгода). Вторая составляющая, фиксированная - это процент, который берет себе банк.
-            Эта часть остается всегда постоянной.
+            постоянной величиной, а рассчитывается по формуле, которая определена в договоре. Размер ставки состоит из
+            двух частей: Первая составляющая - плавающая, привязана к какому либо рыночному индикатору (например
+            Mosprime3m или ставка рефинансирования ЦБ) и изменяется с периодичностью, определенной в кредитном договоре
+            (например, ежемесячно, ежеквартально или раз в полгода). Вторая составляющая, фиксированная - это процент,
+            который берет себе банк. Эта часть остается всегда постоянной.
           </p>
         </div>
         <div className={"mb-4 text-start"}>
           <h3>Аннуитетный и дифференцированный платеж</h3>
           <p>
             <span className={"fw-bold"}>Аннуитетный платеж</span> – вариант ежемесячного платежа по кредиту, когда
-            размер ежемесячного платежа остаётся
-            постоянным на всём периоде кредитования.
+            размер ежемесячного платежа остаётся постоянным на всём периоде кредитования.
           </p>
           <p>
-            <span className={"fw-bold"}>Дифференцированный платеж</span> – вариант ежемесячного платежа по кредиту, когда размер ежемесячного платежа по
-            погашению кредита постепенно уменьшается к концу периода кредитования.
+            <span className={"fw-bold"}>Дифференцированный платеж</span> – вариант ежемесячного платежа по кредиту,
+            когда размер ежемесячного платежа по погашению кредита постепенно уменьшается к концу периода кредитования.
           </p>
           <p>В настоящее время наиболее распространен аннуитетный платеж.</p>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};

@@ -1,5 +1,5 @@
 import underConstruction from "../../assets/images/under-construction.webp";
-import {Image} from "react-bootstrap";
+import { Image } from "react-bootstrap";
 
 export const IdealWeight = () => {
   return (
@@ -27,5 +27,5 @@ export const IdealWeight = () => {
         <Image src={underConstruction} className={"img-fluid mx-auto d-block"} />
       </div>
     </div>
-  )
-}
+  );
+};

@@ -1,130 +1,131 @@
 @font-face {
-    font-family: Dorsa;
-    src: url("./assets/fonts/Dorsa-Regular.ttf") format("truetype");
+  font-family: Dorsa;
+  src: url("./assets/fonts/Dorsa-Regular.ttf") format("truetype");
 }
 
 @font-face {
-    font-family: "PT Sans Caption";
-    src: url("./assets/fonts/PTSansCaption-Regular.ttf") format("truetype");
+  font-family: "PT Sans Caption";
+  src: url("./assets/fonts/PTSansCaption-Regular.ttf") format("truetype");
 }
 
 #root {
-    margin: 0 auto;
-    --white-yellow: #ffee9415;
-    --dark-green: #212D26;
-    --custom-primary: rgba(171, 245, 145, 0.8);
-    --custom-secondary: #75ab65;
-    --custom-tertiary: rgba(150, 169, 140, 0.41);
-    --category-header: #AFFFCA;
-    --active-category-header: #21504D;
-    --active-link-color: #057D59;
-    --button-hover: #539250;
+  margin: 0 auto;
+  --white-yellow: #ffee9415;
+  --dark-green: #212d26;
+  --custom-primary: rgba(171, 245, 145, 0.8);
+  --custom-secondary: #75ab65;
+  --custom-tertiary: rgba(150, 169, 140, 0.41);
+  --category-header: #afffca;
+  --active-category-header: #21504d;
+  --active-link-color: #057d59;
+  --button-hover: #539250;
 }
 body {
-    color: var(--dark-green);
+  color: var(--dark-green);
 }
 main {
-    margin: 0 auto;
+  margin: 0 auto;
 }
 
 .logo {
-    font-family: Dorsa, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-    text-decoration: none;
-    color: var(--dark-green);
-    font-size: 72px;
+  font-family: Dorsa, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans",
+    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  text-decoration: none;
+  color: var(--dark-green);
+  font-size: 72px;
 }
 
 .desc {
-    font-family: "PT Sans Caption", sans-serif;
+  font-family: "PT Sans Caption", sans-serif;
 }
 
 .letter-spacing-1 {
-    letter-spacing: 1px;
+  letter-spacing: 1px;
 }
 
 .bg-white-yellow {
-    background-color: var(--white-yellow);
+  background-color: var(--white-yellow);
 }
 .bg-color-custom {
-    font-family: Dorsa, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-    background-color: var(--dark-green);
-    color: var(--category-header);
+  font-family: Dorsa, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans",
+    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  background-color: var(--dark-green);
+  color: var(--category-header);
 }
 
 .header-height {
-    height: 98px;
+  height: 98px;
 }
 
 .footer-height {
-    height: 98px;
+  height: 98px;
 }
 
 .bg-image-custom {
-    background-image: url("./assets/images/header.webp");
-    background-size: cover;
+  background-image: url("./assets/images/header.webp");
+  background-size: cover;
 }
 
 .bg-image-finance {
-    background-image: url("./assets/images/finance.webp");
-    background-size: 100% 100%;
+  background-image: url("./assets/images/finance.webp");
+  background-size: 100% 100%;
 }
 
 .bg-image-health {
-    background-image: url("./assets/images/health.webp");
-    background-size: 100% 100%;
+  background-image: url("./assets/images/health.webp");
+  background-size: 100% 100%;
 }
 
 .bg-image-currency {
-    background-image: url("./assets/images/currency.webp");
-    background-size: 100% 100%;
+  background-image: url("./assets/images/currency.webp");
+  background-size: 100% 100%;
 }
 
 .bg-image-tech {
-    background-image: url("./assets/images/tech.webp");
-    background-size: 100% 100%;
-
+  background-image: url("./assets/images/tech.webp");
+  background-size: 100% 100%;
 }
 
 .bg-deep-green {
-    background-color: var(--custom-secondary) !important;
-    color: var(--dark-green) !important;
-    border-color: var(--custom-secondary) !important;
-    transition: background-color .5s linear;
+  background-color: var(--custom-secondary) !important;
+  color: var(--dark-green) !important;
+  border-color: var(--custom-secondary) !important;
+  transition: background-color 0.5s linear;
 }
 
 .bg-deep-green:hover {
-    background-color: var(--button-hover) !important;
+  background-color: var(--button-hover) !important;
 }
 
 .form-check-input:checked {
-    background-color: var(--custom-secondary) !important;
-    border-color: var(--custom-secondary) !important;
+  background-color: var(--custom-secondary) !important;
+  border-color: var(--custom-secondary) !important;
 }
 
 .link {
-    color: var(--dark-green);
-    text-decoration: none;
-    transition: background-color .4s linear;
-    border: 1px solid transparent;
-    border-radius: 3px;
+  color: var(--dark-green);
+  text-decoration: none;
+  transition: background-color 0.4s linear;
+  border: 1px solid transparent;
+  border-radius: 3px;
 }
 
 .link:hover {
-    background-color: var(--custom-tertiary);
+  background-color: var(--custom-tertiary);
 }
 
 .active {
-    border: 1px solid;
-    border-radius: 3px;
-    border-color: var(--dark-green);
-    color: var(--active-link-color);
-    font-weight: bolder;
+  border: 1px solid;
+  border-radius: 3px;
+  border-color: var(--dark-green);
+  color: var(--active-link-color);
+  font-weight: bolder;
 }
 
 .active-category {
-    background-color: var(--active-category-header);
+  background-color: var(--active-category-header);
 }
 
 .exclamation:before {
-    fill: yellow;
+  fill: yellow;
 }

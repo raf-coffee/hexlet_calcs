@@ -13,9 +13,10 @@
   "plugins": ["react"],
   "rules": {
     "no-console": "error",
-    "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
+    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
     "import/no-default-export": "error",
-    "import/prefer-default-export": "off"
+    "import/prefer-default-export": "off",
+    "react/react-in-jsx-scope": "off"
   },
   "settings": {
     "react": {

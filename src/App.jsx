@@ -1,14 +1,16 @@
 import Container from "react-bootstrap/Container";
-import {Link, Outlet} from "react-router-dom";
-import { NavigationBar} from "./components/NavigationBar/NavigationBar.jsx";
-import './App.css'
+import { Link, Outlet } from "react-router-dom";
+import { NavigationBar } from "./components/NavigationBar/NavigationBar.jsx";
+import "./App.css";
 
 function App() {
   return (
     <div className={"d-flex flex-column min-vh-100"}>
       <header className={"bg-image-custom"}>
         <Container className={"header-height d-flex align-items-center justify-content-between p-0"}>
-          <Link to={"/"} className={"logo"}>Calcus</Link>
+          <Link to={"/"} className={"logo"}>
+            Calcus
+          </Link>
         </Container>
       </header>
       <NavigationBar />
@@ -23,7 +25,7 @@ function App() {
         </Container>
       </footer>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
