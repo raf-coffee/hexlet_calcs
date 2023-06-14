@@ -10,7 +10,7 @@ test("encode Utf-16 to Base64", () => {
 });
 
 test("decode base64 to Utf-16", () => {
-  expect(base64("SABlAGwAbABvACwAIAB3AG8AcgBsAGQA", "b64ToUtf8")).toEqual("Hello, world");
+  expect(base64("SABlAGwAbABvACwAIAB3AG8AcgBsAGQA", "b64ToUtf16")).toEqual("Hello, world");
 });
 
 test("encode Utf-16 to Base64", () => {
