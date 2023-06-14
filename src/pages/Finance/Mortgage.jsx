@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CountButton } from "../../components/CountButton/CountButton.jsx";
+import {Loader} from "../../components/Loader/Loader.jsx";
 
 const formSchema = z.object({
   sum: z.coerce
@@ -38,14 +39,20 @@ const formSchema = z.object({
 export function Mortgage() {
   const [checked, setChecked] = useState("ann");
   const [result, setResult] = useState("");
-  const { register, handleSubmit } = useForm({ resolver: zodResolver(formSchema) });
+  const [isLoading, setIsLoading] = useState(false);
+  const { register, handleSubmit, formState: { errors }, } = useForm({ resolver: zodResolver(formSchema) });
 
   const handleCheckboxToggle = (e) => {
     setChecked(e.target.value);
   };
 
   const handleFormSubmit = () => {
-    setResult("This is a result");
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+      setResult("We are currently working on this feature and will launch soon!");
+    }, 2000);
+    setResult("We are currently working on this feature and will launch soon!");
   };
 
   return (
@@ -62,6 +69,7 @@ export function Mortgage() {
                 <div className="col-8">
                   <Form.Control type="text" {...register("sum")} />
                 </div>
+                {errors?.sum?.message && <p className="text-danger">{errors.sum.message}</p>}
               </Form.Group>
               <Form.Group className="mb-4 row" controlId="firstPay">
                 <div className="col-4 text-nowrap">
@@ -74,6 +82,7 @@ export function Mortgage() {
                     <option value="percentage">%</option>
                   </Form.Select>
                 </div>
+                {errors?.firstPay?.sum?.message && <p className="text-danger">{errors.firstPay.sum.message}</p>}
               </Form.Group>
               <Form.Group className="mb-4 row" controlId="sumOfLoan">
                 <div className="col-4 text-nowrap">
@@ -94,6 +103,7 @@ export function Mortgage() {
                     <option value="months">месяцев</option>
                   </Form.Select>
                 </div>
+                {errors?.creditTerm?.term?.message && <p className="text-danger">{errors.creditTerm.term.message}</p>}
               </Form.Group>
               <Form.Group className="mb-4 row" controlId="interestRate">
                 <div className="text-nowrap col-4">
@@ -102,10 +112,11 @@ export function Mortgage() {
                 <div className="col-8">
                   <Form.Control type="text" {...register("interestRate")} />
                 </div>
+                {errors?.interestRate?.message && <p className="text-danger">{errors.interestRate.message}</p>}
               </Form.Group>
               <Form.Group key="nds-checkbox" controlId="payType" className="d-flex">
                 <Form.Label className="me-4">Тип ежемесячных платежей</Form.Label>
-                <div>
+                <div onChange={handleCheckboxToggle}>
                   <Form.Check
                     name="ann"
                     value="ann"
@@ -113,7 +124,6 @@ export function Mortgage() {
                     label="Аннуитетные"
                     id="nds-checkbox-1"
                     checked={checked === "ann"}
-                    onChange={handleCheckboxToggle}
                     {...register("payType")}
                   />
                   <Form.Check
@@ -123,17 +133,19 @@ export function Mortgage() {
                     label="Дифференцированные"
                     id="nds-checkbox-2"
                     checked={checked === "diff"}
-                    onChange={handleCheckboxToggle}
                     {...register("payType")}
                   />
                 </div>
               </Form.Group>
-              <CountButton color="bg-deep-green" />
+              <CountButton disabled={Object.entries(errors).length > 0} color="bg-deep-green" />
             </Form>
           </div>
           <div className="col-sm mb-5">
-            <h3 className="mb-5">Результат</h3>
-            <div className="w-100 h-75 p-4 bg-secondary-subtle border border-3 border-secondary">{result}</div>
+            <h3 className="mb-4">Результат</h3>
+            <div className="w-100 h-75 p-4 bg-secondary-subtle border border-3 border-secondary">
+              {!isLoading && result}
+              {isLoading && <Loader/>}
+            </div>
           </div>
         </div>
       </div>

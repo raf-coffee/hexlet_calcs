@@ -5,6 +5,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CountButton } from "../../components/CountButton/CountButton.jsx";
 import { KeyRateChart } from "../../components/KeyRateChart/KeyRateChart.jsx";
+import {Loader} from "../../components/Loader/Loader.jsx";
 import annuitet from "../../assets/images/payment_annuitet.webp";
 import diff from "../../assets/images/payment_diff.webp";
 
@@ -29,6 +30,7 @@ const formSchema = z.object({
 
 export function Loan() {
   const [result, setResult] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const {
     register,
     handleSubmit,
@@ -36,6 +38,11 @@ export function Loan() {
   } = useForm({ resolver: zodResolver(formSchema) });
 
   const handleFormSubmit = () => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+      setResult("We are currently working on this feature and will launch soon!");
+    }, 2000);
     setResult("We are currently working on this feature and will launch soon!");
   };
 
@@ -90,7 +97,10 @@ export function Loan() {
           </div>
           <div className="col-sm mb-5">
             <h3 className="mb-4">Результат</h3>
-            <div className="w-100 h-75 p-4 bg-secondary-subtle border border-3 border-secondary">{result}</div>
+            <div className="w-100 h-75 p-4 bg-secondary-subtle border border-3 border-secondary">
+              {!isLoading && result}
+              {isLoading && <Loader/>}
+            </div>
           </div>
         </div>
       </div>
