@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { App } from "./App.jsx";
 import { Loan } from "./pages/Finance/Loan.jsx";
 import { Mortgage } from "./pages/Finance/Mortgage.jsx";
 import { NDFL } from "./pages/Finance/NDFL.jsx";
@@ -10,11 +11,10 @@ import { Dream } from "./pages/Health/Dream.jsx";
 import { IdealWeight } from "./pages/Health/IdealWeight.jsx";
 import { IMT } from "./pages/Health/IMT.jsx";
 import { Currency } from "./pages/Currency/Currency.jsx";
-import App from "./App.jsx";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./index.css";
 import { Index } from "./pages/index.jsx";
 import { BodyType } from "./pages/Health/BodyType.jsx";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./index.css";
 
 const router = createBrowserRouter([
   {

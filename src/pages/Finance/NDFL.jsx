@@ -1,13 +1,38 @@
 import { useState } from "react";
 import { Form } from "react-bootstrap";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { CountButton } from "../../components/CountButton/CountButton.jsx";
+import {Loader} from "../../components/Loader/Loader.jsx";
+
+const formSchema = z.object({
+  sum: z.coerce
+    .number({
+      invalid_type_error: "Сумма до налогообложения должна быть числом",
+    })
+    .positive({ message: "Сумма до налогообложения должна быть больше 0" }),
+  beforeOrAfter: z.string(),
+  taxesType: z.string(),
+});
 
 export function NDFL() {
-  const [result] = useState("");
+  const [result, setResult] = useState("");
   const [checked, setChecked] = useState("before");
+  const [isLoading, setIsLoading] = useState(false);
+  const { register, handleSubmit, formState: { errors }, } = useForm({ resolver: zodResolver(formSchema) });
 
   const handleCheckboxToggle = (e) => {
     setChecked(e.target.value);
+  };
+
+  const handleFormSubmit = () => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+      setResult("We are currently working on this feature and will launch soon!");
+    }, 2000);
+    setResult("We are currently working on this feature and will launch soon!");
   };
 
   return (
@@ -16,9 +41,10 @@ export function NDFL() {
         <div className="row mb-4">
           <div className="col-sm mb-5">
             <h3 className="mb-5">Калькулятор НДФЛ</h3>
-            <Form>
+            <Form onSubmit={handleSubmit(handleFormSubmit)}>
               <Form.Group key="nds-checkbox" controlId="pays" className="mb-4 row d-flex justify-content-end">
-                <div className="col-7">
+                <div className="col-7"
+                     onChange={handleCheckboxToggle}>
                   <Form.Check
                     name="before"
                     value="before"
@@ -26,7 +52,7 @@ export function NDFL() {
                     label="Известна сумма до налогообложения"
                     id="ndfl-checkbox-1"
                     checked={checked === "before"}
-                    onChange={handleCheckboxToggle}
+                    {...register("beforeOrAfter")}
                   />
                   <Form.Check
                     name="after"
@@ -35,24 +61,25 @@ export function NDFL() {
                     label="Известна сумма после налогообложения"
                     id="ndfl-checkbox-2"
                     checked={checked === "after"}
-                    onChange={handleCheckboxToggle}
+                    {...register("beforeOrAfter")}
                   />
                 </div>
               </Form.Group>
-              <Form.Group className="mb-4 row" controlId="">
+              <Form.Group className="mb-4 row" controlId="sum">
                 <div className="col-5 text-nowrap">
                   <Form.Label>Сумма до налогообложения (руб.)</Form.Label>
                 </div>
                 <div className="col-7">
-                  <Form.Control type="text" />
+                  <Form.Control type="text" {...register("sum")} />
                 </div>
+                {errors?.sum?.message && <p className="text-danger">{errors.sum.message}</p>}
               </Form.Group>
-              <Form.Group className="mb-4 row" controlId="firstPay">
+              <Form.Group className="mb-4 row" controlId="taxesType">
                 <div className="col-5 text-nowrap">
                   <Form.Label>Налог</Form.Label>
                 </div>
                 <div className="col-7">
-                  <Form.Select aria-label="Налог">
+                  <Form.Select aria-label="Налог" {...register("taxesType")}>
                     <option value="podohod">Подоходный налог (13% - 15%)</option>
                     <option value="dividend">Налог на дивиденды (13%)</option>
                     <option value="neresident">НДФЛ для нерезидентов (30%)</option>
@@ -60,12 +87,15 @@ export function NDFL() {
                   </Form.Select>
                 </div>
               </Form.Group>
-              <CountButton color="bg-deep-green" />
+              <CountButton disabled={Object.entries(errors).length > 0} color="bg-deep-green" />
             </Form>
           </div>
           <div className="col-sm mb-5">
             <h3 className="mb-5">Результат</h3>
-            <div className="w-100 h-50 p-4 bg-secondary-subtle border border-3 border-secondary">{result}</div>
+            <div className="w-100 h-50 p-4 bg-secondary-subtle border border-3 border-secondary">
+              {!isLoading && result}
+              {isLoading && <Loader/>}
+            </div>
           </div>
         </div>
         <h3>Описание калькулятора</h3>
@@ -108,9 +138,7 @@ export function NDFL() {
             </li>
           </ul>
         </div>
-        <div
-          className="border border-4 border-success-subtle rounded-4 p-3 d-flex align-items-center justify-content-center fw-bold"
-        >
+        <div className="border border-4 border-success-subtle rounded-4 p-3 d-flex align-items-center justify-content-center fw-bold">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="currentColor"
