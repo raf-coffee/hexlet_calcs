@@ -5,7 +5,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CountButton } from "../../components/CountButton/CountButton.jsx";
 import { KeyRateChart } from "../../components/KeyRateChart/KeyRateChart.jsx";
-import {Loader} from "../../components/Loader/Loader.jsx";
+import { Loader } from "../../components/Loader/Loader.jsx";
 import annuitet from "../../assets/images/payment_annuitet.webp";
 import diff from "../../assets/images/payment_diff.webp";
 
@@ -99,7 +99,7 @@ export function Loan() {
             <h3 className="mb-4">Результат</h3>
             <div className="w-100 h-75 p-4 bg-secondary-subtle border border-3 border-secondary">
               {!isLoading && result}
-              {isLoading && <Loader/>}
+              {isLoading && <Loader />}
             </div>
           </div>
         </div>

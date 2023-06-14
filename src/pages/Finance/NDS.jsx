@@ -5,7 +5,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CountButton } from "../../components/CountButton/CountButton.jsx";
 import { nds } from "../../calcs/finance/nds/nds.js";
-import {Loader} from "../../components/Loader/Loader.jsx";
+import { Loader } from "../../components/Loader/Loader.jsx";
 
 const formSchema = z.object({
   nb: z.coerce
@@ -25,7 +25,11 @@ export function NDS() {
   const [checked, setChecked] = useState("accrue");
   const [result, setResult] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const { register, handleSubmit, formState: { errors } } = useForm({ resolver: zodResolver(formSchema) });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ resolver: zodResolver(formSchema) });
 
   const handleCheckboxToggle = (e) => {
     setChecked(e.target.value);
@@ -83,7 +87,7 @@ export function NDS() {
             <h3 className="mb-5">Результат</h3>
             <div className="w-100 h-75 p-4 bg-secondary-subtle border border-3 border-secondary">
               {!isLoading && result}
-              {isLoading && <Loader/>}
+              {isLoading && <Loader />}
             </div>
           </div>
         </div>

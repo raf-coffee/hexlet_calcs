@@ -1,4 +1,4 @@
-import styles from './Loader.module.css';
+import styles from "./Loader.module.css";
 
 export function Loader() {
   return (
@@ -16,5 +16,5 @@ export function Loader() {
       <div></div>
       <div></div>
     </div>
-  )
+  );
 }
