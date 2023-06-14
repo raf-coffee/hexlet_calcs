@@ -59,7 +59,7 @@ const options = {
     y: {
       position: "right",
       ticks: {
-        callback (value) {
+        callback(value) {
           return `${value}%`;
         },
       },
@@ -84,7 +84,7 @@ const options = {
     },
     tooltip: {
       callbacks: {
-        label (data) {
+        label(data) {
           return `Ключевая ставка: ${data.parsed.y}%`;
         },
       },

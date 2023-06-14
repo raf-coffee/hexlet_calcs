@@ -11,7 +11,7 @@ const options = {
     },
     tooltip: {
       callbacks: {
-        label (data) {
+        label(data) {
           return `${data.parsed.y}%`;
         },
       },
@@ -20,7 +20,7 @@ const options = {
   scales: {
     y: {
       ticks: {
-        callback (value) {
+        callback(value) {
           return `${value}%`;
         },
       },

@@ -108,9 +108,7 @@ export function NDFL() {
             </li>
           </ul>
         </div>
-        <div
-          className="border border-4 border-success-subtle rounded-4 p-3 d-flex align-items-center justify-content-center fw-bold"
-        >
+        <div className="border border-4 border-success-subtle rounded-4 p-3 d-flex align-items-center justify-content-center fw-bold">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="currentColor"

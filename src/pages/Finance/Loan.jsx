@@ -1,16 +1,15 @@
-import React, {useState} from "react";
-import { Form, Image } from "react-bootstrap"
-import {useForm} from "react-hook-form"
-import {z} from "zod"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { CountButton } from "../../components/CountButton/CountButton.jsx"
-import { KeyRateChart } from "../../components/KeyRateChart/KeyRateChart.jsx"
-import annuitet from "../../assets/images/payment_annuitet.webp"
-import diff from "../../assets/images/payment_diff.webp"
+import { useState } from "react";
+import { Form, Image } from "react-bootstrap";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { CountButton } from "../../components/CountButton/CountButton.jsx";
+import { KeyRateChart } from "../../components/KeyRateChart/KeyRateChart.jsx";
+import annuitet from "../../assets/images/payment_annuitet.webp";
+import diff from "../../assets/images/payment_diff.webp";
 
 const formSchema = z.object({
-  variants: z.coerce
-    .string(),
+  variants: z.coerce.string(),
   sum: z.coerce
     .number({
       invalid_type_error: "Сумма кредита должна быть числом",
@@ -101,13 +100,11 @@ export function Loan() {
           <p>Кредитный калькулятор осуществляет 3 типа расчетов:</p>
           <ul>
             <li>
-              <span className="fw-bold">Классический</span> - нахождение ежемесячного платежа по заданной сумме и
-              сроку кредита. Такой расчет производят банки при выдаче кредитов.
+              <span className="fw-bold">Классический</span> - нахождение ежемесячного платежа по заданной сумме и сроку
+              кредита. Такой расчет производят банки при выдаче кредитов.
             </li>
             <li>
-              <span className="fw-bold">
-                Вычисление срока кредита на основе заданной суммы и ежемесячного платежа
-              </span>{" "}
+              <span className="fw-bold">Вычисление срока кредита на основе заданной суммы и ежемесячного платежа</span>{" "}
               - этот вариант интересен тем, что поможет спрогнозировать точный срок возврата кредита при наличии у
               заемщика конкретных пожеланий к ежемесячному платежу.
             </li>

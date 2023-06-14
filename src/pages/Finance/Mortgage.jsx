@@ -1,22 +1,22 @@
-import {useState} from "react";
-import {Form, Table} from "react-bootstrap";
-import {useForm} from "react-hook-form";
-import {z} from "zod";
-import {zodResolver} from "@hookform/resolvers/zod";
-import {CountButton} from "../../components/CountButton/CountButton.jsx";
+import { useState } from "react";
+import { Form, Table } from "react-bootstrap";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { CountButton } from "../../components/CountButton/CountButton.jsx";
 
 const formSchema = z.object({
   sum: z.coerce
     .number({
       invalid_type_error: "Стоимость недвижимости должна быть числом",
     })
-    .positive({message: "Стоимость недвижимости должна быть больше 0"}),
+    .positive({ message: "Стоимость недвижимости должна быть больше 0" }),
   firstPay: z.object({
     sum: z.coerce
-    .number({
-      invalid_type_error: "Первоначальный взнос должен быть числом",
-    })
-    .positive({message: "Первоначальный взнос должен быть больше 0"}),
+      .number({
+        invalid_type_error: "Первоначальный взнос должен быть числом",
+      })
+      .positive({ message: "Первоначальный взнос должен быть больше 0" }),
     type: z.string(),
   }),
   creditTerm: z.object({
@@ -24,24 +24,21 @@ const formSchema = z.object({
       .number({
         invalid_type_error: "Первоначальный взнос должен быть числом",
       })
-      .positive({message: "Первоначальный взнос должен быть больше 0"}),
+      .positive({ message: "Первоначальный взнос должен быть больше 0" }),
     type: z.string(),
   }),
   interestRate: z.coerce
     .number({
       invalid_type_error: "Процентная ставка должна быть числом",
     })
-    .positive({message: "Процентная ставка должна быть больше 0"}),
-  payType: z.string()
+    .positive({ message: "Процентная ставка должна быть больше 0" }),
+  payType: z.string(),
 });
 
 export function Mortgage() {
   const [checked, setChecked] = useState("ann");
   const [result, setResult] = useState("");
-  const {
-    register,
-    handleSubmit,
-  } = useForm({resolver: zodResolver(formSchema)});
+  const { register, handleSubmit } = useForm({ resolver: zodResolver(formSchema) });
 
   const handleCheckboxToggle = (e) => {
     setChecked(e.target.value);
@@ -92,7 +89,7 @@ export function Mortgage() {
                 </div>
                 <div className="d-flex col-8">
                   <Form.Control type="text" {...register("creditTerm.term")} />
-                  <Form.Select aria-label="Срок кредита" {...register("creditTerm.type")} >
+                  <Form.Select aria-label="Срок кредита" {...register("creditTerm.type")}>
                     <option value="years">лет</option>
                     <option value="months">месяцев</option>
                   </Form.Select>
@@ -131,7 +128,7 @@ export function Mortgage() {
                   />
                 </div>
               </Form.Group>
-              <CountButton color="bg-deep-green"/>
+              <CountButton color="bg-deep-green" />
             </Form>
           </div>
           <div className="col-sm mb-5">
@@ -205,43 +202,43 @@ export function Mortgage() {
           </p>
         </div>
         <div className="mb-4 text-start">
-          <Table responsive className="table-bordered d-inline-block" style={{minWidth: "350px"}}>
+          <Table responsive className="table-bordered d-inline-block" style={{ minWidth: "350px" }}>
             <caption className="caption-top">
               Таблица 1. Демонстрация влияния процентной ставки на параметры кредита.
             </caption>
             <thead>
-            <tr className="table-secondary">
-              <th>Сумма кредита</th>
-              <th>2 000 000</th>
-              <th>2 000 000</th>
-              <th>2 000 000</th>
-            </tr>
+              <tr className="table-secondary">
+                <th>Сумма кредита</th>
+                <th>2 000 000</th>
+                <th>2 000 000</th>
+                <th>2 000 000</th>
+              </tr>
             </thead>
             <tbody className="table-group-divider">
-            <tr>
-              <td>Срок кредита</td>
-              <td>10 лет</td>
-              <td>10 лет</td>
-              <td>10 лет</td>
-            </tr>
-            <tr className="fw-bold">
-              <td>Процентная ставка</td>
-              <td>12%</td>
-              <td>12,5%</td>
-              <td>13%</td>
-            </tr>
-            <tr>
-              <td>Ежемесячный платеж (руб.)</td>
-              <td>28 694</td>
-              <td>29 275</td>
-              <td>29 862</td>
-            </tr>
-            <tr>
-              <td>Переплата по кредиту (руб.)</td>
-              <td>1 443 303</td>
-              <td>1 513 028</td>
-              <td>1 583 458</td>
-            </tr>
+              <tr>
+                <td>Срок кредита</td>
+                <td>10 лет</td>
+                <td>10 лет</td>
+                <td>10 лет</td>
+              </tr>
+              <tr className="fw-bold">
+                <td>Процентная ставка</td>
+                <td>12%</td>
+                <td>12,5%</td>
+                <td>13%</td>
+              </tr>
+              <tr>
+                <td>Ежемесячный платеж (руб.)</td>
+                <td>28 694</td>
+                <td>29 275</td>
+                <td>29 862</td>
+              </tr>
+              <tr>
+                <td>Переплата по кредиту (руб.)</td>
+                <td>1 443 303</td>
+                <td>1 513 028</td>
+                <td>1 583 458</td>
+              </tr>
             </tbody>
           </Table>
         </div>
@@ -263,12 +260,12 @@ export function Mortgage() {
         <div className="mb-4 text-start">
           <h3>Аннуитетный и дифференцированный платеж</h3>
           <p>
-            <span className="fw-bold">Аннуитетный платеж</span> – вариант ежемесячного платежа по кредиту, когда
-            размер ежемесячного платежа остаётся постоянным на всём периоде кредитования.
+            <span className="fw-bold">Аннуитетный платеж</span> – вариант ежемесячного платежа по кредиту, когда размер
+            ежемесячного платежа остаётся постоянным на всём периоде кредитования.
           </p>
           <p>
-            <span className="fw-bold">Дифференцированный платеж</span> – вариант ежемесячного платежа по кредиту,
-            когда размер ежемесячного платежа по погашению кредита постепенно уменьшается к концу периода кредитования.
+            <span className="fw-bold">Дифференцированный платеж</span> – вариант ежемесячного платежа по кредиту, когда
+            размер ежемесячного платежа по погашению кредита постепенно уменьшается к концу периода кредитования.
           </p>
           <p>В настоящее время наиболее распространен аннуитетный платеж.</p>
         </div>
