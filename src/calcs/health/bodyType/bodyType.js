@@ -5,7 +5,7 @@
    sex - значение поля "Пол" (female, male)
    функция возвращает объект со строками
 */
-export const bodyType = (height, weight, bust, carpus, sex) => {
+export const bodyType = ({ height, weight, bust, carpus, sex }) => {
   const pinie = height - (weight + bust);
   const rorer = (weight / (height / 100) ** 3).toFixed(1);
   const ruDesc = {

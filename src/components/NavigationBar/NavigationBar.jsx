@@ -51,7 +51,7 @@ export const NavigationBar = () => {
             <div className={"col d-flex flex-column p-0 me-2"}>
               <h2
                 className={`bg-color-custom text-center px-1 mb-0 letter-spacing-1 ${
-                  ["/imt", "/ideal-weight", "/dream"].includes(activeCategory) ? "active-category" : ""
+                  ["/imt", "/ideal-weight", "/dream", "/body-type"].includes(activeCategory) ? "active-category" : ""
                 }`}
               >
                 Здоровье
@@ -59,6 +59,9 @@ export const NavigationBar = () => {
               <div className={"container py-2 text-center bg-image-health flex-grow-1"}>
                 <NavLink to={"imt"} onClick={handleCollapseMenu} className={"d-block py-1 link"}>
                   Калькулятор индекса массы тела
+                </NavLink>
+                <NavLink to={"body-type"} onClick={handleCollapseMenu} className={"d-block py-1 link"}>
+                  Калькулятор типа телосложения
                 </NavLink>
                 <NavLink to={"ideal-weight"} onClick={handleCollapseMenu} className={"d-block py-1 link"}>
                   Калькулятор идеального веса

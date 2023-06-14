@@ -1,6 +1,6 @@
-export const CountButton = ({ color }) => {
+export const CountButton = ({ color, disabled }) => {
   return (
-    <button type="submit" className={`btn btn-primary my-3 ${color}`}>
+    <button disabled={disabled} type="submit" className={`btn btn-primary my-3 ${color}`}>
       Расчитать
     </button>
   );

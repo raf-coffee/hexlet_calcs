@@ -1,8 +1,20 @@
-import {useState} from "react";
-import {useForm} from "react-hook-form";
-import {Form, Table} from "react-bootstrap";
-import {CountButton} from "../../components/CountButton/CountButton.jsx";
-import {nds} from "../../calcs/finance/nds/nds.js";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { Form, Table } from "react-bootstrap";
+import {z} from "zod";
+import {zodResolver} from "@hookform/resolvers/zod";
+import { CountButton } from "../../components/CountButton/CountButton.jsx";
+import { nds } from "../../calcs/finance/nds/nds.js";
+
+const formSchema = z.object({
+  sum: z.coerce.number({
+    invalid_type_error: "Сумма должна быть числом"
+  }).positive({message: "Сумма должна быть больше 0"}),
+  interest: z.coerce.number({
+    invalid_type_error: "Ставка должна быть числом"
+  }).positive({message: "Ставка должна быть больше 0"}),
+  checked: z.coerce.string()
+})
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const NDS = () => {
@@ -12,7 +24,7 @@ export const NDS = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({ resolver: zodResolver(formSchema)});
 
   const handleCheckboxToggle = (e) => {
     setChecked(e.target.value);
@@ -32,10 +44,12 @@ export const NDS = () => {
               <Form.Group className={"mb-4"} controlId={"sum"}>
                 <Form.Label>Сумма</Form.Label>
                 <Form.Control type={"text"} name={"sum"} {...register("sum")} />
+                {errors?.sum?.message && <p className={"text-danger"}>{errors.sum.message}</p>}
               </Form.Group>
               <Form.Group className={"mb-4"} controlId={"interest"}>
                 <Form.Label>Ставка НДС (%)</Form.Label>
                 <Form.Control type={"text"} name={"interest"} {...register("interest")} />
+                {errors?.interest?.message && <p className={"text-danger"}>{errors.interest.message}</p>}
               </Form.Group>
               <div key={"nds-checkbox"}>
                 <Form.Check
@@ -57,7 +71,7 @@ export const NDS = () => {
                   onClick={handleCheckboxToggle}
                 />
               </div>
-              <CountButton color={"bg-deep-green"} />
+              <CountButton disabled={Object.entries(errors).length > 0} color={"bg-deep-green"} />
             </Form>
           </div>
           <div className={"col-sm mb-5"}>

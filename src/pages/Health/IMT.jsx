@@ -1,20 +1,31 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Form, Table } from "react-bootstrap";
+import {z} from "zod";
+import {zodResolver} from "@hookform/resolvers/zod";
 import { WeightChart } from "../../components/WeightChart/WeightChart.jsx";
 import { CountButton } from "../../components/CountButton/CountButton.jsx";
 import { imt } from "../../calcs/health/imt/imt.js";
 
+const formSchema = z.object({
+  height: z.coerce.number({
+    invalid_type_error: "Рост должен быть числом"
+  }).positive({message: "Рост должен быть больше 0"}),
+  weight: z.coerce.number({
+    invalid_type_error: "Вес должен быть числом"
+  }).positive({message: "Вес должен быть больше 0"}),
+})
+
 export const IMT = () => {
-  const [result, setResult] = useState("");
+  const [result, setResult] = useState();
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({ resolver: zodResolver(formSchema) });
 
   const handleFormSubmit = (e) => {
-    setResult(imt(Number(e.height), Number(e.weight)));
+    setResult(imt(e.height, e.weight));
   };
 
   return (
@@ -31,6 +42,7 @@ export const IMT = () => {
                 <div className={"col-8"}>
                   <Form.Control type={"text"} name={"height"} {...register("height")} />
                 </div>
+                {errors?.height?.message && <p className={"text-danger"}>{errors.height.message}</p>}
               </Form.Group>
               <Form.Group className={"mb-4 row"} controlId={"weight"}>
                 <div className={"col-4"}>
@@ -39,16 +51,17 @@ export const IMT = () => {
                 <div className={"col-8"}>
                   <Form.Control type={"text"} name={"weight"} {...register("weight")} />
                 </div>
+                {errors?.weight?.message && <p className={"text-danger"}>{errors.weight.message}</p>}
               </Form.Group>
-              <CountButton color={"bg-deep-green"} />
+              <CountButton disabled={Object.entries(errors).length > 0} color={"bg-deep-green"} />
             </Form>
           </div>
           <div className={"col-sm mb-5"}>
             <h3 className={"mb-4"}>Результат</h3>
             <div className={"w-100 h-75 p-4 bg-secondary-subtle border border-3 border-secondary"}>
-              {result.imt ? <p>Индекс массы тела: {result.imt}</p> : ""}
-              {result.category ? <p>Категория: {result.category}</p> : ""}
-              {result.risk ? <p>{result.risk}</p> : ""}
+              {result?.imt ? <p>Индекс массы тела: {result.imt}</p> : ""}
+              {result?.category ? <p>Категория: {result.category}</p> : ""}
+              {result?.risk ? <p>{result.risk}</p> : ""}
             </div>
           </div>
         </div>

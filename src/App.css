@@ -87,14 +87,14 @@ main {
 }
 
 .bg-deep-green {
-  background-color: var(--custom-secondary) !important;
+  background-color: var(--custom-primary) !important;
   color: var(--dark-green) !important;
   border-color: var(--custom-secondary) !important;
   transition: background-color 0.5s linear;
 }
 
 .bg-deep-green:hover {
-  background-color: var(--button-hover) !important;
+  background-color: var(--custom-secondary) !important;
 }
 
 .form-check-input:checked {
