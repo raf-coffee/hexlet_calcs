@@ -1,15 +1,15 @@
+import { Image } from "react-bootstrap";
 import underConstruction from "../../assets/images/under-construction.webp";
-import {Image} from "react-bootstrap";
 
-export const Base64Decoder = () => {
+export function Base64Decoder() {
   return (
     <div>
-      <div className={"container text-start"}>
-        <div className={"row mb-4"}>
-          <div className={"col"}>
+      <div className="container text-start">
+        <div className="row mb-4">
+          <div className="col">
             <h3>Кодирование и декодирование Base64</h3>
           </div>
-          <div className={"col"}>
+          <div className="col">
             <h3>Результат</h3>
           </div>
         </div>
@@ -25,7 +25,7 @@ export const Base64Decoder = () => {
           condimentum mattis.
         </p>
       </div>
-      <Image src={underConstruction} className={"img-fluid mx-auto d-block"} />
+      <Image src={underConstruction} className="img-fluid mx-auto d-block" />
     </div>
-  )
+  );
 }
