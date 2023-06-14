@@ -11,7 +11,7 @@ const options = {
     },
     tooltip: {
       callbacks: {
-        label: function (data) {
+        label (data) {
           return `${data.parsed.y}%`;
         },
       },
@@ -20,7 +20,7 @@ const options = {
   scales: {
     y: {
       ticks: {
-        callback: function (value, index, ticks) {
+        callback (value) {
           return `${value}%`;
         },
       },
@@ -57,6 +57,6 @@ const data = {
   ],
 };
 
-export const WeightChart = () => {
+export function WeightChart() {
   return <Bar options={options} data={data} />;
-};
+}

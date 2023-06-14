@@ -8,12 +8,15 @@
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
-    "airbnb-base",
+    "airbnb",
     "prettier"
   ],
   "overrides": [],
   "parserOptions": {
     "ecmaVersion": "latest",
+    "ecmaFeatures": {
+      "jsx": true
+    },
     "sourceType": "module"
   },
   "plugins": [
@@ -31,7 +34,11 @@
     "import/no-default-export": "error",
     "import/prefer-default-export": "off",
     "react/react-in-jsx-scope": "off",
-    "unused-imports/no-unused-imports": "error"
+    "unused-imports/no-unused-imports": "error",
+    "react/jsx-props-no-spreading": "off",
+    "react/prop-types": "off",
+    "import/extensions": "off",
+    "react/no-unescaped-entities": "off"
   },
   "settings": {
     "react": {

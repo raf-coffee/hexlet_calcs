@@ -20,7 +20,7 @@ const formSchema = z.object({
     .positive({ message: "Вес должен быть больше 0" }),
 });
 
-export const IMT = () => {
+export function IMT() {
   const [result, setResult] = useState();
   const {
     register,
@@ -34,35 +34,35 @@ export const IMT = () => {
 
   return (
     <>
-      <div className={"container text-start"}>
-        <div className={"row mb-4"}>
-          <div className={"col-sm mb-5"}>
-            <h3 className={"mb-5"}>Калькулятор индекса массы тела</h3>
+      <div className="container text-start">
+        <div className="row mb-4">
+          <div className="col-sm mb-5">
+            <h3 className="mb-5">Калькулятор индекса массы тела</h3>
             <Form onSubmit={handleSubmit(handleFormSubmit)}>
-              <Form.Group className={"mb-4 row"} controlId={"height"}>
-                <div className={"col-4"}>
+              <Form.Group className="mb-4 row" controlId="height">
+                <div className="col-4">
                   <Form.Label>Рост</Form.Label>
                 </div>
-                <div className={"col-8"}>
-                  <Form.Control type={"text"} name={"height"} {...register("height")} />
+                <div className="col-8">
+                  <Form.Control type="text" name="height" {...register("height")} />
                 </div>
-                {errors?.height?.message && <p className={"text-danger"}>{errors.height.message}</p>}
+                {errors?.height?.message && <p className="text-danger">{errors.height.message}</p>}
               </Form.Group>
-              <Form.Group className={"mb-4 row"} controlId={"weight"}>
-                <div className={"col-4"}>
-                  <Form.Label className={"col-4"}>Вес</Form.Label>
+              <Form.Group className="mb-4 row" controlId="weight">
+                <div className="col-4">
+                  <Form.Label className="col-4">Вес</Form.Label>
                 </div>
-                <div className={"col-8"}>
-                  <Form.Control type={"text"} name={"weight"} {...register("weight")} />
+                <div className="col-8">
+                  <Form.Control type="text" name="weight" {...register("weight")} />
                 </div>
-                {errors?.weight?.message && <p className={"text-danger"}>{errors.weight.message}</p>}
+                {errors?.weight?.message && <p className="text-danger">{errors.weight.message}</p>}
               </Form.Group>
-              <CountButton disabled={Object.entries(errors).length > 0} color={"bg-deep-green"} />
+              <CountButton disabled={Object.entries(errors).length > 0} color="bg-deep-green" />
             </Form>
           </div>
-          <div className={"col-sm mb-5"}>
-            <h3 className={"mb-4"}>Результат</h3>
-            <div className={"w-100 h-75 p-4 bg-secondary-subtle border border-3 border-secondary"}>
+          <div className="col-sm mb-5">
+            <h3 className="mb-4">Результат</h3>
+            <div className="w-100 h-75 p-4 bg-secondary-subtle border border-3 border-secondary">
               {result?.imt ? <p>Индекс массы тела: {result.imt}</p> : ""}
               {result?.category ? <p>Категория: {result.category}</p> : ""}
               {result?.risk ? <p>{result.risk}</p> : ""}
@@ -70,8 +70,8 @@ export const IMT = () => {
           </div>
         </div>
       </div>
-      <div className={"container"}>
-        <div className={"mb-5"}>
+      <div className="container">
+        <div className="mb-5">
           <h3>Индекс массы тела (ИМТ)</h3>
           <p>
             Индекс массы тела является показателем отношения веса и роста человека. Данный параметр помогает определить
@@ -105,12 +105,12 @@ export const IMT = () => {
           </p>
           <p>Калькулятор ИМТ определит точку отсчета и позволит прослеживать изменения веса тела.</p>
         </div>
-        <div className={"mb-5"}>
+        <div className="mb-5">
           <h3>Формула расчета индекса массы тела (ИМТ)</h3>
           <p>
             Для того, чтобы узнать свой ИМТ необходимо лишь свой вес в килограммах разделить на квадрат роста в метрах.
           </p>
-          <p className={"text-center p-4 text-uppercase border border-3 border-warning rounded bg-white-yellow"}>
+          <p className="text-center p-4 text-uppercase border border-3 border-warning rounded bg-white-yellow">
             ИМТ = вес/рост<sup>2</sup>
           </p>
           <p>
@@ -118,14 +118,14 @@ export const IMT = () => {
             выше у людей среднего возраста, а у детей и пожилых людей этот показатель ниже.
           </p>
         </div>
-        <div className={"mb-5"}>
+        <div className="mb-5">
           <h3>Сводная таблица значений</h3>
           <p>
             Интерпретация показателей ИМТ, в соответствии с ремомендациями Всемирной Организации Здравоохранения (ВОЗ)
           </p>
-          <Table className={"d-inline-block table-bordered"}>
+          <Table className="d-inline-block table-bordered">
             <thead>
-              <tr className={"table-secondary"}>
+              <tr className="table-secondary">
                 <th>ИМТ</th>
                 <th>Категория</th>
               </tr>
@@ -170,4 +170,4 @@ export const IMT = () => {
       </div>
     </>
   );
-};
+}

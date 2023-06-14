@@ -59,7 +59,7 @@ const options = {
     y: {
       position: "right",
       ticks: {
-        callback: function (value, index, ticks) {
+        callback (value) {
           return `${value}%`;
         },
       },
@@ -84,7 +84,7 @@ const options = {
     },
     tooltip: {
       callbacks: {
-        label: function (data) {
+        label (data) {
           return `Ключевая ставка: ${data.parsed.y}%`;
         },
       },
@@ -93,6 +93,6 @@ const options = {
   },
 };
 
-export const KeyRateChart = () => {
+export function KeyRateChart() {
   return <Line options={options} data={dataArray} />;
-};
+}

@@ -1,110 +1,148 @@
-import { useState } from "react";
-import { Form, Table } from "react-bootstrap";
-import { CountButton } from "../../components/CountButton/CountButton.jsx";
+import {useState} from "react";
+import {Form, Table} from "react-bootstrap";
+import {useForm} from "react-hook-form";
+import {z} from "zod";
+import {zodResolver} from "@hookform/resolvers/zod";
+import {CountButton} from "../../components/CountButton/CountButton.jsx";
 
-export const Mortgage = () => {
+const formSchema = z.object({
+  sum: z.coerce
+    .number({
+      invalid_type_error: "Стоимость недвижимости должна быть числом",
+    })
+    .positive({message: "Стоимость недвижимости должна быть больше 0"}),
+  firstPay: z.object({
+    sum: z.coerce
+    .number({
+      invalid_type_error: "Первоначальный взнос должен быть числом",
+    })
+    .positive({message: "Первоначальный взнос должен быть больше 0"}),
+    type: z.string(),
+  }),
+  creditTerm: z.object({
+    term: z.coerce
+      .number({
+        invalid_type_error: "Первоначальный взнос должен быть числом",
+      })
+      .positive({message: "Первоначальный взнос должен быть больше 0"}),
+    type: z.string(),
+  }),
+  interestRate: z.coerce
+    .number({
+      invalid_type_error: "Процентная ставка должна быть числом",
+    })
+    .positive({message: "Процентная ставка должна быть больше 0"}),
+  payType: z.string()
+});
+
+export function Mortgage() {
   const [checked, setChecked] = useState("ann");
   const [result, setResult] = useState("");
+  const {
+    register,
+    handleSubmit,
+  } = useForm({resolver: zodResolver(formSchema)});
 
   const handleCheckboxToggle = (e) => {
     setChecked(e.target.value);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleFormSubmit = () => {
     setResult("This is a result");
   };
 
   return (
     <div>
-      <div className={"container text-start"}>
-        <div className={"row mb-4"}>
-          <div className={"col-sm mb-5"}>
-            <h3 className={"mb-5"}>Ипотечный калькулятор</h3>
-            <Form onSubmit={handleSubmit}>
-              <Form.Group className={"mb-4 row"} controlId={"sum"}>
-                <div className={"col-4 text-nowrap"}>
-                  <Form.Label className={"col-4"}>Стоимость недвижимости</Form.Label>
+      <div className="container text-start">
+        <div className="row mb-4">
+          <div className="col-sm mb-5">
+            <h3 className="mb-5">Ипотечный калькулятор</h3>
+            <Form onSubmit={handleSubmit(handleFormSubmit)}>
+              <Form.Group className="mb-4 row" controlId="sum">
+                <div className="col-4 text-nowrap">
+                  <Form.Label className="col-4">Стоимость недвижимости</Form.Label>
                 </div>
-                <div className={"col-8"}>
-                  <Form.Control type={"text"} />
+                <div className="col-8">
+                  <Form.Control type="text" {...register("sum")} />
                 </div>
               </Form.Group>
-              <Form.Group className={"mb-4 row"} controlId={"firstPay"}>
-                <div className={"col-4 text-nowrap"}>
+              <Form.Group className="mb-4 row" controlId="firstPay">
+                <div className="col-4 text-nowrap">
                   <Form.Label>Первоначальный взнос</Form.Label>
                 </div>
-                <div className={"d-flex col-8"}>
-                  <Form.Control type={"text"} />
-                  <Form.Select aria-label="Первоначальный взнос">
+                <div className="d-flex col-8">
+                  <Form.Control type="text" {...register("firstPay.sum")} />
+                  <Form.Select aria-label="Первоначальный взнос" {...register("firstPay.type")}>
                     <option value="ruble">Рубли</option>
                     <option value="percentage">%</option>
                   </Form.Select>
                 </div>
               </Form.Group>
-              <Form.Group className={"mb-4 row"} controlId={"sumOfLoan"}>
-                <div className={"col-4 text-nowrap"}>
+              <Form.Group className="mb-4 row" controlId="sumOfLoan">
+                <div className="col-4 text-nowrap">
                   <Form.Label>Сумма кредита</Form.Label>
                 </div>
-                <div className={"col-8"}>
-                  <Form.Control type={"text"} readOnly={true} />
+                <div className="col-8">
+                  <span className="fw-bold">0</span> рублей
                 </div>
               </Form.Group>
-              <Form.Group className={"mb-4 row"} controlId={"creditTerm"}>
-                <div className={"col-4 text-nowrap"}>
+              <Form.Group className="mb-4 row" controlId="creditTerm">
+                <div className="col-4 text-nowrap">
                   <Form.Label>Срок кредита</Form.Label>
                 </div>
-                <div className={"d-flex col-8"}>
-                  <Form.Control type={"text"} />
-                  <Form.Select aria-label="Срок кредита">
+                <div className="d-flex col-8">
+                  <Form.Control type="text" {...register("creditTerm.term")} />
+                  <Form.Select aria-label="Срок кредита" {...register("creditTerm.type")} >
                     <option value="years">лет</option>
                     <option value="months">месяцев</option>
                   </Form.Select>
                 </div>
               </Form.Group>
-              <Form.Group className={"mb-4 row"} controlId={"interest"}>
-                <div className={"text-nowrap col-4"}>
+              <Form.Group className="mb-4 row" controlId="interestRate">
+                <div className="text-nowrap col-4">
                   <Form.Label>Процентная ставка (%)</Form.Label>
                 </div>
-                <div className={"col-8"}>
-                  <Form.Control type={"text"} />
+                <div className="col-8">
+                  <Form.Control type="text" {...register("interestRate")} />
                 </div>
               </Form.Group>
-              <Form.Group key={"nds-checkbox"} controlId={"pays"} className={"d-flex"}>
-                <Form.Label className={"me-4"}>Тип ежемесячных платежей</Form.Label>
+              <Form.Group key="nds-checkbox" controlId="payType" className="d-flex">
+                <Form.Label className="me-4">Тип ежемесячных платежей</Form.Label>
                 <div>
                   <Form.Check
-                    name={"ann"}
-                    value={"ann"}
-                    type={"radio"}
-                    label={"Аннуитетные"}
-                    id={"nds-checkbox-1"}
+                    name="ann"
+                    value="ann"
+                    type="radio"
+                    label="Аннуитетные"
+                    id="nds-checkbox-1"
                     checked={checked === "ann"}
-                    onClick={handleCheckboxToggle}
+                    onChange={handleCheckboxToggle}
+                    {...register("payType")}
                   />
                   <Form.Check
-                    name={"diff"}
-                    value={"diff"}
-                    type={"radio"}
-                    label={"Дифференцированные"}
-                    id={"nds-checkbox-2"}
+                    name="diff"
+                    value="diff"
+                    type="radio"
+                    label="Дифференцированные"
+                    id="nds-checkbox-2"
                     checked={checked === "diff"}
-                    onClick={handleCheckboxToggle}
+                    onChange={handleCheckboxToggle}
+                    {...register("payType")}
                   />
                 </div>
               </Form.Group>
-              <CountButton color={"bg-deep-green"} />
+              <CountButton color="bg-deep-green"/>
             </Form>
           </div>
-          <div className={"col-sm mb-5"}>
-            <h3 className={"mb-5"}>Результат</h3>
-            <div className={"w-100 h-75 p-4 bg-secondary-subtle border border-3 border-secondary"}>{result}</div>
+          <div className="col-sm mb-5">
+            <h3 className="mb-5">Результат</h3>
+            <div className="w-100 h-75 p-4 bg-secondary-subtle border border-3 border-secondary">{result}</div>
           </div>
         </div>
       </div>
-      <div className={"container"}>
-        <h3 className={"fw-bold mb-3"}>Расчет ипотеки онлайн</h3>
-        <div className={"mb-4 text-start"}>
+      <div className="container">
+        <h3 className="fw-bold mb-3">Расчет ипотеки онлайн</h3>
+        <div className="mb-4 text-start">
           <p>
             При намерении купить квартиру или любую другую недвижимость в кредит, было бы нелишним заранее рассчитать
             ежемесячный платеж ипотеки. Зная возможную сумму ежемесячных платежей, потенциальный заемщик с легкостью
@@ -144,7 +182,7 @@ export const Mortgage = () => {
             чтобы понять степень долговременной кредитной нагрузки.
           </p>
         </div>
-        <div className={"mb-4 text-start"}>
+        <div className="mb-4 text-start">
           <h3>Процентная ставка</h3>
           <p>
             Процентная ставка - очень важный параметр при рассчете ипотеки. Измеряется в процентах годовых. Этот
@@ -166,55 +204,55 @@ export const Mortgage = () => {
             кредиту:
           </p>
         </div>
-        <div className={"mb-4 text-start"}>
-          <Table responsive className={"table-bordered d-inline-block"} style={{ minWidth: "350px" }}>
-            <caption className={"caption-top"}>
+        <div className="mb-4 text-start">
+          <Table responsive className="table-bordered d-inline-block" style={{minWidth: "350px"}}>
+            <caption className="caption-top">
               Таблица 1. Демонстрация влияния процентной ставки на параметры кредита.
             </caption>
             <thead>
-              <tr className={"table-secondary"}>
-                <th>Сумма кредита</th>
-                <th>2 000 000</th>
-                <th>2 000 000</th>
-                <th>2 000 000</th>
-              </tr>
+            <tr className="table-secondary">
+              <th>Сумма кредита</th>
+              <th>2 000 000</th>
+              <th>2 000 000</th>
+              <th>2 000 000</th>
+            </tr>
             </thead>
-            <tbody className={"table-group-divider"}>
-              <tr>
-                <td>Срок кредита</td>
-                <td>10 лет</td>
-                <td>10 лет</td>
-                <td>10 лет</td>
-              </tr>
-              <tr className={"fw-bold"}>
-                <td>Процентная ставка</td>
-                <td>12%</td>
-                <td>12,5%</td>
-                <td>13%</td>
-              </tr>
-              <tr>
-                <td>Ежемесячный платеж (руб.)</td>
-                <td>28 694</td>
-                <td>29 275</td>
-                <td>29 862</td>
-              </tr>
-              <tr>
-                <td>Переплата по кредиту (руб.)</td>
-                <td>1 443 303</td>
-                <td>1 513 028</td>
-                <td>1 583 458</td>
-              </tr>
+            <tbody className="table-group-divider">
+            <tr>
+              <td>Срок кредита</td>
+              <td>10 лет</td>
+              <td>10 лет</td>
+              <td>10 лет</td>
+            </tr>
+            <tr className="fw-bold">
+              <td>Процентная ставка</td>
+              <td>12%</td>
+              <td>12,5%</td>
+              <td>13%</td>
+            </tr>
+            <tr>
+              <td>Ежемесячный платеж (руб.)</td>
+              <td>28 694</td>
+              <td>29 275</td>
+              <td>29 862</td>
+            </tr>
+            <tr>
+              <td>Переплата по кредиту (руб.)</td>
+              <td>1 443 303</td>
+              <td>1 513 028</td>
+              <td>1 583 458</td>
+            </tr>
             </tbody>
           </Table>
         </div>
-        <div className={"mb-4 text-start"}>
+        <div className="mb-4 text-start">
           <h4>Фиксированная и плавающая процентная ставка</h4>
           <p>
-            <span className={"fw-bold"}>Фиксированная процентная ставка</span> - это ставка по кредиту, которая
+            <span className="fw-bold">Фиксированная процентная ставка</span> - это ставка по кредиту, которая
             устанавливается на весь срок кредита. Она прописана в кредитном договоре и не может быть изменена.
           </p>
           <p>
-            <span className={"fw-bold"}>Плавающая процентная ставка</span> - это ставка по кредиту, которая не является
+            <span className="fw-bold">Плавающая процентная ставка</span> - это ставка по кредиту, которая не является
             постоянной величиной, а рассчитывается по формуле, которая определена в договоре. Размер ставки состоит из
             двух частей: Первая составляющая - плавающая, привязана к какому либо рыночному индикатору (например
             Mosprime3m или ставка рефинансирования ЦБ) и изменяется с периодичностью, определенной в кредитном договоре
@@ -222,14 +260,14 @@ export const Mortgage = () => {
             который берет себе банк. Эта часть остается всегда постоянной.
           </p>
         </div>
-        <div className={"mb-4 text-start"}>
+        <div className="mb-4 text-start">
           <h3>Аннуитетный и дифференцированный платеж</h3>
           <p>
-            <span className={"fw-bold"}>Аннуитетный платеж</span> – вариант ежемесячного платежа по кредиту, когда
+            <span className="fw-bold">Аннуитетный платеж</span> – вариант ежемесячного платежа по кредиту, когда
             размер ежемесячного платежа остаётся постоянным на всём периоде кредитования.
           </p>
           <p>
-            <span className={"fw-bold"}>Дифференцированный платеж</span> – вариант ежемесячного платежа по кредиту,
+            <span className="fw-bold">Дифференцированный платеж</span> – вариант ежемесячного платежа по кредиту,
             когда размер ежемесячного платежа по погашению кредита постепенно уменьшается к концу периода кредитования.
           </p>
           <p>В настоящее время наиболее распространен аннуитетный платеж.</p>
@@ -237,4 +275,4 @@ export const Mortgage = () => {
       </div>
     </div>
   );
-};
+}

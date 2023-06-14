@@ -30,7 +30,7 @@ const formSchema = z.object({
   sex: z.coerce.string(),
 });
 
-export const BodyType = () => {
+export function BodyType() {
   const [result, setResult] = useState();
   const {
     register,
@@ -44,69 +44,69 @@ export const BodyType = () => {
 
   return (
     <div>
-      <div className={"container text-start"}>
-        <div className={"row mb-4"}>
-          <div className={"col-sm mb-5"}>
-            <h3 className={"mb-5"}>Калькулятор типа телосложения</h3>
+      <div className="container text-start">
+        <div className="row mb-4">
+          <div className="col-sm mb-5">
+            <h3 className="mb-5">Калькулятор типа телосложения</h3>
             <Form onSubmit={handleSubmit(handleFormSubmit)}>
-              <Form.Group className={"mb-4 row"} controlId={"height"}>
-                <div className={"col-4 text-nowrap"}>
+              <Form.Group className="mb-4 row" controlId="height">
+                <div className="col-4 text-nowrap">
                   <Form.Label>Рост (см)</Form.Label>
                 </div>
-                <div className={"col-8"}>
-                  <Form.Control type={"text"} name={"height"} {...register("height")} />
+                <div className="col-8">
+                  <Form.Control type="text" name="height" {...register("height")} />
                 </div>
-                {errors?.height?.message && <p className={"text-danger"}>{errors.height.message}</p>}
+                {errors?.height?.message && <p className="text-danger">{errors.height.message}</p>}
               </Form.Group>
-              <Form.Group className={"mb-4 row"} controlId={"weight"}>
-                <div className={"col-4 text-nowrap"}>
+              <Form.Group className="mb-4 row" controlId="weight">
+                <div className="col-4 text-nowrap">
                   <Form.Label>Вес (кг)</Form.Label>
                 </div>
-                <div className={"col-8"}>
-                  <Form.Control type={"text"} name={"weight"} {...register("weight")} />
+                <div className="col-8">
+                  <Form.Control type="text" name="weight" {...register("weight")} />
                 </div>
-                {errors?.weight?.message && <p className={"text-danger"}>{errors.weight.message}</p>}
+                {errors?.weight?.message && <p className="text-danger">{errors.weight.message}</p>}
               </Form.Group>
-              <Form.Group className={"mb-4 row"} controlId={"age"}>
-                <div className={"col-4 text-nowrap"}>
-                  <Form.Label className={"col-4"}>Обхват груди (см)</Form.Label>
+              <Form.Group className="mb-4 row" controlId="age">
+                <div className="col-4 text-nowrap">
+                  <Form.Label className="col-4">Обхват груди (см)</Form.Label>
                 </div>
-                <div className={"col-8"}>
-                  <Form.Control type={"text"} name={"bust"} {...register("bust")} />
+                <div className="col-8">
+                  <Form.Control type="text" name="bust" {...register("bust")} />
                 </div>
-                {errors?.bust?.message && <p className={"text-danger"}>{errors.bust.message}</p>}
+                {errors?.bust?.message && <p className="text-danger">{errors.bust.message}</p>}
               </Form.Group>
-              <Form.Group className={"mb-4 row"} controlId={"wrist"}>
-                <div className={"col-4 text-nowrap"}>
+              <Form.Group className="mb-4 row" controlId="wrist">
+                <div className="col-4 text-nowrap">
                   <Form.Label>Обхват запястья (см)</Form.Label>
                 </div>
-                <div className={"col-8"}>
-                  <Form.Control type={"text"} name={"carpus"} {...register("carpus")} />
+                <div className="col-8">
+                  <Form.Control type="text" name="carpus" {...register("carpus")} />
                 </div>
-                {errors?.carpus?.message && <p className={"text-danger"}>{errors.carpus.message}</p>}
+                {errors?.carpus?.message && <p className="text-danger">{errors.carpus.message}</p>}
               </Form.Group>
-              <Form.Group className={"mb-4 row"} controlId={"sex"}>
-                <div className={"col-4 text-nowrap"}>
-                  <Form.Label className={"col-4"}>Пол</Form.Label>
+              <Form.Group className="mb-4 row" controlId="sex">
+                <div className="col-4 text-nowrap">
+                  <Form.Label className="col-4">Пол</Form.Label>
                 </div>
-                <div className={"col-8"}>
-                  <Form.Select aria-label="Пол" name={"sex"} {...register("sex")}>
+                <div className="col-8">
+                  <Form.Select aria-label="Пол" name="sex" {...register("sex")}>
                     <option value="male">Мужской</option>
                     <option value="female">Женский</option>
                   </Form.Select>
                 </div>
               </Form.Group>
-              <CountButton disabled={Object.entries(errors).length > 0} color={"bg-deep-green"} />
+              <CountButton disabled={Object.entries(errors).length > 0} color="bg-deep-green" />
             </Form>
           </div>
-          <div className={"col-sm mb-5"}>
-            <h3 className={"mb-4"}>Результат</h3>
-            <div className={"w-100 h-75 p-4 bg-secondary-subtle border border-3 border-secondary"}>
+          <div className="col-sm mb-5">
+            <h3 className="mb-4">Результат</h3>
+            <div className="w-100 h-75 p-4 bg-secondary-subtle border border-3 border-secondary">
               {result ? (
                 <>
                   <p>Тип телосложения:</p>
-                  {Object.values(result).map((value, index) => (
-                    <p key={index}>{value}</p>
+                  {Object.values(result).map((value) => (
+                    <p key={value}>{value}</p>
                   ))}
                 </>
               ) : (
@@ -117,7 +117,7 @@ export const BodyType = () => {
         </div>
       </div>
       <div>
-        <div className={"mb-5"}>
+        <div className="mb-5">
           <h3>Что такое тип телосложения?</h3>
           <p>
             Тип телосложения (соматотип) ─ это пропорции частей тела человека в сочетании с индивидуальными
@@ -127,7 +127,7 @@ export const BodyType = () => {
             течение всей жизни человека.
           </p>
         </div>
-        <div className={"mb-5"}>
+        <div className="mb-5">
           <h3>Индекс Пинье</h3>
           <p>
             Был предложен в 1901 году Морисом–Шарлем–Жозефом Пинье. Чем меньше цифры индекса, тем организм считается
@@ -138,22 +138,22 @@ export const BodyType = () => {
             в основу схемы соматотипирования по М.В. Черноруцкому.
           </p>
           <p>Индекс Пинье рассчитывается по формуле:</p>
-          <p className={"text-center p-4 text-uppercase border border-3 border-warning rounded bg-white-yellow"}>
+          <p className="text-center p-4 text-uppercase border border-3 border-warning rounded bg-white-yellow">
             Рост в см - (вес в кг + окружность груди в см)
           </p>
         </div>
-        <div className={"mb-5"}>
+        <div className="mb-5">
           <h3>Индекс Рорера</h3>
           <p>
             Индекс Рорера (коэффициент упитанности), характеризует относительную плотность тела. Был впервые предложен в
             1921 году в качестве "показателя полноты" швейцарским врачом Фрицем Рорером.
           </p>
           <p>Индекс Рорера рассчитывается по формуле:</p>
-          <p className={"text-center p-4 text-uppercase border border-3 border-warning rounded bg-white-yellow"}>
+          <p className="text-center p-4 text-uppercase border border-3 border-warning rounded bg-white-yellow">
             Масса тела в кг / (Рост в м)<sup>3</sup>
           </p>
         </div>
-        <div className={"mb-5"}>
+        <div className="mb-5">
           <h3>Индекс Соловьева</h3>
           <p>
             Индекс Соловьёва используется для вычисления нормального веса с учетом трех типов телосложения человека.
@@ -180,7 +180,7 @@ export const BodyType = () => {
             </ul>
           </div>
         </div>
-        <div className={"mb-5"}>
+        <div className="mb-5">
           <h3>Индекс Соловьева при беременности</h3>
           <p>
             Толщина костей также является важным параметром для врачей-акушеров при диагностике беременных. Поэтому в
@@ -191,7 +191,7 @@ export const BodyType = () => {
             тоньше). А когда окружность запястья превышает 16 см, то из обхвата большого таза отнимают 10 см.
           </p>
         </div>
-        <div className={"mb-5"}>
+        <div className="mb-5">
           <p>
             Калькулятор типа телосложения может быть полезен для людей, которые стремятся к улучшению своего здоровья и
             желают следить за своим весом. Данный калькулятор поможет пользователю понять свой тип телосложения и
@@ -201,4 +201,4 @@ export const BodyType = () => {
       </div>
     </div>
   );
-};
+}

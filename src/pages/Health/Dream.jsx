@@ -1,15 +1,15 @@
-import underConstruction from "../../assets/images/under-construction.webp";
 import { Image } from "react-bootstrap";
+import underConstruction from "../../assets/images/under-construction.webp";
 
-export const Dream = () => {
+export function Dream() {
   return (
     <div>
-      <div className={"container text-start"}>
-        <div className={"row mb-4"}>
-          <div className={"col"}>
+      <div className="container text-start">
+        <div className="row mb-4">
+          <div className="col">
             <h3>Калькулятор сна</h3>
           </div>
-          <div className={"col"}>
+          <div className="col">
             <h3>Результат</h3>
           </div>
         </div>
@@ -24,8 +24,8 @@ export const Dream = () => {
           eleifend est turpis in metus. Donec et risus et elit suscipit convallis ac ac nunc. Vivamus mollis massa eu mi
           condimentum mattis.
         </p>
-        <Image src={underConstruction} className={"img-fluid mx-auto d-block"} />
+        <Image src={underConstruction} className="img-fluid mx-auto d-block" />
       </div>
     </div>
   );
-};
+}

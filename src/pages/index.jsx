@@ -1,8 +1,8 @@
-export const Index = () => {
+export function Index() {
   return (
-    <div className={"desc"}>
+    <div className="desc">
       <h1>Онлайн калькуляторы, конвертеры и полезные инструменты</h1>
       <p>Calcus - это каталог онлайн калькуляторов по различным тематикам.</p>
     </div>
   );
-};
+}

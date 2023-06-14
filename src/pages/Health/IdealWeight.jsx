@@ -2,57 +2,57 @@ import { useState } from "react";
 import { Form } from "react-bootstrap";
 import { CountButton } from "../../components/CountButton/CountButton.jsx";
 
-export const IdealWeight = () => {
-  const [result, setResult] = useState("");
+export function IdealWeight() {
+  const [result] = useState("");
 
   return (
     <div>
-      <div className={"container text-start"}>
-        <div className={"row mb-4"}>
-          <div className={"col-sm mb-5"}>
-            <h3 className={"mb-5"}>Калькулятор идеального веса</h3>
+      <div className="container text-start">
+        <div className="row mb-4">
+          <div className="col-sm mb-5">
+            <h3 className="mb-5">Калькулятор идеального веса</h3>
             <Form>
-              <Form.Group className={"mb-4 row"} controlId={"height"}>
-                <div className={"col-4 text-nowrap"}>
+              <Form.Group className="mb-4 row" controlId="height">
+                <div className="col-4 text-nowrap">
                   <Form.Label>Рост (см)</Form.Label>
                 </div>
-                <div className={"col-8"}>
-                  <Form.Control type={"text"} />
+                <div className="col-8">
+                  <Form.Control type="text" />
                 </div>
               </Form.Group>
-              <Form.Group className={"mb-4 row"} controlId={"age"}>
-                <div className={"col-4 text-nowrap"}>
-                  <Form.Label className={"col-4"}>Обхват грудной клетки (см)</Form.Label>
+              <Form.Group className="mb-4 row" controlId="age">
+                <div className="col-4 text-nowrap">
+                  <Form.Label className="col-4">Обхват грудной клетки (см)</Form.Label>
                 </div>
-                <div className={"col-8"}>
-                  <Form.Control type={"text"} />
+                <div className="col-8">
+                  <Form.Control type="text" />
                 </div>
               </Form.Group>
-              <Form.Group className={"mb-4 row"} controlId={"sex"}>
-                <div className={"col-4 text-nowrap"}>
-                  <Form.Label className={"col-4"}>Пол</Form.Label>
+              <Form.Group className="mb-4 row" controlId="sex">
+                <div className="col-4 text-nowrap">
+                  <Form.Label className="col-4">Пол</Form.Label>
                 </div>
-                <div className={"col-8"}>
+                <div className="col-8">
                   <Form.Select aria-label="Пол">
                     <option value="man">Мужской</option>
                     <option value="woman">Женский</option>
                   </Form.Select>
                 </div>
               </Form.Group>
-              <Form.Group className={"mb-4 row"} controlId={"wrist"}>
-                <div className={"col-4 text-nowrap"}>
+              <Form.Group className="mb-4 row" controlId="wrist">
+                <div className="col-4 text-nowrap">
                   <Form.Label>Обхват запястья (см)</Form.Label>
                 </div>
-                <div className={"col-8"}>
-                  <Form.Control type={"text"} />
+                <div className="col-8">
+                  <Form.Control type="text" />
                 </div>
               </Form.Group>
-              <CountButton color={"bg-deep-green"} />
+              <CountButton color="bg-deep-green" />
             </Form>
           </div>
-          <div className={"col-sm mb-5"}>
-            <h3 className={"mb-5"}>Результат</h3>
-            <div className={"w-100 h-75 p-4 bg-secondary-subtle border border-3 border-secondary"}>{result}</div>
+          <div className="col-sm mb-5">
+            <h3 className="mb-5">Результат</h3>
+            <div className="w-100 h-75 p-4 bg-secondary-subtle border border-3 border-secondary">{result}</div>
           </div>
         </div>
       </div>
@@ -61,7 +61,7 @@ export const IdealWeight = () => {
           Калькулятор веса поможет вам определить идеальный вес исходя из вашего реального роста. Благодаря полученным
           данным вы сможете узнать стоит ли вам сбросить лишние килограммы или же наоборот набрать полезную массу тела.
         </p>
-        <div className={"mb-5 text-start"}>
+        <div className="mb-5 text-start">
           <h3>Масса тела по Броку</h3>
           <p>
             Французский антрополог Поль Брока предложил формулу для определения веса в 19 веке. Она считается более
@@ -79,4 +79,4 @@ export const IdealWeight = () => {
       </div>
     </div>
   );
-};
+}
