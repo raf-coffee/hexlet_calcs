@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { WeightChart } from "../../components/WeightChart/WeightChart.jsx";
 import { CountButton } from "../../components/CountButton/CountButton.jsx";
 import { imt } from "../../calcs/health/imt/imt.js";
+import { Loader } from "../../components/Loader/Loader.jsx";
 
 const formSchema = z.object({
   height: z.coerce
@@ -22,6 +23,7 @@ const formSchema = z.object({
 
 export function IMT() {
   const [result, setResult] = useState();
+  const [isLoading, setIsLoading] = useState(false);
   const {
     register,
     handleSubmit,
@@ -29,7 +31,11 @@ export function IMT() {
   } = useForm({ resolver: zodResolver(formSchema) });
 
   const handleFormSubmit = (e) => {
-    setResult(imt(e.height, e.weight));
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+      setResult(imt(e.height, e.weight));
+    }, 2000);
   };
 
   return (
@@ -63,9 +69,14 @@ export function IMT() {
           <div className="col-sm mb-5">
             <h3 className="mb-4">Результат</h3>
             <div className="w-100 h-75 p-4 bg-secondary-subtle border border-3 border-secondary">
-              {result?.imt ? <p>Индекс массы тела: {result.imt}</p> : ""}
-              {result?.category ? <p>Категория: {result.category}</p> : ""}
-              {result?.risk ? <p>{result.risk}</p> : ""}
+              {!isLoading && result && (
+                <>
+                  <p>Индекс массы тела: {result.imt}</p>
+                  <p>Категория: {result.category}</p>
+                  <p>{result.risk}</p>
+                </>
+              )}
+              {isLoading && <Loader />}
             </div>
           </div>
         </div>

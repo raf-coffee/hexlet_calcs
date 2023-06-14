@@ -1,9 +1,51 @@
 import { useState } from "react";
 import { Form } from "react-bootstrap";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { CountButton } from "../../components/CountButton/CountButton.jsx";
+import { Loader } from "../../components/Loader/Loader.jsx";
+
+const formSchema = z.object({
+  height: z.coerce
+    .number({
+      invalid_type_error: "Рост должен быть числом",
+    })
+    .positive({ message: "Рост должен быть больше 0" }),
+  weight: z.coerce
+    .number({
+      invalid_type_error: "Вес должен быть числом",
+    })
+    .positive({ message: "Вес должен быть больше 0" }),
+  chest: z.coerce
+    .number({
+      invalid_type_error: "Обхват груди должен быть числом",
+    })
+    .positive({ message: "Обхват груди должен быть больше 0" }),
+  wrist: z.coerce
+    .number({
+      invalid_type_error: "Обхват запястья должен быть числом",
+    })
+    .positive({ message: "Обхват запястья должен быть больше 0" }),
+  sex: z.coerce.string(),
+});
 
 export function IdealWeight() {
-  const [result] = useState("");
+  const [result, setResult] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ resolver: zodResolver(formSchema) });
+
+  const handleFormSubmit = () => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+      setResult("We are currently working on this feature and will launch soon!");
+    }, 2000);
+  };
 
   return (
     <div>
@@ -11,7 +53,7 @@ export function IdealWeight() {
         <div className="row mb-4">
           <div className="col-sm mb-5">
             <h3 className="mb-5">Калькулятор идеального веса</h3>
-            <Form>
+            <Form onSubmit={handleSubmit(handleFormSubmit)}>
               <Form.Group className="mb-4 row" controlId="height">
                 <div className="col-4 text-nowrap">
                   <Form.Label>Рост (см)</Form.Label>
@@ -19,14 +61,34 @@ export function IdealWeight() {
                 <div className="col-8">
                   <Form.Control type="text" />
                 </div>
+                {errors?.height?.message && <p className="text-danger">{errors.height.message}</p>}
               </Form.Group>
-              <Form.Group className="mb-4 row" controlId="age">
+              <Form.Group className="mb-4 row" controlId="weight">
                 <div className="col-4 text-nowrap">
-                  <Form.Label className="col-4">Обхват грудной клетки (см)</Form.Label>
+                  <Form.Label>Вес (кг)</Form.Label>
+                </div>
+                <div className="col-8">
+                  <Form.Control type="text" name="weight" {...register("weight")} />
+                </div>
+                {errors?.weight?.message && <p className="text-danger">{errors.weight.message}</p>}
+              </Form.Group>
+              <Form.Group className="mb-4 row" controlId="chest">
+                <div className="col-4 text-nowrap">
+                  <Form.Label className="col-4">Обхват груди (см)</Form.Label>
                 </div>
                 <div className="col-8">
                   <Form.Control type="text" />
                 </div>
+                {errors?.chest?.message && <p className="text-danger">{errors.chest.message}</p>}
+              </Form.Group>
+              <Form.Group className="mb-4 row" controlId="wrist">
+                <div className="col-4 text-nowrap">
+                  <Form.Label>Обхват запястья (см)</Form.Label>
+                </div>
+                <div className="col-8">
+                  <Form.Control type="text" />
+                </div>
+                {errors?.wrist?.message && <p className="text-danger">{errors.wrist.message}</p>}
               </Form.Group>
               <Form.Group className="mb-4 row" controlId="sex">
                 <div className="col-4 text-nowrap">
@@ -39,20 +101,15 @@ export function IdealWeight() {
                   </Form.Select>
                 </div>
               </Form.Group>
-              <Form.Group className="mb-4 row" controlId="wrist">
-                <div className="col-4 text-nowrap">
-                  <Form.Label>Обхват запястья (см)</Form.Label>
-                </div>
-                <div className="col-8">
-                  <Form.Control type="text" />
-                </div>
-              </Form.Group>
-              <CountButton color="bg-deep-green" />
+              <CountButton disabled={Object.entries(errors).length > 0} color="bg-deep-green" />
             </Form>
           </div>
           <div className="col-sm mb-5">
             <h3 className="mb-5">Результат</h3>
-            <div className="w-100 h-75 p-4 bg-secondary-subtle border border-3 border-secondary">{result}</div>
+            <div className="w-100 h-75 p-4 bg-secondary-subtle border border-3 border-secondary">
+              {!isLoading && result}
+              {isLoading && <Loader />}
+            </div>
           </div>
         </div>
       </div>

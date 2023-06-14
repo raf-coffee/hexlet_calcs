@@ -43,7 +43,6 @@ export function Loan() {
       setIsLoading(false);
       setResult("We are currently working on this feature and will launch soon!");
     }, 2000);
-    setResult("We are currently working on this feature and will launch soon!");
   };
 
   return (

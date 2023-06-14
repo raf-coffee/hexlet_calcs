@@ -5,6 +5,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CountButton } from "../../components/CountButton/CountButton.jsx";
 import { bodyType } from "../../calcs/health/bodyType/bodyType.js";
+import { Loader } from "../../components/Loader/Loader.jsx";
 
 const formSchema = z.object({
   height: z.coerce
@@ -32,6 +33,7 @@ const formSchema = z.object({
 
 export function BodyType() {
   const [result, setResult] = useState();
+  const [isLoading, setIsLoading] = useState(false);
   const {
     register,
     handleSubmit,
@@ -39,7 +41,11 @@ export function BodyType() {
   } = useForm({ resolver: zodResolver(formSchema) });
 
   const handleFormSubmit = (formData) => {
-    setResult(bodyType(formData));
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+      setResult(bodyType(formData));
+    }, 2000);
   };
 
   return (
@@ -102,16 +108,15 @@ export function BodyType() {
           <div className="col-sm mb-5">
             <h3 className="mb-4">Результат</h3>
             <div className="w-100 h-75 p-4 bg-secondary-subtle border border-3 border-secondary">
-              {result ? (
+              {!isLoading && result && (
                 <>
                   <p>Тип телосложения:</p>
                   {Object.values(result).map((value) => (
                     <p key={value}>{value}</p>
                   ))}
                 </>
-              ) : (
-                ""
               )}
+              {isLoading && <Loader />}
             </div>
           </div>
         </div>
