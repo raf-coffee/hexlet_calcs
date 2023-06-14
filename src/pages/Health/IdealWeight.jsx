@@ -59,7 +59,7 @@ export function IdealWeight() {
                   <Form.Label>Рост (см)</Form.Label>
                 </div>
                 <div className="col-8">
-                  <Form.Control type="text" />
+                  <Form.Control type="text" {...register("height")} />
                 </div>
                 {errors?.height?.message && <p className="text-danger">{errors.height.message}</p>}
               </Form.Group>
@@ -77,7 +77,7 @@ export function IdealWeight() {
                   <Form.Label className="col-4">Обхват груди (см)</Form.Label>
                 </div>
                 <div className="col-8">
-                  <Form.Control type="text" />
+                  <Form.Control type="text" {...register("chest")} />
                 </div>
                 {errors?.chest?.message && <p className="text-danger">{errors.chest.message}</p>}
               </Form.Group>
@@ -86,7 +86,7 @@ export function IdealWeight() {
                   <Form.Label>Обхват запястья (см)</Form.Label>
                 </div>
                 <div className="col-8">
-                  <Form.Control type="text" />
+                  <Form.Control type="text" {...register("wrist")} />
                 </div>
                 {errors?.wrist?.message && <p className="text-danger">{errors.wrist.message}</p>}
               </Form.Group>
@@ -94,7 +94,7 @@ export function IdealWeight() {
                 <div className="col-4 text-nowrap">
                   <Form.Label className="col-4">Пол</Form.Label>
                 </div>
-                <div className="col-8">
+                <div className="col-8" {...register("sex")}>
                   <Form.Select aria-label="Пол">
                     <option value="man">Мужской</option>
                     <option value="woman">Женский</option>
@@ -105,7 +105,7 @@ export function IdealWeight() {
             </Form>
           </div>
           <div className="col-sm mb-5">
-            <h3 className="mb-5">Результат</h3>
+            <h3 className="mb-4">Результат</h3>
             <div className="w-100 h-75 p-4 bg-secondary-subtle border border-3 border-secondary">
               {!isLoading && result}
               {isLoading && <Loader />}
