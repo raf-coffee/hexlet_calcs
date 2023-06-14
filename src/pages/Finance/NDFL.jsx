@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Form } from "react-bootstrap";
 import { CountButton } from "../../components/CountButton/CountButton.jsx";
-import ExclamationMark from "../../assets/icons/exclamation-circle-fill.svg";
+import Exclamation from "../../assets/icons/exclamation-circle-fill.svg";
 
 export const NDFL = () => {
   const [result, setResult] = useState("");
