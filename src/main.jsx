@@ -14,7 +14,7 @@ import App from "./App.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
 import { Index } from "./pages/index.jsx";
-import {BodyType} from "./pages/Health/BodyType.jsx";
+import { BodyType } from "./pages/Health/BodyType.jsx";
 
 const router = createBrowserRouter([
   {

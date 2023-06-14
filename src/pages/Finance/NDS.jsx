@@ -1,20 +1,24 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Form, Table } from "react-bootstrap";
-import {z} from "zod";
-import {zodResolver} from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { CountButton } from "../../components/CountButton/CountButton.jsx";
 import { nds } from "../../calcs/finance/nds/nds.js";
 
 const formSchema = z.object({
-  sum: z.coerce.number({
-    invalid_type_error: "Сумма должна быть числом"
-  }).positive({message: "Сумма должна быть больше 0"}),
-  interest: z.coerce.number({
-    invalid_type_error: "Ставка должна быть числом"
-  }).positive({message: "Ставка должна быть больше 0"}),
-  checked: z.coerce.string()
-})
+  sum: z.coerce
+    .number({
+      invalid_type_error: "Сумма должна быть числом",
+    })
+    .positive({ message: "Сумма должна быть больше 0" }),
+  interest: z.coerce
+    .number({
+      invalid_type_error: "Ставка должна быть числом",
+    })
+    .positive({ message: "Ставка должна быть больше 0" }),
+  checked: z.coerce.string(),
+});
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const NDS = () => {
@@ -24,7 +28,7 @@ export const NDS = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ resolver: zodResolver(formSchema)});
+  } = useForm({ resolver: zodResolver(formSchema) });
 
   const handleCheckboxToggle = (e) => {
     setChecked(e.target.value);

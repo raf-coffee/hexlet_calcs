@@ -1,20 +1,24 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Form, Table } from "react-bootstrap";
-import {z} from "zod";
-import {zodResolver} from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { WeightChart } from "../../components/WeightChart/WeightChart.jsx";
 import { CountButton } from "../../components/CountButton/CountButton.jsx";
 import { imt } from "../../calcs/health/imt/imt.js";
 
 const formSchema = z.object({
-  height: z.coerce.number({
-    invalid_type_error: "Рост должен быть числом"
-  }).positive({message: "Рост должен быть больше 0"}),
-  weight: z.coerce.number({
-    invalid_type_error: "Вес должен быть числом"
-  }).positive({message: "Вес должен быть больше 0"}),
-})
+  height: z.coerce
+    .number({
+      invalid_type_error: "Рост должен быть числом",
+    })
+    .positive({ message: "Рост должен быть больше 0" }),
+  weight: z.coerce
+    .number({
+      invalid_type_error: "Вес должен быть числом",
+    })
+    .positive({ message: "Вес должен быть больше 0" }),
+});
 
 export const IMT = () => {
   const [result, setResult] = useState();
