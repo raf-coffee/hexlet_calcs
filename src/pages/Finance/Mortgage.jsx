@@ -63,7 +63,7 @@ export function Mortgage() {
       <div className="container text-start">
         <div className="row mb-4">
           <div className="col-sm mb-5">
-            <h3 className="mb-5">Ипотечный калькулятор</h3>
+            <h3 className="mb-5 font-pt-sans-700">Ипотечный калькулятор</h3>
             <Form onSubmit={handleSubmit(handleFormSubmit)}>
               <Form.Group className="mb-4 row" controlId="sum">
                 <div className="col-4 text-nowrap">
@@ -144,7 +144,7 @@ export function Mortgage() {
             </Form>
           </div>
           <div className="col-sm mb-5">
-            <h3 className="mb-4">Результат</h3>
+            <h3 className="mb-4 font-pt-sans-700">Результат</h3>
             <div className="w-100 h-75 p-4 bg-secondary-subtle border border-3 border-secondary">
               {!isLoading && result}
               {isLoading && <Loader />}
@@ -152,9 +152,9 @@ export function Mortgage() {
           </div>
         </div>
       </div>
-      <div className="container">
+      <div className="container font-pt-sans-400">
         <h3 className="fw-bold mb-3">Расчет ипотеки онлайн</h3>
-        <div className="mb-4 text-start">
+        <div className="mb-4">
           <p>
             При намерении купить квартиру или любую другую недвижимость в кредит, было бы нелишним заранее рассчитать
             ежемесячный платеж ипотеки. Зная возможную сумму ежемесячных платежей, потенциальный заемщик с легкостью
@@ -194,8 +194,8 @@ export function Mortgage() {
             чтобы понять степень долговременной кредитной нагрузки.
           </p>
         </div>
-        <div className="mb-4 text-start">
-          <h3>Процентная ставка</h3>
+        <div className="mb-4">
+          <h3 className="fw-bold">Процентная ставка</h3>
           <p>
             Процентная ставка - очень важный параметр при рассчете ипотеки. Измеряется в процентах годовых. Этот
             параметр показывает сколько процентов начисляется на ваш долг в год. Для наглядности возьмем конкретное
@@ -216,7 +216,7 @@ export function Mortgage() {
             кредиту:
           </p>
         </div>
-        <div className="mb-4 text-start">
+        <div className="mb-4">
           <Table responsive className="table-bordered d-inline-block" style={{ minWidth: "350px" }}>
             <caption className="caption-top">
               Таблица 1. Демонстрация влияния процентной ставки на параметры кредита.
@@ -257,8 +257,8 @@ export function Mortgage() {
             </tbody>
           </Table>
         </div>
-        <div className="mb-4 text-start">
-          <h4>Фиксированная и плавающая процентная ставка</h4>
+        <div className="mb-4">
+          <h3 className="fw-bold">Фиксированная и плавающая процентная ставка</h3>
           <p>
             <span className="fw-bold">Фиксированная процентная ставка</span> - это ставка по кредиту, которая
             устанавливается на весь срок кредита. Она прописана в кредитном договоре и не может быть изменена.
@@ -266,14 +266,14 @@ export function Mortgage() {
           <p>
             <span className="fw-bold">Плавающая процентная ставка</span> - это ставка по кредиту, которая не является
             постоянной величиной, а рассчитывается по формуле, которая определена в договоре. Размер ставки состоит из
-            двух частей: Первая составляющая - плавающая, привязана к какому либо рыночному индикатору (например
-            Mosprime3m или ставка рефинансирования ЦБ) и изменяется с периодичностью, определенной в кредитном договоре
-            (например, ежемесячно, ежеквартально или раз в полгода). Вторая составляющая, фиксированная - это процент,
-            который берет себе банк. Эта часть остается всегда постоянной.
+            двух частей: Первая составляющая - плавающая, привязана к какому либо рыночному индикатору (ставка
+            рефинансирования ЦБ) и изменяется с периодичностью, определенной в кредитном договоре (например, ежемесячно,
+            ежеквартально или раз в полгода). Вторая составляющая, фиксированная - это процент, который берет себе банк.
+            Эта часть остается всегда постоянной.
           </p>
         </div>
-        <div className="mb-4 text-start">
-          <h3>Аннуитетный и дифференцированный платеж</h3>
+        <div className="mb-4">
+          <h3 className="fw-bold">Аннуитетный и дифференцированный платеж</h3>
           <p>
             <span className="fw-bold">Аннуитетный платеж</span> – вариант ежемесячного платежа по кредиту, когда размер
             ежемесячного платежа остаётся постоянным на всём периоде кредитования.

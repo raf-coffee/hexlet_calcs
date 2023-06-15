@@ -46,11 +46,11 @@ export function Loan() {
   };
 
   return (
-    <div>
-      <div className="container text-start">
+    <>
+      <div className="container">
         <div className="row mb-4">
           <div className="col-sm mb-5">
-            <h3 className="mb-5">Кредитный калькулятор</h3>
+            <h3 className="mb-5 font-pt-sans-700">Кредитный калькулятор</h3>
             <Form onSubmit={handleSubmit(handleFormSubmit)}>
               <Form.Group className="mb-4 row" controlId="variants">
                 <div className="col-4 text-nowrap">
@@ -95,7 +95,7 @@ export function Loan() {
             </Form>
           </div>
           <div className="col-sm mb-5">
-            <h3 className="mb-4">Результат</h3>
+            <h3 className="mb-4 font-pt-sans-700">Результат</h3>
             <div className="w-100 h-75 p-4 bg-secondary-subtle border border-3 border-secondary">
               {!isLoading && result}
               {isLoading && <Loader />}
@@ -103,8 +103,8 @@ export function Loan() {
           </div>
         </div>
       </div>
-      <div>
-        <h3>Описание калькулятора</h3>
+      <div className="container font-pt-sans-400">
+        <h3 className="font-pt-sans-700">Описание калькулятора</h3>
         <div className="border border-3 border-success-subtle p-3 mb-4">
           <p>Кредитный калькулятор осуществляет 3 типа расчетов:</p>
           <ul>
@@ -141,8 +141,8 @@ export function Loan() {
           Калькулятор универсален. Не имеет значения, в каком банке вы будете брать кредит. Не имеет значение и тип
           займа: потребительский кредит, ипотека, кредит наличными. Результат всегда будет достаточно точным.
         </p>
-        <div className="mb-5 text-start">
-          <h3>Что такое процентная ставка и от чего она зависит?</h3>
+        <div className="mb-5">
+          <h3 className="font-pt-sans-700">Что такое процентная ставка и от чего она зависит?</h3>
           <p>
             Процентая ставка — самый важный параметр при расчете кредита. Измеряется в процентах годовых. Он показывает
             сколько процентов начисляется на сумму долга за 1 год. Но фактически проценты начисляются не один раз в год,
@@ -150,8 +150,8 @@ export function Loan() {
           </p>
           <p>У каждого банка есть свои программы кредитования и свои процентные ставки.</p>
         </div>
-        <div className="mb-5 text-start">
-          <h3>Основные факторы, влияющие на процентную ставку:</h3>
+        <div className="mb-5">
+          <h3 className="font-pt-sans-700">Основные факторы, влияющие на процентную ставку:</h3>
           <ol>
             <li>
               <span className="fw-bold">Ключевая ставка Центробанка</span> - чтобы дать вам кредит, банк занимает у ЦБ
@@ -176,8 +176,8 @@ export function Loan() {
             </li>
           </ol>
         </div>
-        <div className="mb-5 text-start">
-          <h3>Аннуитетный и дифференцированный платеж</h3>
+        <div className="mb-5">
+          <h3 className="font-pt-sans-700">Аннуитетный и дифференцированный платеж</h3>
           <p>
             Что такое аннуитетный и дифференцированный платеж? В чем разница между ними? Какой из них выгоднее для
             заемщика?
@@ -220,6 +220,6 @@ export function Loan() {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

@@ -40,10 +40,10 @@ export function IMT() {
 
   return (
     <>
-      <div className="container text-start">
+      <div className="container">
         <div className="row mb-4">
           <div className="col-sm mb-5">
-            <h3 className="mb-5">Калькулятор индекса массы тела</h3>
+            <h3 className="mb-5 font-pt-sans-700">Калькулятор индекса массы тела</h3>
             <Form onSubmit={handleSubmit(handleFormSubmit)}>
               <Form.Group className="mb-4 row" controlId="height">
                 <div className="col-4">
@@ -67,7 +67,7 @@ export function IMT() {
             </Form>
           </div>
           <div className="col-sm mb-5">
-            <h3 className="mb-4">Результат</h3>
+            <h3 className="mb-4 font-pt-sans-700">Результат</h3>
             <div className="w-100 h-75 p-4 bg-secondary-subtle border border-3 border-secondary">
               {!isLoading && result && (
                 <>
@@ -81,9 +81,9 @@ export function IMT() {
           </div>
         </div>
       </div>
-      <div className="container">
+      <div className="container font-pt-sans-400">
         <div className="mb-5">
-          <h3>Индекс массы тела (ИМТ)</h3>
+          <h3 className="font-pt-sans-700">Индекс массы тела (ИМТ)</h3>
           <p>
             Индекс массы тела является показателем отношения веса и роста человека. Данный параметр помогает определить
             отклонения от нормальной массы тела в ту или иную сторону. Лишний вес опасен для человеческого здоровья,
@@ -117,7 +117,7 @@ export function IMT() {
           <p>Калькулятор ИМТ определит точку отсчета и позволит прослеживать изменения веса тела.</p>
         </div>
         <div className="mb-5">
-          <h3>Формула расчета индекса массы тела (ИМТ)</h3>
+          <h3 className="font-pt-sans-700">Формула расчета индекса массы тела (ИМТ)</h3>
           <p>
             Для того, чтобы узнать свой ИМТ необходимо лишь свой вес в килограммах разделить на квадрат роста в метрах.
           </p>
@@ -130,7 +130,7 @@ export function IMT() {
           </p>
         </div>
         <div className="mb-5">
-          <h3>Сводная таблица значений</h3>
+          <h3 className="font-pt-sans-700">Сводная таблица значений</h3>
           <p>
             Интерпретация показателей ИМТ, в соответствии с ремомендациями Всемирной Организации Здравоохранения (ВОЗ)
           </p>
@@ -174,7 +174,7 @@ export function IMT() {
           </Table>
         </div>
         <div>
-          <h3>Статистика ИМТ</h3>
+          <h3 className="font-pt-sans-700">Статистика ИМТ</h3>
           <p>Статистика по процентному соотношению показателей индекса массы тела среди пользователей.</p>
           <WeightChart />
         </div>

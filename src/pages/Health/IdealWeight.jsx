@@ -48,11 +48,11 @@ export function IdealWeight() {
   };
 
   return (
-    <div>
-      <div className="container text-start">
+    <>
+      <div className="container">
         <div className="row mb-4">
           <div className="col-sm mb-5">
-            <h3 className="mb-5">Калькулятор идеального веса</h3>
+            <h3 className="mb-5 font-pt-sans-700">Калькулятор идеального веса</h3>
             <Form onSubmit={handleSubmit(handleFormSubmit)}>
               <Form.Group className="mb-4 row" controlId="height">
                 <div className="col-4 text-nowrap">
@@ -105,7 +105,7 @@ export function IdealWeight() {
             </Form>
           </div>
           <div className="col-sm mb-5">
-            <h3 className="mb-4">Результат</h3>
+            <h3 className="mb-4 font-pt-sans-700">Результат</h3>
             <div className="w-100 h-75 p-4 bg-secondary-subtle border border-3 border-secondary">
               {!isLoading && result}
               {isLoading && <Loader />}
@@ -113,13 +113,13 @@ export function IdealWeight() {
           </div>
         </div>
       </div>
-      <div>
+      <div className="container font-pt-sans-400">
         <p>
           Калькулятор веса поможет вам определить идеальный вес исходя из вашего реального роста. Благодаря полученным
           данным вы сможете узнать стоит ли вам сбросить лишние килограммы или же наоборот набрать полезную массу тела.
         </p>
-        <div className="mb-5 text-start">
-          <h3>Масса тела по Броку</h3>
+        <div className="mb-5">
+          <h3 className="font-pt-sans-700">Масса тела по Броку</h3>
           <p>
             Французский антрополог Поль Брока предложил формулу для определения веса в 19 веке. Она считается более
             точной, поскольку для расчетов в ней принимаются во внимание три ключевых параметра человеческого тела:
@@ -134,6 +134,6 @@ export function IdealWeight() {
           </p>
         </div>
       </div>
-    </div>
+    </>
   );
 }
