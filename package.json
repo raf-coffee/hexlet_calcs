@@ -45,7 +45,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npx lint-staged && npx vitest run"
+      "pre-commit": "vitest run && npx lint-staged"
     }
   },
   "lint-staged": {
