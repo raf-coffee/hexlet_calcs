@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Form, FloatingLabel } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import { CountButton } from "../../components/CountButton/CountButton.jsx";
 import { Loader } from "../../components/Loader/Loader.jsx";
 import { base64 } from "../../calcs/tech/base64/base64.js";
@@ -42,23 +42,21 @@ export function Base64Decoder() {
             <h3 className="mb-5">Кодирование в base64</h3>
             <Form onSubmit={handleSubmit(handleFormSubmit)}>
               <Form.Group className="mb-4 row" controlId="text">
-                <div className="col">
-                  <FloatingLabel controlId="textarea" label="Введите текст" className="mb-3">
-                    <Form.Control
-                      as="textarea"
-                      placeholder="Введите текст"
-                      style={{ height: "100px" }}
-                      {...register("text")}
-                    />
-                  </FloatingLabel>
+                <div className="col-3 text-nowrap">
+                  <Form.Label controlId="textarea" label="Введите текст">
+                    Введите текст:
+                  </Form.Label>
                 </div>
-                {errors?.text?.message && <p className="text-danger">{errors.text.message}</p>}
+                <div className="col-9">
+                  <Form.Control as="textarea" style={{ height: "100px" }} {...register("text")} />
+                  {errors?.text?.message && <p className="text-danger">{errors.text.message}</p>}
+                </div>
               </Form.Group>
               <Form.Group className="mb-4 row" controlId="variants">
-                <div className="col-4 text-nowrap">
+                <div className="col-3 text-nowrap">
                   <Form.Label>Вариант расчета</Form.Label>
                 </div>
-                <div className="col-8">
+                <div className="col-9">
                   <Form.Select aria-label="Вариант расчета" {...register("action")}>
                     <option value="utf16ToB64">Кодировать</option>
                     <option value="b64ToUtf16">Декодировать</option>
