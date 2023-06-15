@@ -26,7 +26,11 @@ export function Base64Decoder() {
     setIsLoading(true);
     setTimeout(() => {
       setIsLoading(false);
-      setResult(base64(text, action));
+      try {
+        setResult(base64(text, action));
+      } catch {
+        setResult("Строка содержит не поддерживаемые символы");
+      }
     }, 2000);
   };
 
@@ -61,28 +65,66 @@ export function Base64Decoder() {
                   </Form.Select>
                 </div>
               </Form.Group>
-              <CountButton disabled={Object.entries(errors).length > 0} color="bg-deep-green" />
+              <CountButton disabled={Object.entries(errors).length > 0 || isLoading} color="bg-deep-green" />
             </Form>
           </div>
           <div className="col-sm mb-5">
             <h3 className="mb-4">Результат</h3>
-            <div className="w-100 h-75 p-4 bg-secondary-subtle border border-3 border-secondary">
+            <div className="w-100 h-75 p-4 bg-secondary-subtle border border-3 border-secondary text-break overflow-y-auto">
               {!isLoading && result}
               {isLoading && <Loader />}
             </div>
           </div>
         </div>
       </div>
-      <div>
-        <h3>Описание калькулятора</h3>
+      <div className="mb-5">
+        <h3>Что такое base64?</h3>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus leo nulla, lobortis at sollicitudin at,
-          cursus nec tortor. Vestibulum dolor eros, tempor sed enim at, tincidunt condimentum purus. Ut ut orci viverra,
-          varius felis at, fringilla justo. In placerat blandit ipsum nec tempor. Suspendisse vestibulum eleifend
-          ligula, non commodo risus maximus et. Integer laoreet, ipsum a ullamcorper varius, metus dui auctor ligula, id
-          eleifend est turpis in metus. Donec et risus et elit suscipit convallis ac ac nunc. Vivamus mollis massa eu mi
-          condimentum mattis.
+          Base64 — стандарт кодирования двоичных данных при помощи только 64 символов ASCII. Алфавит кодирования
+          содержит латинские символы A-Z, a-z, цифры 0-9 (всего 62 знака) и 2 дополнительных символа, зависящих от
+          системы реализации. Впервые этот стандарт кодирования был описан в 1987 в RFC 989, а свое название получил в
+          1992.
         </p>
+        <p>
+          Идея base64 проста — обратимое кодирование, с возможностью восстановления, которое переводит все символы
+          восьмибитной кодовой таблицы в символы, гарантированно сохраняющиеся при передаче данных в любых сетях и между
+          любыми устройствами. Эта система широко используется в электронной почте для представления бинарных файлов в
+          тексте письма.
+        </p>
+      </div>
+      <div className="mb-5">
+        <h3>Применение в веб-приложениях</h3>
+        <p>
+          Благодаря Base64 в html-документы можно включать бинарный контент, создавая единый документ без отдельно
+          расположенных картинок и прочих дополнительных файлов. Таким образом html-документ с включённой в него
+          графикой, аудио, видео, программами, стилями и прочими дополнениями становится прекрасной альтернативой другим
+          форматам сложнооформленных документов типа doc, docx, pdf. Некоторые приложения кодируют двоичные данные для
+          удобства включения в URL, скрытые поля форм.
+        </p>
+      </div>
+      <div className="mb-5">
+        <h3>Другие применения</h3>
+        <p>Существует множество вариантов применения Base64. Например:</p>
+        <ul>
+          <li>Thunderbird и Mozilla Suite использовали Base64 для сокрытия паролей в POP3.</li>
+          <li>
+            Base64 может использоваться как метод для сокрытия секретов без издержек на криптографическое управление
+            ключами, однако этот подход является абсолютно небезопасным и не рекомендуется к использованию.
+          </li>
+          <li>
+            Сканеры спама, которые не декодируют сообщения в Base64, часто пропускают их, так как такие сообщения
+            кажутся достаточно случайными, чтобы быть принятыми за спам. Это используют спамеры для обхода основных
+            антиспамовых инструментов.
+          </li>
+          <li>
+            Данный стандарт применяется для кодирования изображений формата JPEG и PNG, для вставки их в электронные
+            книги формата FB2.
+          </li>
+          <li>
+            Существуют приложения, использующие кодировку Base64 для отправки небольших изображений посредством длинных
+            SMS.
+          </li>
+        </ul>
       </div>
     </div>
   );

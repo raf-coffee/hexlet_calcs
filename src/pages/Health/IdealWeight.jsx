@@ -101,7 +101,7 @@ export function IdealWeight() {
                   </Form.Select>
                 </div>
               </Form.Group>
-              <CountButton disabled={Object.entries(errors).length > 0} color="bg-deep-green" />
+              <CountButton disabled={Object.entries(errors).length > 0 || isLoading} color="bg-deep-green" />
             </Form>
           </div>
           <div className="col-sm mb-5">
