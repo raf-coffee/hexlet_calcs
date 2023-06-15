@@ -4,13 +4,7 @@
     "node": true,
     "es2021": true
   },
-  "extends": [
-    "eslint:recommended",
-    "plugin:react/recommended",
-    "plugin:react-hooks/recommended",
-    "airbnb",
-    "prettier"
-  ],
+  "extends": ["eslint:recommended", "plugin:react/recommended", "plugin:react-hooks/recommended", "airbnb", "prettier"],
   "overrides": [],
   "parserOptions": {
     "ecmaVersion": "latest",
@@ -19,10 +13,7 @@
     },
     "sourceType": "module"
   },
-  "plugins": [
-    "react",
-    "unused-imports"
-  ],
+  "plugins": ["react", "unused-imports"],
   "rules": {
     "no-console": "error",
     "import/no-extraneous-dependencies": [

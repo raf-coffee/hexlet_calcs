@@ -5,24 +5,26 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CountButton } from "../../components/CountButton/CountButton.jsx";
 import { nds } from "../../calcs/finance/nds/nds.js";
+import { Loader } from "../../components/Loader/Loader.jsx";
 
 const formSchema = z.object({
-  sum: z.coerce
+  nb: z.coerce
     .number({
       invalid_type_error: "Сумма должна быть числом",
     })
     .positive({ message: "Сумма должна быть больше 0" }),
-  interest: z.coerce
+  nst: z.coerce
     .number({
       invalid_type_error: "Ставка должна быть числом",
     })
     .positive({ message: "Ставка должна быть больше 0" }),
-  checked: z.coerce.string(),
+  action: z.coerce.string(),
 });
 
 export function NDS() {
   const [checked, setChecked] = useState("accrue");
   const [result, setResult] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const {
     register,
     handleSubmit,
@@ -33,8 +35,12 @@ export function NDS() {
     setChecked(e.target.value);
   };
 
-  const handleFormSubmit = (e) => {
-    setResult(nds(e.sum, e.interest, checked));
+  const handleFormSubmit = (data) => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+      setResult(nds(data));
+    }, 2000);
   };
 
   return (
@@ -44,17 +50,17 @@ export function NDS() {
           <div className="col-sm mb-5">
             <h3 className="mb-5">Калькулятор НДС</h3>
             <Form onSubmit={handleSubmit(handleFormSubmit)}>
-              <Form.Group className="mb-4" controlId="sum">
+              <Form.Group className="mb-4" controlId="nb">
                 <Form.Label>Сумма</Form.Label>
-                <Form.Control type="text" name="sum" {...register("sum")} />
-                {errors?.sum?.message && <p className="text-danger">{errors.sum.message}</p>}
+                <Form.Control type="text" name="nb" {...register("nb")} />
+                {errors?.nb?.message && <p className="text-danger">{errors.nb.message}</p>}
               </Form.Group>
-              <Form.Group className="mb-4" controlId="interest">
+              <Form.Group className="mb-4" controlId="nst">
                 <Form.Label>Ставка НДС (%)</Form.Label>
-                <Form.Control type="text" name="interest" {...register("interest")} />
-                {errors?.interest?.message && <p className="text-danger">{errors.interest.message}</p>}
+                <Form.Control type="text" name="nst" {...register("nst")} />
+                {errors?.nst?.message && <p className="text-danger">{errors.nst.message}</p>}
               </Form.Group>
-              <div key="nds-checkbox">
+              <div key="nds-checkbox" onChange={handleCheckboxToggle}>
                 <Form.Check
                   name="accrue"
                   value="accrue"
@@ -62,7 +68,7 @@ export function NDS() {
                   label="Начислить НДС"
                   id="nds-checkbox-1"
                   checked={checked === "accrue"}
-                  onChange={handleCheckboxToggle}
+                  {...register("action")}
                 />
                 <Form.Check
                   name="calc"
@@ -71,7 +77,7 @@ export function NDS() {
                   label="Выделить НДС"
                   id="nds-checkbox-2"
                   checked={checked === "calc"}
-                  onChange={handleCheckboxToggle}
+                  {...register("action")}
                 />
               </div>
               <CountButton disabled={Object.entries(errors).length > 0} color="bg-deep-green" />
@@ -79,7 +85,10 @@ export function NDS() {
           </div>
           <div className="col-sm mb-5">
             <h3 className="mb-5">Результат</h3>
-            <div className="w-100 h-75 p-4 bg-secondary-subtle border border-3 border-secondary">{result}</div>
+            <div className="w-100 h-75 p-4 bg-secondary-subtle border border-3 border-secondary">
+              {!isLoading && result}
+              {isLoading && <Loader />}
+            </div>
           </div>
         </div>
       </div>

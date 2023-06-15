@@ -1,22 +1,23 @@
-import {useState} from "react";
-import {Form, Table} from "react-bootstrap";
-import {useForm} from "react-hook-form";
-import {z} from "zod";
-import {zodResolver} from "@hookform/resolvers/zod";
-import {CountButton} from "../../components/CountButton/CountButton.jsx";
+import { useState } from "react";
+import { Form, Table } from "react-bootstrap";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { CountButton } from "../../components/CountButton/CountButton.jsx";
+import { Loader } from "../../components/Loader/Loader.jsx";
 
 const formSchema = z.object({
   sum: z.coerce
     .number({
       invalid_type_error: "Стоимость недвижимости должна быть числом",
     })
-    .positive({message: "Стоимость недвижимости должна быть больше 0"}),
+    .positive({ message: "Стоимость недвижимости должна быть больше 0" }),
   firstPay: z.object({
     sum: z.coerce
-    .number({
-      invalid_type_error: "Первоначальный взнос должен быть числом",
-    })
-    .positive({message: "Первоначальный взнос должен быть больше 0"}),
+      .number({
+        invalid_type_error: "Первоначальный взнос должен быть числом",
+      })
+      .positive({ message: "Первоначальный взнос должен быть больше 0" }),
     type: z.string(),
   }),
   creditTerm: z.object({
@@ -24,31 +25,38 @@ const formSchema = z.object({
       .number({
         invalid_type_error: "Первоначальный взнос должен быть числом",
       })
-      .positive({message: "Первоначальный взнос должен быть больше 0"}),
+      .positive({ message: "Первоначальный взнос должен быть больше 0" }),
     type: z.string(),
   }),
   interestRate: z.coerce
     .number({
       invalid_type_error: "Процентная ставка должна быть числом",
     })
-    .positive({message: "Процентная ставка должна быть больше 0"}),
-  payType: z.string()
+    .positive({ message: "Процентная ставка должна быть больше 0" }),
+  payType: z.string(),
 });
 
 export function Mortgage() {
   const [checked, setChecked] = useState("ann");
   const [result, setResult] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const {
     register,
     handleSubmit,
-  } = useForm({resolver: zodResolver(formSchema)});
+    formState: { errors },
+  } = useForm({ resolver: zodResolver(formSchema) });
 
   const handleCheckboxToggle = (e) => {
     setChecked(e.target.value);
   };
 
   const handleFormSubmit = () => {
-    setResult("This is a result");
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+      setResult("We are currently working on this feature and will launch soon!");
+    }, 2000);
+    setResult("We are currently working on this feature and will launch soon!");
   };
 
   return (
@@ -65,6 +73,7 @@ export function Mortgage() {
                 <div className="col-8">
                   <Form.Control type="text" {...register("sum")} />
                 </div>
+                {errors?.sum?.message && <p className="text-danger">{errors.sum.message}</p>}
               </Form.Group>
               <Form.Group className="mb-4 row" controlId="firstPay">
                 <div className="col-4 text-nowrap">
@@ -77,6 +86,7 @@ export function Mortgage() {
                     <option value="percentage">%</option>
                   </Form.Select>
                 </div>
+                {errors?.firstPay?.sum?.message && <p className="text-danger">{errors.firstPay.sum.message}</p>}
               </Form.Group>
               <Form.Group className="mb-4 row" controlId="sumOfLoan">
                 <div className="col-4 text-nowrap">
@@ -92,11 +102,12 @@ export function Mortgage() {
                 </div>
                 <div className="d-flex col-8">
                   <Form.Control type="text" {...register("creditTerm.term")} />
-                  <Form.Select aria-label="Срок кредита" {...register("creditTerm.type")} >
+                  <Form.Select aria-label="Срок кредита" {...register("creditTerm.type")}>
                     <option value="years">лет</option>
                     <option value="months">месяцев</option>
                   </Form.Select>
                 </div>
+                {errors?.creditTerm?.term?.message && <p className="text-danger">{errors.creditTerm.term.message}</p>}
               </Form.Group>
               <Form.Group className="mb-4 row" controlId="interestRate">
                 <div className="text-nowrap col-4">
@@ -105,10 +116,11 @@ export function Mortgage() {
                 <div className="col-8">
                   <Form.Control type="text" {...register("interestRate")} />
                 </div>
+                {errors?.interestRate?.message && <p className="text-danger">{errors.interestRate.message}</p>}
               </Form.Group>
               <Form.Group key="nds-checkbox" controlId="payType" className="d-flex">
                 <Form.Label className="me-4">Тип ежемесячных платежей</Form.Label>
-                <div>
+                <div onChange={handleCheckboxToggle}>
                   <Form.Check
                     name="ann"
                     value="ann"
@@ -116,7 +128,6 @@ export function Mortgage() {
                     label="Аннуитетные"
                     id="nds-checkbox-1"
                     checked={checked === "ann"}
-                    onChange={handleCheckboxToggle}
                     {...register("payType")}
                   />
                   <Form.Check
@@ -126,17 +137,19 @@ export function Mortgage() {
                     label="Дифференцированные"
                     id="nds-checkbox-2"
                     checked={checked === "diff"}
-                    onChange={handleCheckboxToggle}
                     {...register("payType")}
                   />
                 </div>
               </Form.Group>
-              <CountButton color="bg-deep-green"/>
+              <CountButton disabled={Object.entries(errors).length > 0} color="bg-deep-green" />
             </Form>
           </div>
           <div className="col-sm mb-5">
-            <h3 className="mb-5">Результат</h3>
-            <div className="w-100 h-75 p-4 bg-secondary-subtle border border-3 border-secondary">{result}</div>
+            <h3 className="mb-4">Результат</h3>
+            <div className="w-100 h-75 p-4 bg-secondary-subtle border border-3 border-secondary">
+              {!isLoading && result}
+              {isLoading && <Loader />}
+            </div>
           </div>
         </div>
       </div>
@@ -205,43 +218,43 @@ export function Mortgage() {
           </p>
         </div>
         <div className="mb-4 text-start">
-          <Table responsive className="table-bordered d-inline-block" style={{minWidth: "350px"}}>
+          <Table responsive className="table-bordered d-inline-block" style={{ minWidth: "350px" }}>
             <caption className="caption-top">
               Таблица 1. Демонстрация влияния процентной ставки на параметры кредита.
             </caption>
             <thead>
-            <tr className="table-secondary">
-              <th>Сумма кредита</th>
-              <th>2 000 000</th>
-              <th>2 000 000</th>
-              <th>2 000 000</th>
-            </tr>
+              <tr className="table-secondary">
+                <th>Сумма кредита</th>
+                <th>2 000 000</th>
+                <th>2 000 000</th>
+                <th>2 000 000</th>
+              </tr>
             </thead>
             <tbody className="table-group-divider">
-            <tr>
-              <td>Срок кредита</td>
-              <td>10 лет</td>
-              <td>10 лет</td>
-              <td>10 лет</td>
-            </tr>
-            <tr className="fw-bold">
-              <td>Процентная ставка</td>
-              <td>12%</td>
-              <td>12,5%</td>
-              <td>13%</td>
-            </tr>
-            <tr>
-              <td>Ежемесячный платеж (руб.)</td>
-              <td>28 694</td>
-              <td>29 275</td>
-              <td>29 862</td>
-            </tr>
-            <tr>
-              <td>Переплата по кредиту (руб.)</td>
-              <td>1 443 303</td>
-              <td>1 513 028</td>
-              <td>1 583 458</td>
-            </tr>
+              <tr>
+                <td>Срок кредита</td>
+                <td>10 лет</td>
+                <td>10 лет</td>
+                <td>10 лет</td>
+              </tr>
+              <tr className="fw-bold">
+                <td>Процентная ставка</td>
+                <td>12%</td>
+                <td>12,5%</td>
+                <td>13%</td>
+              </tr>
+              <tr>
+                <td>Ежемесячный платеж (руб.)</td>
+                <td>28 694</td>
+                <td>29 275</td>
+                <td>29 862</td>
+              </tr>
+              <tr>
+                <td>Переплата по кредиту (руб.)</td>
+                <td>1 443 303</td>
+                <td>1 513 028</td>
+                <td>1 583 458</td>
+              </tr>
             </tbody>
           </Table>
         </div>
@@ -263,12 +276,12 @@ export function Mortgage() {
         <div className="mb-4 text-start">
           <h3>Аннуитетный и дифференцированный платеж</h3>
           <p>
-            <span className="fw-bold">Аннуитетный платеж</span> – вариант ежемесячного платежа по кредиту, когда
-            размер ежемесячного платежа остаётся постоянным на всём периоде кредитования.
+            <span className="fw-bold">Аннуитетный платеж</span> – вариант ежемесячного платежа по кредиту, когда размер
+            ежемесячного платежа остаётся постоянным на всём периоде кредитования.
           </p>
           <p>
-            <span className="fw-bold">Дифференцированный платеж</span> – вариант ежемесячного платежа по кредиту,
-            когда размер ежемесячного платежа по погашению кредита постепенно уменьшается к концу периода кредитования.
+            <span className="fw-bold">Дифференцированный платеж</span> – вариант ежемесячного платежа по кредиту, когда
+            размер ежемесячного платежа по погашению кредита постепенно уменьшается к концу периода кредитования.
           </p>
           <p>В настоящее время наиболее распространен аннуитетный платеж.</p>
         </div>
