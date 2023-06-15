@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CountButton } from "../../components/CountButton/CountButton.jsx";
-import {Loader} from "../../components/Loader/Loader.jsx";
+import { Loader } from "../../components/Loader/Loader.jsx";
 
 const formSchema = z.object({
   sum: z.coerce
@@ -20,7 +20,11 @@ export function NDFL() {
   const [result, setResult] = useState("");
   const [checked, setChecked] = useState("before");
   const [isLoading, setIsLoading] = useState(false);
-  const { register, handleSubmit, formState: { errors }, } = useForm({ resolver: zodResolver(formSchema) });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ resolver: zodResolver(formSchema) });
 
   const handleCheckboxToggle = (e) => {
     setChecked(e.target.value);
@@ -32,7 +36,6 @@ export function NDFL() {
       setIsLoading(false);
       setResult("We are currently working on this feature and will launch soon!");
     }, 2000);
-    setResult("We are currently working on this feature and will launch soon!");
   };
 
   return (
@@ -43,8 +46,7 @@ export function NDFL() {
             <h3 className="mb-5">Калькулятор НДФЛ</h3>
             <Form onSubmit={handleSubmit(handleFormSubmit)}>
               <Form.Group key="nds-checkbox" controlId="pays" className="mb-4 row d-flex justify-content-end">
-                <div className="col-7"
-                     onChange={handleCheckboxToggle}>
+                <div className="col-7" onChange={handleCheckboxToggle}>
                   <Form.Check
                     name="before"
                     value="before"
@@ -94,7 +96,7 @@ export function NDFL() {
             <h3 className="mb-5">Результат</h3>
             <div className="w-100 h-50 p-4 bg-secondary-subtle border border-3 border-secondary">
               {!isLoading && result}
-              {isLoading && <Loader/>}
+              {isLoading && <Loader />}
             </div>
           </div>
         </div>

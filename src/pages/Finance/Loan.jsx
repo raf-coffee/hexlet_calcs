@@ -5,7 +5,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CountButton } from "../../components/CountButton/CountButton.jsx";
 import { KeyRateChart } from "../../components/KeyRateChart/KeyRateChart.jsx";
-import {Loader} from "../../components/Loader/Loader.jsx";
+import { Loader } from "../../components/Loader/Loader.jsx";
 import annuitet from "../../assets/images/payment_annuitet.webp";
 import diff from "../../assets/images/payment_diff.webp";
 
@@ -43,7 +43,6 @@ export function Loan() {
       setIsLoading(false);
       setResult("We are currently working on this feature and will launch soon!");
     }, 2000);
-    setResult("We are currently working on this feature and will launch soon!");
   };
 
   return (
@@ -90,8 +89,8 @@ export function Loan() {
                 <div className="col-8">
                   <Form.Control type="text" {...register("interestRate")} />
                 </div>
+                {errors?.interestRate?.message && <p className="text-danger">{errors.interestRate.message}</p>}
               </Form.Group>
-              {errors?.interestRate?.message && <p className="text-danger">{errors.interestRate.message}</p>}
               <CountButton disabled={Object.entries(errors).length > 0} color="bg-deep-green" />
             </Form>
           </div>
@@ -99,7 +98,7 @@ export function Loan() {
             <h3 className="mb-4">Результат</h3>
             <div className="w-100 h-75 p-4 bg-secondary-subtle border border-3 border-secondary">
               {!isLoading && result}
-              {isLoading && <Loader/>}
+              {isLoading && <Loader />}
             </div>
           </div>
         </div>

@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CountButton } from "../../components/CountButton/CountButton.jsx";
-import {Loader} from "../../components/Loader/Loader.jsx";
+import { Loader } from "../../components/Loader/Loader.jsx";
 
 const formSchema = z.object({
   sum: z.coerce
@@ -40,7 +40,11 @@ export function Mortgage() {
   const [checked, setChecked] = useState("ann");
   const [result, setResult] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const { register, handleSubmit, formState: { errors }, } = useForm({ resolver: zodResolver(formSchema) });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ resolver: zodResolver(formSchema) });
 
   const handleCheckboxToggle = (e) => {
     setChecked(e.target.value);
@@ -52,7 +56,6 @@ export function Mortgage() {
       setIsLoading(false);
       setResult("We are currently working on this feature and will launch soon!");
     }, 2000);
-    setResult("We are currently working on this feature and will launch soon!");
   };
 
   return (
@@ -144,7 +147,7 @@ export function Mortgage() {
             <h3 className="mb-4">Результат</h3>
             <div className="w-100 h-75 p-4 bg-secondary-subtle border border-3 border-secondary">
               {!isLoading && result}
-              {isLoading && <Loader/>}
+              {isLoading && <Loader />}
             </div>
           </div>
         </div>
