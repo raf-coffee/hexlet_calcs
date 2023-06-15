@@ -49,11 +49,11 @@ export function BodyType() {
   };
 
   return (
-    <div>
-      <div className="container text-start">
+    <>
+      <div className="container">
         <div className="row mb-4">
           <div className="col-sm mb-5">
-            <h3 className="mb-5">Калькулятор типа телосложения</h3>
+            <h3 className="mb-5 font-pt-sans-700">Калькулятор типа телосложения</h3>
             <Form onSubmit={handleSubmit(handleFormSubmit)}>
               <Form.Group className="mb-4 row" controlId="height">
                 <div className="col-4 text-nowrap">
@@ -106,7 +106,7 @@ export function BodyType() {
             </Form>
           </div>
           <div className="col-sm mb-5">
-            <h3 className="mb-4">Результат</h3>
+            <h3 className="mb-4 font-pt-sans-700">Результат</h3>
             <div className="w-100 h-75 p-4 bg-secondary-subtle border border-3 border-secondary">
               {!isLoading && result && (
                 <>
@@ -121,9 +121,9 @@ export function BodyType() {
           </div>
         </div>
       </div>
-      <div>
+      <div className="container font-pt-sans-400">
         <div className="mb-5">
-          <h3>Что такое тип телосложения?</h3>
+          <h3 className="font-pt-sans-700">Что такое тип телосложения?</h3>
           <p>
             Тип телосложения (соматотип) ─ это пропорции частей тела человека в сочетании с индивидуальными
             особенностями развития костной, жировой и мышечной тканей. Размеры и формы тела каждого человека могут
@@ -133,7 +133,7 @@ export function BodyType() {
           </p>
         </div>
         <div className="mb-5">
-          <h3>Индекс Пинье</h3>
+          <h3 className="font-pt-sans-700">Индекс Пинье</h3>
           <p>
             Был предложен в 1901 году Морисом–Шарлем–Жозефом Пинье. Чем меньше цифры индекса, тем организм считается
             крепче.
@@ -148,7 +148,7 @@ export function BodyType() {
           </p>
         </div>
         <div className="mb-5">
-          <h3>Индекс Рорера</h3>
+          <h3 className="font-pt-sans-700">Индекс Рорера</h3>
           <p>
             Индекс Рорера (коэффициент упитанности), характеризует относительную плотность тела. Был впервые предложен в
             1921 году в качестве "показателя полноты" швейцарским врачом Фрицем Рорером.
@@ -159,7 +159,7 @@ export function BodyType() {
           </p>
         </div>
         <div className="mb-5">
-          <h3>Индекс Соловьева</h3>
+          <h3 className="font-pt-sans-700">Индекс Соловьева</h3>
           <p>
             Индекс Соловьёва используется для вычисления нормального веса с учетом трех типов телосложения человека.
             Чтобы вычислить этот параметр, нужно с помощью мерной ленты или другого приспособления наподобие рулетки
@@ -186,7 +186,7 @@ export function BodyType() {
           </div>
         </div>
         <div className="mb-5">
-          <h3>Индекс Соловьева при беременности</h3>
+          <h3 className="font-pt-sans-700">Индекс Соловьева при беременности</h3>
           <p>
             Толщина костей также является важным параметром для врачей-акушеров при диагностике беременных. Поэтому в
             этой сфере также используется индекс Соловьёва, который помогает определить уровень сужения малого таза
@@ -204,6 +204,6 @@ export function BodyType() {
           </p>
         </div>
       </div>
-    </div>
+    </>
   );
 }

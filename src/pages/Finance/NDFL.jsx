@@ -39,68 +39,68 @@ export function NDFL() {
   };
 
   return (
-    <div>
-      <div className="container text-start">
-        <div className="row mb-4">
-          <div className="col-sm mb-5">
-            <h3 className="mb-5">Калькулятор НДФЛ</h3>
-            <Form onSubmit={handleSubmit(handleFormSubmit)}>
-              <Form.Group key="nds-checkbox" controlId="pays" className="mb-4 row d-flex justify-content-end">
-                <div className="col-7" onChange={handleCheckboxToggle}>
-                  <Form.Check
-                    name="before"
-                    value="before"
-                    type="radio"
-                    label="Известна сумма до налогообложения"
-                    id="ndfl-checkbox-1"
-                    checked={checked === "before"}
-                    {...register("beforeOrAfter")}
-                  />
-                  <Form.Check
-                    name="after"
-                    value="after"
-                    type="radio"
-                    label="Известна сумма после налогообложения"
-                    id="ndfl-checkbox-2"
-                    checked={checked === "after"}
-                    {...register("beforeOrAfter")}
-                  />
-                </div>
-              </Form.Group>
-              <Form.Group className="mb-4 row" controlId="sum">
-                <div className="col-5 text-nowrap">
-                  <Form.Label>Сумма до налогообложения (руб.)</Form.Label>
-                </div>
-                <div className="col-7">
-                  <Form.Control type="text" {...register("sum")} />
-                </div>
-                {errors?.sum?.message && <p className="text-danger">{errors.sum.message}</p>}
-              </Form.Group>
-              <Form.Group className="mb-4 row" controlId="taxesType">
-                <div className="col-5 text-nowrap">
-                  <Form.Label>Налог</Form.Label>
-                </div>
-                <div className="col-7">
-                  <Form.Select aria-label="Налог" {...register("taxesType")}>
-                    <option value="podohod">Подоходный налог (13% - 15%)</option>
-                    <option value="dividend">Налог на дивиденды (13%)</option>
-                    <option value="neresident">НДФЛ для нерезидентов (30%)</option>
-                    <option value="victory">Налог на выигрыши (35%)</option>
-                  </Form.Select>
-                </div>
-              </Form.Group>
-              <CountButton disabled={Object.entries(errors).length > 0 || isLoading} color="bg-deep-green" />
-            </Form>
-          </div>
-          <div className="col-sm mb-5">
-            <h3 className="mb-5">Результат</h3>
-            <div className="w-100 h-50 p-4 bg-secondary-subtle border border-3 border-secondary">
-              {!isLoading && result}
-              {isLoading && <Loader />}
-            </div>
+    <div className="container">
+      <div className="row mb-4">
+        <div className="col-sm mb-5">
+          <h3 className="mb-5 font-pt-sans-700">Калькулятор НДФЛ</h3>
+          <Form onSubmit={handleSubmit(handleFormSubmit)}>
+            <Form.Group key="nds-checkbox" controlId="pays" className="mb-4 row d-flex justify-content-end">
+              <div className="col-7" onChange={handleCheckboxToggle}>
+                <Form.Check
+                  name="before"
+                  value="before"
+                  type="radio"
+                  label="Известна сумма до налогообложения"
+                  id="ndfl-checkbox-1"
+                  checked={checked === "before"}
+                  {...register("beforeOrAfter")}
+                />
+                <Form.Check
+                  name="after"
+                  value="after"
+                  type="radio"
+                  label="Известна сумма после налогообложения"
+                  id="ndfl-checkbox-2"
+                  checked={checked === "after"}
+                  {...register("beforeOrAfter")}
+                />
+              </div>
+            </Form.Group>
+            <Form.Group className="mb-4 row" controlId="sum">
+              <div className="col-5 text-nowrap">
+                <Form.Label>Сумма до налогообложения (руб.)</Form.Label>
+              </div>
+              <div className="col-7">
+                <Form.Control type="text" {...register("sum")} />
+              </div>
+              {errors?.sum?.message && <p className="text-danger">{errors.sum.message}</p>}
+            </Form.Group>
+            <Form.Group className="mb-4 row" controlId="taxesType">
+              <div className="col-5 text-nowrap">
+                <Form.Label>Налог</Form.Label>
+              </div>
+              <div className="col-7">
+                <Form.Select aria-label="Налог" {...register("taxesType")}>
+                  <option value="podohod">Подоходный налог (13% - 15%)</option>
+                  <option value="dividend">Налог на дивиденды (13%)</option>
+                  <option value="neresident">НДФЛ для нерезидентов (30%)</option>
+                  <option value="victory">Налог на выигрыши (35%)</option>
+                </Form.Select>
+              </div>
+            </Form.Group>
+            <CountButton disabled={Object.entries(errors).length > 0 || isLoading} color="bg-deep-green" />
+          </Form>
+        </div>
+        <div className="col-sm mb-5">
+          <h3 className="mb-5 font-pt-sans-700">Результат</h3>
+          <div className="w-100 h-50 p-4 bg-secondary-subtle border border-3 border-secondary">
+            {!isLoading && result}
+            {isLoading && <Loader />}
           </div>
         </div>
-        <h3>Описание калькулятора</h3>
+      </div>
+      <div className="container font-pt-sans-400">
+        <h3 className="fw-bold">Описание калькулятора</h3>
         <p>Налоговый калькулятор предназначен для расчета налога на доход физических лиц (НДФЛ).</p>
         <div className="border border-3 border-success-subtle p-3 mb-4">
           <p>Калькулятор налогов производит 2 типа расчетов:</p>

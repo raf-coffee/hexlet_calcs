@@ -44,11 +44,11 @@ export function NDS() {
   };
 
   return (
-    <div>
-      <div className="container text-start">
+    <>
+      <div className="container">
         <div className="row mb-4">
           <div className="col-sm mb-5">
-            <h3 className="mb-5">Калькулятор НДС</h3>
+            <h3 className="mb-5 font-pt-sans-700">Калькулятор НДС</h3>
             <Form onSubmit={handleSubmit(handleFormSubmit)}>
               <Form.Group className="mb-4" controlId="nb">
                 <Form.Label>Сумма</Form.Label>
@@ -84,7 +84,7 @@ export function NDS() {
             </Form>
           </div>
           <div className="col-sm mb-5">
-            <h3 className="mb-5">Результат</h3>
+            <h3 className="mb-5 font-pt-sans-700">Результат</h3>
             <div className="w-100 h-75 p-4 bg-secondary-subtle border border-3 border-secondary">
               {!isLoading && result}
               {isLoading && <Loader />}
@@ -92,9 +92,9 @@ export function NDS() {
           </div>
         </div>
       </div>
-      <div className="container">
+      <div className="container font-pt-sans-400">
         <div className="mb-4 text-start">
-          <h3>Что такое НДС</h3>
+          <h3 className="font-pt-sans-700">Что такое НДС</h3>
           <p>
             Любой проданный товар или оказанная услуга на территории России облагаются налогом в пользу государства. Это
             и есть НДС. НДС - это косвенный налог, т.к. он ложится на конечного потребителя. В стоимости любого товара,
@@ -104,35 +104,35 @@ export function NDS() {
           </p>
         </div>
         <div className="mb-4">
-          <h3 className="text-start">Какой НДС в России?</h3>
-          <p className="text-start">В настоящее время действуют 3 ставки налога:</p>
+          <h3 className="font-pt-sans-700">Какой НДС в России?</h3>
+          <p>В настоящее время действуют 3 ставки налога:</p>
           <div className="d-flex flex-column flex-md-row text-center">
             <div>
-              <p className="fs-1 fw-bold mb-1">20%</p>
-              <p className="fw-bold">Стандартная ставка</p>
+              <p className="fs-1 font-pt-sans-700 mb-1">20%</p>
+              <p className="font-pt-sans-700">Стандартная ставка</p>
               <p>
                 Применяется ко всем товарам и услугам, за исключением тех товаров и услуг, к которым применяются
                 пониженная и нулевая ставки.
               </p>
             </div>
             <div>
-              <p className="fs-1 fw-bold mb-1">10%</p>
-              <p className="fw-bold">Сниженная ставка</p>
+              <p className="fs-1 font-pt-sans-700 mb-1">10%</p>
+              <p className="font-pt-sans-700">Сниженная ставка</p>
               <p>
                 Продовольственные товары, товары для детей, печатные издания, книжная продукция, медицинские товары.
               </p>
             </div>
             <div>
-              <p className="fs-1 fw-bold mb-1">0%</p>
-              <p className="fw-bold">Нулевая ставка</p>
+              <p className="fs-1 font-pt-sans-700 mb-1">0%</p>
+              <p className="font-pt-sans-700">Нулевая ставка</p>
               <p>Применяется при реализации товаров, вывезенных в таможенной процедуре экспорта.</p>
             </div>
           </div>
         </div>
-        <div className="mb-4 text-start">
-          <h3>История НДС в России</h3>
+        <div className="mb-4">
+          <h3 className="font-pt-sans-700">История НДС в России</h3>
           <Table striped responsive className="table-bordered d-inline-block" style={{ minWidth: "350px" }}>
-            <thead>
+            <thead className="font-pt-sans-700">
               <tr>
                 <th>Дата</th>
                 <th>Изменения</th>
@@ -159,10 +159,10 @@ export function NDS() {
           </Table>
         </div>
         <div>
-          <h3 className="text-start">Вычисление НДС</h3>
+          <h3 className="font-pt-sans-700">Вычисление НДС</h3>
           <div className="table-responsive-sm">
             <Table striped className="table-bordered" style={{ minWidth: "400px" }}>
-              <thead>
+              <thead className="font-pt-sans-700">
                 <tr className="text-center">
                   <th>Как начислить НДС</th>
                   <th>Как выделить НДС</th>
@@ -184,6 +184,6 @@ export function NDS() {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
