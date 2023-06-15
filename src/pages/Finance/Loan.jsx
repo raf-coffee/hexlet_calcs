@@ -43,7 +43,6 @@ export function Loan() {
       setIsLoading(false);
       setResult("We are currently working on this feature and will launch soon!");
     }, 2000);
-    setResult("We are currently working on this feature and will launch soon!");
   };
 
   return (
@@ -90,8 +89,8 @@ export function Loan() {
                 <div className="col-8">
                   <Form.Control type="text" {...register("interestRate")} />
                 </div>
+                {errors?.interestRate?.message && <p className="text-danger">{errors.interestRate.message}</p>}
               </Form.Group>
-              {errors?.interestRate?.message && <p className="text-danger">{errors.interestRate.message}</p>}
               <CountButton disabled={Object.entries(errors).length > 0} color="bg-deep-green" />
             </Form>
           </div>
