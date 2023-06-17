@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Form, Image } from "react-bootstrap";
+import { Form, Image, Row, Col } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -47,67 +47,74 @@ export function Loan() {
 
   return (
     <>
-      <div className="container">
-        <div className="row mb-4">
-          <div className="col-sm mb-5">
-            <h3 className="mb-5 font-pt-sans-700">Кредитный калькулятор</h3>
-            <Form onSubmit={handleSubmit(handleFormSubmit)}>
-              <Form.Group className="mb-4 row" controlId="variants">
-                <div className="col-4 text-nowrap">
-                  <Form.Label>Вариант расчета</Form.Label>
-                </div>
-                <div className="col-8">
+      <Row xs={1} md={2} className="mb-4">
+        <Col className="mb-5 mb-md-5">
+          <h3 className="mb-sm-2 mb-md-5 font-pt-sans-700">Кредитный калькулятор</h3>
+          <Form onSubmit={handleSubmit(handleFormSubmit)}>
+            <Row>
+              <Form.Group className="mb-4" controlId="variants">
+                <Col sm={12}>
+                  <Form.Label>Вариант расчета:</Form.Label>
+                </Col>
+                <Col>
                   <Form.Select aria-label="Вариант расчета" {...register("variants")}>
                     <option value="monthly">Расчёт ежемесячного платежа</option>
                     <option value="term">Расчёт срока кредита</option>
                     <option value="maxSum">Расчёт максимальной суммы кредиты</option>
                   </Form.Select>
-                </div>
+                </Col>
               </Form.Group>
-              <Form.Group className="mb-4 row" controlId="sum">
-                <div className="col-4 text-nowrap">
-                  <Form.Label className="col-4">Сумма кредита (руб.)</Form.Label>
-                </div>
-                <div className="col-8">
+            </Row>
+            <Row>
+              <Form.Group className="mb-4" controlId="sum">
+                <Col>
+                  <Form.Label>Сумма кредита (руб.):</Form.Label>
+                </Col>
+                <Col>
                   <Form.Control type="text" {...register("sum")} />
-                </div>
+                </Col>
                 {errors?.sum?.message && <p className="text-danger">{errors.sum.message}</p>}
               </Form.Group>
-              <Form.Group className="mb-4 row" controlId="monthlyPay">
-                <div className="col-4 text-nowrap">
-                  <Form.Label>Ежемесячный платеж (руб.)</Form.Label>
-                </div>
-                <div className="col-8">
+            </Row>
+            <Row>
+              <Form.Group className="mb-4" controlId="monthlyPay">
+                <Col>
+                  <Form.Label>Ежемесячный платеж (руб.):</Form.Label>
+                </Col>
+                <Col>
                   <Form.Control type="text" {...register("monthlyPay")} />
-                </div>
+                </Col>
                 {errors?.monthlyPay?.message && <p className="text-danger">{errors.monthlyPay.message}</p>}
               </Form.Group>
-              <Form.Group className="mb-4 row" controlId="interestRate">
-                <div className="col-4 text-nowrap">
-                  <Form.Label>Процентная ставка (%)</Form.Label>
-                </div>
-                <div className="col-8">
+            </Row>
+            <Row>
+              <Form.Group className="mb-4" controlId="interestRate">
+                <Col>
+                  <Form.Label>Процентная ставка (%):</Form.Label>
+                </Col>
+                <Col>
                   <Form.Control type="text" {...register("interestRate")} />
-                </div>
+                </Col>
                 {errors?.interestRate?.message && <p className="text-danger">{errors.interestRate.message}</p>}
               </Form.Group>
-              <CountButton disabled={Object.entries(errors).length > 0 || isLoading} color="bg-deep-green" />
-            </Form>
+            </Row>
+            <CountButton disabled={Object.entries(errors).length > 0 || isLoading} color="bg-deep-green" />
+          </Form>
+        </Col>
+        <Col className="mb-5">
+          <h3 className="mb-sm-2 mb-md-5 font-pt-sans-700">Результат</h3>
+          <div className="w-100 h-75 p-2 p-lg-4 bg-secondary-subtle border border-3 border-secondary min-height">
+            {!isLoading && result}
+            {isLoading && <Loader />}
           </div>
-          <div className="col-sm mb-5">
-            <h3 className="mb-4 font-pt-sans-700">Результат</h3>
-            <div className="w-100 h-75 p-4 bg-secondary-subtle border border-3 border-secondary">
-              {!isLoading && result}
-              {isLoading && <Loader />}
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="container font-pt-sans-400">
+        </Col>
+      </Row>
+
+      <div className="font-pt-sans-400">
         <h3 className="font-pt-sans-700">Описание калькулятора</h3>
         <div className="border border-3 border-success-subtle p-3 mb-4">
           <p>Кредитный калькулятор осуществляет 3 типа расчетов:</p>
-          <ul>
+          <ul className="ps-3 ps-md-5 mb-0 mb-md-2">
             <li>
               <span className="fw-bold">Классический</span> - нахождение ежемесячного платежа по заданной сумме и сроку
               кредита. Такой расчет производят банки при выдаче кредитов.
@@ -152,7 +159,7 @@ export function Loan() {
         </div>
         <div className="mb-5">
           <h3 className="font-pt-sans-700">Основные факторы, влияющие на процентную ставку:</h3>
-          <ol>
+          <ol className="ps-4">
             <li>
               <span className="fw-bold">Ключевая ставка Центробанка</span> - чтобы дать вам кредит, банк занимает у ЦБ
               по ставке, равной ключевой, накидывает еще несколько процентов сверху и дает вам в долг под более высокий
@@ -176,48 +183,46 @@ export function Loan() {
             </li>
           </ol>
         </div>
-        <div className="mb-5">
+        <div className="mb-1 mb-md-5">
           <h3 className="font-pt-sans-700">Аннуитетный и дифференцированный платеж</h3>
           <p>
             Что такое аннуитетный и дифференцированный платеж? В чем разница между ними? Какой из них выгоднее для
             заемщика?
           </p>
-          <div className="container text-center">
-            <div className="row justify-content-evenly">
-              <div className="col-5 border border-2 border-secondary-subtle p-3">
-                <h4>Аннуитетный</h4>
-                <p className="p-2">Равные ежемесячные суммы на протяжении всего срока кредитования.</p>
-                <Image src={annuitet} fluid />
-                <p className="border-bottom border-2 border-secondary p-2">
-                  Доля процентов и доля основного долга в каждом месяце рассчитываются таким образом, чтобы общая сумма
-                  была неизменной.
-                </p>
-                <p className="border-bottom border-2 border-secondary p-2">
-                  Аннуитетный платеж более распространен за счет удобства выплаты. Платить каждый месяц одну и ту же
-                  сумму логичнее и проще для учета финансов.
-                </p>
-                <p className="border-bottom border-2 border-secondary p-2">
-                  Переплата по кредиту выше, чем при дифференцированном платеже.
-                </p>
-              </div>
-              <div className="col-5 border border-2 border-secondary-subtle p-3">
-                <h4>Дифференцированный</h4>
-                <p className="p-2">Сумма ежемесячного платежа уменьшается к концу срока кредитования.</p>
-                <Image src={diff} fluid />
-                <p className="border-bottom border-2 border-secondary p-2">
-                  Доля основного долга остается неизменной, а доля процентов с каждым месяцем уменьшается, так как
-                  уменьшается общая сумма долга.
-                </p>
-                <p className="border-bottom border-2 border-secondary p-2">
-                  Ежемесячные платежи вначале срока выше по сравнению с аннуитетом, поэтому выше требования к
-                  платежеспоособности клиента.
-                </p>
-                <p className="border-bottom border-2 border-secondary p-2">
-                  Дифференцированный платеж выгоднее, сумма переплаты ниже.
-                </p>
-              </div>
-            </div>
-          </div>
+          <Row className="p-2 p-md-0 gap-3 justify-content-lg-center">
+            <Col lg={5} className="border border-2 border-secondary-subtle p-2 p-md-3">
+              <h4>Аннуитетный</h4>
+              <p className="py-2 p-md-2">Равные ежемесячные суммы на протяжении всего срока кредитования.</p>
+              <Image src={annuitet} fluid />
+              <p className="border-bottom border-2 border-secondary py-2 p-md-2">
+                Доля процентов и доля основного долга в каждом месяце рассчитываются таким образом, чтобы общая сумма
+                была неизменной.
+              </p>
+              <p className="border-bottom border-2 border-secondary py-2 p-md-2">
+                Аннуитетный платеж более распространен за счет удобства выплаты. Платить каждый месяц одну и ту же сумму
+                логичнее и проще для учета финансов.
+              </p>
+              <p className="border-bottom border-2 border-secondary py-2 p-md-2">
+                Переплата по кредиту выше, чем при дифференцированном платеже.
+              </p>
+            </Col>
+            <Col lg={5} className="border border-2 border-secondary-subtle p-2 p-md-3">
+              <h4>Дифференцированный</h4>
+              <p className="py-2 p-md-2">Сумма ежемесячного платежа уменьшается к концу срока кредитования.</p>
+              <Image src={diff} fluid />
+              <p className="border-bottom border-2 border-secondary py-2 p-md-2">
+                Доля основного долга остается неизменной, а доля процентов с каждым месяцем уменьшается, так как
+                уменьшается общая сумма долга.
+              </p>
+              <p className="border-bottom border-2 border-secondary py-2 p-md-2">
+                Ежемесячные платежи вначале срока выше по сравнению с аннуитетом, поэтому выше требования к
+                платежеспоособности клиента.
+              </p>
+              <p className="border-bottom border-2 border-secondary py-2 p-md-2">
+                Дифференцированный платеж выгоднее, сумма переплаты ниже.
+              </p>
+            </Col>
+          </Row>
         </div>
       </div>
     </>

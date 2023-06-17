@@ -1,5 +1,5 @@
 import { test, expect } from "vitest";
-import { perfect } from "./perfect_weight.js";
+import { perfect } from "./perfectWeight.js";
 
 test("perfect first test", () => {
   expect(perfect("female", 168, 80)).toEqual({

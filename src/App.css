@@ -146,3 +146,7 @@ main {
 .exclamation:before {
   fill: yellow;
 }
+
+.min-height {
+  min-height: 100px;
+}
