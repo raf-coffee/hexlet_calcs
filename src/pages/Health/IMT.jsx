@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Form, Table } from "react-bootstrap";
+import { Form, Table, Row, Col } from "react-bootstrap";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { WeightChart } from "../../components/WeightChart/WeightChart.jsx";
 import { CountButton } from "../../components/CountButton/CountButton.jsx";
-import { imt } from "../../calcs/health/imt/imt.js";
 import { Loader } from "../../components/Loader/Loader.jsx";
+import { imt } from "../../calcs/health/imt/imt.js";
 
 const formSchema = z.object({
   height: z.coerce
@@ -40,49 +40,47 @@ export function IMT() {
 
   return (
     <>
-      <div className="container">
-        <div className="row mb-4">
-          <div className="col-sm mb-5">
-            <h3 className="mb-5 font-pt-sans-700">Калькулятор индекса массы тела</h3>
-            <Form onSubmit={handleSubmit(handleFormSubmit)}>
-              <Form.Group className="mb-4 row" controlId="height">
-                <div className="col-4">
-                  <Form.Label>Рост</Form.Label>
-                </div>
-                <div className="col-8">
-                  <Form.Control type="text" name="height" {...register("height")} />
-                </div>
-                {errors?.height?.message && <p className="text-danger">{errors.height.message}</p>}
-              </Form.Group>
-              <Form.Group className="mb-4 row" controlId="weight">
-                <div className="col-4">
-                  <Form.Label className="col-4">Вес</Form.Label>
-                </div>
-                <div className="col-8">
-                  <Form.Control type="text" name="weight" {...register("weight")} />
-                </div>
-                {errors?.weight?.message && <p className="text-danger">{errors.weight.message}</p>}
-              </Form.Group>
-              <CountButton disabled={Object.entries(errors).length > 0 || isLoading} color="bg-deep-green" />
-            </Form>
+      <Row xs={1} md={2} className="mb-4">
+        <Col className="mb-5">
+          <h3 className="mb-3 mb-xl-5 font-pt-sans-700">Калькулятор индекса массы тела</h3>
+          <Form onSubmit={handleSubmit(handleFormSubmit)}>
+            <Form.Group className="mb-4 row" controlId="height">
+              <Col xs={12}>
+                <Form.Label>Рост:</Form.Label>
+              </Col>
+              <Col xs={12}>
+                <Form.Control type="text" name="height" {...register("height")} />
+              </Col>
+              {errors?.height?.message && <p className="text-danger">{errors.height.message}</p>}
+            </Form.Group>
+            <Form.Group className="mb-4 row" controlId="weight">
+              <Col xs={12}>
+                <Form.Label className="col-4">Вес:</Form.Label>
+              </Col>
+              <Col xs={12}>
+                <Form.Control type="text" name="weight" {...register("weight")} />
+              </Col>
+              {errors?.weight?.message && <p className="text-danger">{errors.weight.message}</p>}
+            </Form.Group>
+            <CountButton disabled={Object.entries(errors).length > 0 || isLoading} color="bg-deep-green" />
+          </Form>
+        </Col>
+        <Col className="mb-5">
+          <h3 className="mb-middle font-pt-sans-700">Результат</h3>
+          <div className="w-100 h-75 p-4 bg-secondary-subtle border border-3 border-secondary min-height">
+            {!isLoading && result && (
+              <>
+                <p>Индекс массы тела: {result.imt}</p>
+                <p>Категория: {result.category}</p>
+                <p>{result.risk}</p>
+              </>
+            )}
+            {isLoading && <Loader />}
           </div>
-          <div className="col-sm mb-5">
-            <h3 className="mb-4 font-pt-sans-700">Результат</h3>
-            <div className="w-100 h-75 p-4 bg-secondary-subtle border border-3 border-secondary">
-              {!isLoading && result && (
-                <>
-                  <p>Индекс массы тела: {result.imt}</p>
-                  <p>Категория: {result.category}</p>
-                  <p>{result.risk}</p>
-                </>
-              )}
-              {isLoading && <Loader />}
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="container font-pt-sans-400">
-        <div className="mb-5">
+        </Col>
+      </Row>
+      <div className="font-pt-sans-400">
+        <div className="mb-4">
           <h3 className="font-pt-sans-700">Индекс массы тела (ИМТ)</h3>
           <p>
             Индекс массы тела является показателем отношения веса и роста человека. Данный параметр помогает определить
@@ -116,7 +114,7 @@ export function IMT() {
           </p>
           <p>Калькулятор ИМТ определит точку отсчета и позволит прослеживать изменения веса тела.</p>
         </div>
-        <div className="mb-5">
+        <div className="mb-4">
           <h3 className="font-pt-sans-700">Формула расчета индекса массы тела (ИМТ)</h3>
           <p>
             Для того, чтобы узнать свой ИМТ необходимо лишь свой вес в килограммах разделить на квадрат роста в метрах.
@@ -129,12 +127,12 @@ export function IMT() {
             выше у людей среднего возраста, а у детей и пожилых людей этот показатель ниже.
           </p>
         </div>
-        <div className="mb-5">
+        <div className="mb-4">
           <h3 className="font-pt-sans-700">Сводная таблица значений</h3>
           <p>
             Интерпретация показателей ИМТ, в соответствии с ремомендациями Всемирной Организации Здравоохранения (ВОЗ)
           </p>
-          <Table className="d-inline-block table-bordered">
+          <Table responsive className="d-inline-block table-bordered min-table-width">
             <thead>
               <tr className="table-secondary">
                 <th>ИМТ</th>

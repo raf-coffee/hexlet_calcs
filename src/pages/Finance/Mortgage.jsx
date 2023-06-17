@@ -237,7 +237,7 @@ export function Mortgage() {
           </p>
         </div>
         <div className="mb-4">
-          <Table responsive className="table-bordered d-inline-block" style={{ minWidth: "350px" }}>
+          <Table responsive className="table-bordered d-inline-block min-table-width">
             <caption className="caption-top">
               Таблица 1. Демонстрация влияния процентной ставки на параметры кредита.
             </caption>

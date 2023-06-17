@@ -149,3 +149,25 @@ main {
 .min-height {
   min-height: 100px;
 }
+
+.min-table-width {
+  min-width: 400px;
+}
+
+@media (max-width: 992px) {
+  .mb-middle {
+    margin-bottom: 2.5rem;
+  }
+}
+
+@media (min-width: 993px) and (max-width: 1080px) {
+  .mb-middle {
+    margin-bottom: 1.5rem;
+  }
+}
+
+@media (min-width: 1081px) {
+  .mb-middle {
+    margin-bottom: 3rem;
+  }
+}

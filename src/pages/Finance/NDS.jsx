@@ -129,7 +129,7 @@ export function NDS() {
         </div>
         <div className="mb-4">
           <h3 className="font-pt-sans-700">История НДС в России</h3>
-          <Table striped responsive className="table-bordered d-inline-block" style={{ minWidth: "350px" }}>
+          <Table striped responsive className="table-bordered d-inline-block min-table-width">
             <thead className="font-pt-sans-700">
               <tr>
                 <th>Дата</th>
@@ -159,7 +159,7 @@ export function NDS() {
         <div>
           <h3 className="font-pt-sans-700">Вычисление НДС</h3>
           <div className="table-responsive-sm">
-            <Table striped className="table-bordered" style={{ minWidth: "400px" }}>
+            <Table responsive striped className="table-bordered min-table-width">
               <thead className="font-pt-sans-700">
                 <tr className="text-center">
                   <th>Как начислить НДС</th>
