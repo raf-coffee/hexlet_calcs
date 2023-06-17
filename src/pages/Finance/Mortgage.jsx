@@ -61,7 +61,7 @@ export function Mortgage() {
   return (
     <>
       <Row xs={1} md={2} className="mb-4">
-        <Col className="mb-5 mb-md-5">
+        <Col className="mb-5">
           <h3 className="mb-md-5 font-pt-sans-700">Ипотечный калькулятор</h3>
           <Form onSubmit={handleSubmit(handleFormSubmit)}>
             <Form.Group className="mb-4" controlId="sum">

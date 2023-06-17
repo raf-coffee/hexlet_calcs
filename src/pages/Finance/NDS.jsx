@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Form, Table } from "react-bootstrap";
+import { Col, Form, Row, Table } from "react-bootstrap";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CountButton } from "../../components/CountButton/CountButton.jsx";
-import { nds } from "../../calcs/finance/nds/nds.js";
 import { Loader } from "../../components/Loader/Loader.jsx";
+import { nds } from "../../calcs/finance/nds/nds.js";
 
 const formSchema = z.object({
   nb: z.coerce
@@ -45,55 +45,53 @@ export function NDS() {
 
   return (
     <>
-      <div className="container">
-        <div className="row mb-4">
-          <div className="col-sm mb-5">
-            <h3 className="mb-5 font-pt-sans-700">Калькулятор НДС</h3>
-            <Form onSubmit={handleSubmit(handleFormSubmit)}>
-              <Form.Group className="mb-4" controlId="nb">
-                <Form.Label>Сумма</Form.Label>
-                <Form.Control type="text" name="nb" {...register("nb")} />
-                {errors?.nb?.message && <p className="text-danger">{errors.nb.message}</p>}
-              </Form.Group>
-              <Form.Group className="mb-4" controlId="nst">
-                <Form.Label>Ставка НДС (%)</Form.Label>
-                <Form.Control type="text" name="nst" {...register("nst")} />
-                {errors?.nst?.message && <p className="text-danger">{errors.nst.message}</p>}
-              </Form.Group>
-              <div key="nds-checkbox" onChange={handleCheckboxToggle}>
-                <Form.Check
-                  name="accrue"
-                  value="accrue"
-                  type="radio"
-                  label="Начислить НДС"
-                  id="nds-checkbox-1"
-                  checked={checked === "accrue"}
-                  {...register("action")}
-                />
-                <Form.Check
-                  name="calc"
-                  value="calc"
-                  type="radio"
-                  label="Выделить НДС"
-                  id="nds-checkbox-2"
-                  checked={checked === "calc"}
-                  {...register("action")}
-                />
-              </div>
-              <CountButton disabled={Object.entries(errors).length > 0 || isLoading} color="bg-deep-green" />
-            </Form>
+      <Row xs={1} md={2} className="mb-4">
+        <Col className="mb-5">
+          <h3 className="mb-md-5 font-pt-sans-700">Калькулятор НДС</h3>
+          <Form onSubmit={handleSubmit(handleFormSubmit)}>
+            <Form.Group className="mb-4" controlId="nb">
+              <Form.Label>Сумма:</Form.Label>
+              <Form.Control type="text" name="nb" {...register("nb")} />
+              {errors?.nb?.message && <p className="text-danger">{errors.nb.message}</p>}
+            </Form.Group>
+            <Form.Group className="mb-4" controlId="nst">
+              <Form.Label>Ставка НДС (%):</Form.Label>
+              <Form.Control type="text" name="nst" {...register("nst")} />
+              {errors?.nst?.message && <p className="text-danger">{errors.nst.message}</p>}
+            </Form.Group>
+            <Form.Group key="nds-checkbox" onChange={handleCheckboxToggle} className="mb-4">
+              <Form.Check
+                name="accrue"
+                value="accrue"
+                type="radio"
+                label="Начислить НДС"
+                id="nds-checkbox-1"
+                checked={checked === "accrue"}
+                {...register("action")}
+              />
+              <Form.Check
+                name="calc"
+                value="calc"
+                type="radio"
+                label="Выделить НДС"
+                id="nds-checkbox-2"
+                checked={checked === "calc"}
+                {...register("action")}
+              />
+            </Form.Group>
+            <CountButton disabled={Object.entries(errors).length > 0 || isLoading} color="bg-deep-green" />
+          </Form>
+        </Col>
+        <Col className="mb-5">
+          <h3 className="mb-4 mb-md-5 font-pt-sans-700">Результат</h3>
+          <div className="w-100 h-75 p-4 bg-secondary-subtle border border-3 border-secondary min-height">
+            {!isLoading && result}
+            {isLoading && <Loader />}
           </div>
-          <div className="col-sm mb-5">
-            <h3 className="mb-5 font-pt-sans-700">Результат</h3>
-            <div className="w-100 h-75 p-4 bg-secondary-subtle border border-3 border-secondary">
-              {!isLoading && result}
-              {isLoading && <Loader />}
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="container font-pt-sans-400">
-        <div className="mb-4 text-start">
+        </Col>
+      </Row>
+      <div className="font-pt-sans-400">
+        <div className="mb-4">
           <h3 className="font-pt-sans-700">Что такое НДС</h3>
           <p>
             Любой проданный товар или оказанная услуга на территории России облагаются налогом в пользу государства. Это
