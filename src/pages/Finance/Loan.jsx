@@ -49,60 +49,60 @@ export function Loan() {
     <>
       <Row xs={1} md={2} className="mb-4">
         <Col className="mb-5 mb-md-5">
-          <h3 className="mb-sm-2 mb-md-5 font-pt-sans-700">Кредитный калькулятор</h3>
+          <h3 className="mb-md-5 font-pt-sans-700">Кредитный калькулятор</h3>
           <Form onSubmit={handleSubmit(handleFormSubmit)}>
-            <Row>
-              <Form.Group className="mb-4" controlId="variants">
-                <Col sm={12}>
-                  <Form.Label>Вариант расчета:</Form.Label>
+            <Form.Group className="mb-4" controlId="variants">
+              <Row className="align-items-center">
+                <Col sm={12} xl={5}>
+                  <Form.Label className="mb-xl-0">Вариант расчета:</Form.Label>
                 </Col>
-                <Col>
+                <Col xs={12} xl={7}>
                   <Form.Select aria-label="Вариант расчета" {...register("variants")}>
                     <option value="monthly">Расчёт ежемесячного платежа</option>
                     <option value="term">Расчёт срока кредита</option>
                     <option value="maxSum">Расчёт максимальной суммы кредиты</option>
                   </Form.Select>
                 </Col>
-              </Form.Group>
-            </Row>
-            <Row>
-              <Form.Group className="mb-4" controlId="sum">
-                <Col>
-                  <Form.Label>Сумма кредита (руб.):</Form.Label>
+              </Row>
+            </Form.Group>
+            <Form.Group className="mb-4" controlId="sum">
+              <Row className="align-items-center">
+                <Col xs={12} xl={5}>
+                  <Form.Label className="mb-xl-0">Сумма кредита (руб.):</Form.Label>
                 </Col>
-                <Col>
+                <Col xs={12} xl={7}>
                   <Form.Control type="text" {...register("sum")} />
                 </Col>
                 {errors?.sum?.message && <p className="text-danger">{errors.sum.message}</p>}
-              </Form.Group>
-            </Row>
-            <Row>
-              <Form.Group className="mb-4" controlId="monthlyPay">
-                <Col>
-                  <Form.Label>Ежемесячный платеж (руб.):</Form.Label>
+              </Row>
+            </Form.Group>
+            <Form.Group className="mb-4" controlId="monthlyPay">
+              <Row className="align-items-center">
+                <Col xs={12} xl={5}>
+                  <Form.Label className="mb-xl-0">Ежемесячный платеж (руб.):</Form.Label>
                 </Col>
-                <Col>
+                <Col xs={12} xl={7}>
                   <Form.Control type="text" {...register("monthlyPay")} />
                 </Col>
                 {errors?.monthlyPay?.message && <p className="text-danger">{errors.monthlyPay.message}</p>}
-              </Form.Group>
-            </Row>
-            <Row>
-              <Form.Group className="mb-4" controlId="interestRate">
-                <Col>
-                  <Form.Label>Процентная ставка (%):</Form.Label>
+              </Row>
+            </Form.Group>
+            <Form.Group className="mb-4" controlId="interestRate">
+              <Row className="align-items-center">
+                <Col xs={12} xl={5}>
+                  <Form.Label className="mb-xl-0">Процентная ставка (%):</Form.Label>
                 </Col>
-                <Col>
+                <Col xs={12} xl={7}>
                   <Form.Control type="text" {...register("interestRate")} />
                 </Col>
                 {errors?.interestRate?.message && <p className="text-danger">{errors.interestRate.message}</p>}
-              </Form.Group>
-            </Row>
+              </Row>
+            </Form.Group>
             <CountButton disabled={Object.entries(errors).length > 0 || isLoading} color="bg-deep-green" />
           </Form>
         </Col>
         <Col className="mb-5">
-          <h3 className="mb-sm-2 mb-md-5 font-pt-sans-700">Результат</h3>
+          <h3 className="mb-md-4 font-pt-sans-700">Результат</h3>
           <div className="w-100 h-75 p-2 p-lg-4 bg-secondary-subtle border border-3 border-secondary min-height">
             {!isLoading && result}
             {isLoading && <Loader />}

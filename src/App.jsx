@@ -6,10 +6,12 @@ import "./App.css";
 export function App() {
   return (
     <div className="d-flex flex-column min-vh-100">
-      <header className="container header-height d-flex align-items-center justify-content-between bg-image-custom">
-        <Link to="/" className="logo">
-          Calcus
-        </Link>
+      <header className="header-height d-flex align-items-center justify-content-between bg-image-custom">
+        <Container>
+          <Link to="/" className="logo">
+            Calcus
+          </Link>
+        </Container>
       </header>
       <NavigationBar />
       <main className="container flex-grow-1">
