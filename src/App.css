@@ -171,6 +171,11 @@ main {
   border: transparent;
 }
 
+.chart-container {
+  width: 100%;
+  min-height: 300px;
+}
+
 @media (min-width: 576px) {
   .header-height {
     height: 98px;
@@ -189,6 +194,11 @@ main {
   .scroll-to-top {
     bottom: 60px;
     right: 60px;
+  }
+
+  .chart-container {
+    width: 100%;
+    min-height: 600px;
   }
 }
 

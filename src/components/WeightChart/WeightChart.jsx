@@ -5,6 +5,7 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
 const options = {
   response: true,
+  maintainAspectRatio: false,
   plugins: {
     legend: {
       display: false,
@@ -58,5 +59,9 @@ const data = {
 };
 
 export function WeightChart() {
-  return <Bar options={options} data={data} />;
+  return (
+    <div className="chart-container">
+      <Bar options={options} data={data} />
+    </div>
+  );
 }
