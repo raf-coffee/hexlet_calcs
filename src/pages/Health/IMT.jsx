@@ -7,6 +7,7 @@ import { WeightChart } from "../../components/WeightChart/WeightChart.jsx";
 import { CountButton } from "../../components/CountButton/CountButton.jsx";
 import { Loader } from "../../components/Loader/Loader.jsx";
 import { imt } from "../../calcs/health/imt/imt.js";
+import { ScrollToTop } from "../../components/ScrollToTop/ScrollToTop.jsx";
 
 const formSchema = z.object({
   height: z.coerce
@@ -177,6 +178,7 @@ export function IMT() {
           <WeightChart />
         </div>
       </div>
+      <ScrollToTop />
     </>
   );
 }

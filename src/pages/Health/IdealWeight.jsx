@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { CountButton } from "../../components/CountButton/CountButton.jsx";
 import { Loader } from "../../components/Loader/Loader.jsx";
 import { perfect } from "../../calcs/health/perfectWeight/perfectWeight.js";
+import { ScrollToTop } from "../../components/ScrollToTop/ScrollToTop.jsx";
 
 const formSchema = z.object({
   height: z.coerce
@@ -180,6 +181,7 @@ export function IdealWeight() {
           целью, чтобы вы в своей жизни смогли, по возможности, держаться как можно ближе своего полезного веса.
         </p>
       </div>
+      <ScrollToTop />
     </>
   );
 }

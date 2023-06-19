@@ -5,6 +5,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CountButton } from "../../components/CountButton/CountButton.jsx";
 import { Loader } from "../../components/Loader/Loader.jsx";
+import { ScrollToTop } from "../../components/ScrollToTop/ScrollToTop.jsx";
 
 const formSchema = z.object({
   sum: z.coerce
@@ -305,6 +306,7 @@ export function Mortgage() {
           <p>В настоящее время наиболее распространен аннуитетный платеж.</p>
         </div>
       </div>
+      <ScrollToTop />
     </>
   );
 }

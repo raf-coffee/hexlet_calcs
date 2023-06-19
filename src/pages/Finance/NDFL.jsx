@@ -5,6 +5,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CountButton } from "../../components/CountButton/CountButton.jsx";
 import { Loader } from "../../components/Loader/Loader.jsx";
+import { ScrollToTop } from "../../components/ScrollToTop/ScrollToTop.jsx";
 
 const formSchema = z.object({
   sum: z.coerce
@@ -163,6 +164,7 @@ export function NDFL() {
           <p className="m-0">С 2021 года для доходов размером выше 5 000 000 рублей введена ставка 15%.</p>
         </div>
       </div>
+      <ScrollToTop />
     </>
   );
 }

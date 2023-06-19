@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { CountButton } from "../../components/CountButton/CountButton.jsx";
 import { Loader } from "../../components/Loader/Loader.jsx";
 import { nds } from "../../calcs/finance/nds/nds.js";
+import { ScrollToTop } from "../../components/ScrollToTop/ScrollToTop.jsx";
 
 const formSchema = z.object({
   nb: z.coerce
@@ -182,6 +183,7 @@ export function NDS() {
           </div>
         </div>
       </div>
+      <ScrollToTop />
     </>
   );
 }

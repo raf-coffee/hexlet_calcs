@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { CountButton } from "../../components/CountButton/CountButton.jsx";
 import { Loader } from "../../components/Loader/Loader.jsx";
 import { bodyType } from "../../calcs/health/bodyType/bodyType.js";
+import { ScrollToTop } from "../../components/ScrollToTop/ScrollToTop.jsx";
 
 const formSchema = z.object({
   height: z.coerce
@@ -210,6 +211,7 @@ export function BodyType() {
           определить, какие изменения в образе жизни необходимы для достижения лучших результатов.
         </p>
       </div>
+      <ScrollToTop />
     </>
   );
 }

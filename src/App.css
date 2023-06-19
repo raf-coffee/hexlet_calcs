@@ -163,6 +163,14 @@ main {
   border: 1px solid rgba(0, 0, 0, 0.15);
 }
 
+.scroll-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 15px;
+  background-color: transparent;
+  border: transparent;
+}
+
 @media (min-width: 576px) {
   .header-height {
     height: 98px;
@@ -174,6 +182,13 @@ main {
     text-decoration: none;
     color: var(--dark-green);
     font-size: 72px;
+  }
+}
+
+@media (min-width: 992px) {
+  .scroll-to-top {
+    bottom: 60px;
+    right: 60px;
   }
 }
 

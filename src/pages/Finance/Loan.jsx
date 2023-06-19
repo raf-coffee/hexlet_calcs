@@ -8,6 +8,7 @@ import { KeyRateChart } from "../../components/KeyRateChart/KeyRateChart.jsx";
 import { Loader } from "../../components/Loader/Loader.jsx";
 import annuitet from "../../assets/images/payment_annuitet.webp";
 import diff from "../../assets/images/payment_diff.webp";
+import { ScrollToTop } from "../../components/ScrollToTop/ScrollToTop.jsx";
 
 const formSchema = z.object({
   variants: z.coerce.string(),
@@ -225,6 +226,7 @@ export function Loan() {
           </Row>
         </div>
       </div>
+      <ScrollToTop />
     </>
   );
 }
