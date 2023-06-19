@@ -43,7 +43,7 @@ export function Base64Decoder() {
             <Form.Group className="mb-4" controlId="text">
               <Row>
                 <Col xs={12} xl={3}>
-                  <Form.Label controlId="textarea" label="Введите текст" className="mb-xl-0">
+                  <Form.Label label="Введите текст" className="mb-xl-0">
                     Введите текст:
                   </Form.Label>
                 </Col>

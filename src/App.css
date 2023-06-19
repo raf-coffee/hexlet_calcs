@@ -39,7 +39,7 @@ main {
     Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   text-decoration: none;
   color: var(--dark-green);
-  font-size: 72px;
+  font-size: 3rem;
 }
 
 .desc {
@@ -71,7 +71,7 @@ main {
 }
 
 .header-height {
-  height: 98px;
+  height: 64px;
 }
 
 .footer-height {
@@ -152,6 +152,29 @@ main {
 
 .min-table-width {
   min-width: 400px;
+}
+
+.btn-close.close-button {
+  font-size: 1.25rem;
+  width: 1.5em;
+  height: 1.5em;
+  padding: 0.25rem 0.75rem;
+  line-height: 1;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+@media (min-width: 576px) {
+  .header-height {
+    height: 98px;
+  }
+
+  .logo {
+    font-family: Dorsa, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans",
+      Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    text-decoration: none;
+    color: var(--dark-green);
+    font-size: 72px;
+  }
 }
 
 @media (max-width: 992px) {
