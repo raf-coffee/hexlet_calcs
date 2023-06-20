@@ -122,7 +122,7 @@ export function IdealWeight() {
         <div className="mb-5">
           <h3 className="font-pt-sans-700">Индекс Борнгардта</h3>
           <p>Индекс Борнгардта (1886 год) - индекс, использующий окружность груди в формуле расчета идеального веса.</p>
-          <p className="text-center p-4 text-uppercase border border-3 border-warning rounded bg-white-yellow">
+          <p className="text-center p-4 text-uppercase custom-border custom-border-width-3 rounded bg-white-yellow">
             Идеальный вес = Рост * Обхват груди / 240
           </p>
         </div>
@@ -132,13 +132,13 @@ export function IdealWeight() {
             Разработан диетологом Ноорденом, в начале XX века. Одна из редких формул нормального веса, которая не
             основана на индексе Брока.
           </p>
-          <p className="text-center p-4 text-uppercase border border-3 border-warning rounded bg-white-yellow">
+          <p className="text-center p-4 text-uppercase custom-border custom-border-width-3 rounded bg-white-yellow">
             Идеальный вес = Рост * 420 / 1000
           </p>
         </div>
         <div className="mb-5">
           <h3 className="font-pt-sans-700">Индекс Татоня</h3>
-          <p className="text-center p-4 text-uppercase border border-3 border-warning rounded bg-white-yellow">
+          <p className="text-center p-4 text-uppercase custom-border custom-border-width-3 rounded bg-white-yellow">
             Идеальный вес = Рост - (100 + (Рост - 100) / 20)
           </p>
         </div>
@@ -150,11 +150,11 @@ export function IdealWeight() {
             более широко.
           </p>
           <p>Формула Девина для женщин:</p>
-          <p className="text-center p-4 text-uppercase border border-3 border-warning rounded bg-white-yellow">
+          <p className="text-center p-4 text-uppercase custom-border custom-border-width-3 rounded bg-white-yellow">
             Идеальный вес = 45.5 + 2.3 * (0.394 * рост - 60)
           </p>
           <p>Формула Девина для мужчин:</p>
-          <p className="text-center p-4 text-uppercase border border-3 border-warning rounded bg-white-yellow">
+          <p className="text-center p-4 text-uppercase custom-border custom-border-width-3 rounded bg-white-yellow">
             Идеальный вес = 50 + 2.3 * (0.394 * рост - 60)
           </p>
         </div>
@@ -166,17 +166,17 @@ export function IdealWeight() {
             уточненнное определение для первой его известной формуы (рост минус 100)
           </p>
           <p>Индекс Брока для женщин:</p>
-          <p className="text-center p-4 text-uppercase border border-3 border-warning rounded bg-white-yellow">
+          <p className="text-center p-4 text-uppercase custom-border custom-border-width-3 rounded bg-white-yellow">
             Идеальный вес = (Рост - 100) * 0,85
           </p>
           <p>Индекс Брока для мужчин:</p>
-          <p className="text-center p-4 text-uppercase border border-3 border-warning rounded bg-white-yellow">
+          <p className="text-center p-4 text-uppercase custom-border custom-border-width-3 rounded bg-white-yellow">
             Идеальный вес = (Рост - 100) * 0,9
           </p>
         </div>
         <div className="mb-5">
           <h3 className="font-pt-sans-700">Формула Лоренца</h3>
-          <p className="text-center p-4 text-uppercase border border-3 border-warning rounded bg-white-yellow">
+          <p className="text-center p-4 text-uppercase custom-border custom-border-width-3 rounded bg-white-yellow">
             Идеальный вес = Рост - 100 - ((Рост - 150) / 2)
           </p>
         </div>

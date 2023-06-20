@@ -158,7 +158,7 @@ export function BodyType() {
             в основу схемы соматотипирования по М.В. Черноруцкому.
           </p>
           <p>Индекс Пинье рассчитывается по формуле:</p>
-          <p className="text-center p-4 text-uppercase border border-3 border-warning rounded bg-white-yellow">
+          <p className="text-center p-4 text-uppercase custom-border custom-border-width-3 rounded bg-white-yellow">
             Рост в см - (вес в кг + окружность груди в см)
           </p>
         </div>
@@ -169,7 +169,7 @@ export function BodyType() {
             1921 году в качестве "показателя полноты" швейцарским врачом Фрицем Рорером.
           </p>
           <p>Индекс Рорера рассчитывается по формуле:</p>
-          <p className="text-center p-4 text-uppercase border border-3 border-warning rounded bg-white-yellow">
+          <p className="text-center p-4 text-uppercase custom-border custom-border-width-3 rounded bg-white-yellow">
             Масса тела в кг / (Рост в м)<sup>3</sup>
           </p>
         </div>

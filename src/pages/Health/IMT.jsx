@@ -127,7 +127,7 @@ export function IMT() {
           <p>
             Для того, чтобы узнать свой ИМТ необходимо лишь свой вес в килограммах разделить на квадрат роста в метрах.
           </p>
-          <p className="text-center p-4 text-uppercase border border-3 border-warning rounded bg-white-yellow">
+          <p className="text-center p-4 text-uppercase custom-border custom-border-width-3 rounded">
             ИМТ = вес/рост<sup>2</sup>
           </p>
           <p>
