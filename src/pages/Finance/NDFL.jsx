@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -8,6 +8,8 @@ import Col from "react-bootstrap/Col";
 import { CountButton } from "../../components/CountButton/CountButton.jsx";
 import { Loader } from "../../components/Loader/Loader.jsx";
 import { ScrollToTop } from "../../components/ScrollToTop/ScrollToTop.jsx";
+import { SEO } from "../../components/SEO/SEO.jsx";
+import { ThemeContext } from "../../contexts/ThemeContext.jsx";
 
 const formSchema = z.object({
   sum: z.coerce
@@ -23,6 +25,7 @@ export function NDFL() {
   const [result, setResult] = useState("");
   const [checked, setChecked] = useState("before");
   const [isLoading, setIsLoading] = useState(false);
+  const [theme] = useContext(ThemeContext);
   const {
     register,
     handleSubmit,
@@ -43,6 +46,7 @@ export function NDFL() {
 
   return (
     <>
+      <SEO theme={theme} />
       <Row xs={1} md={2} className="mb-4">
         <Col className="mb-5 mb-md-5">
           <h3 className="mb-3 mb-md-5 font-pt-sans-700">Калькулятор НДФЛ</h3>
@@ -112,7 +116,7 @@ export function NDFL() {
       <div className="font-pt-sans-400">
         <h3 className="fw-bold">Описание калькулятора</h3>
         <p>Налоговый калькулятор предназначен для расчета налога на доход физических лиц (НДФЛ).</p>
-        <div className="border border-3 border-success-subtle p-3 mb-4">
+        <div className="custom-border p-3 mb-4">
           <p>Калькулятор налогов производит 2 типа расчетов:</p>
           <ul className="ps-3 ps-md-5 mb-0 mb-md-2">
             <li>
@@ -150,12 +154,12 @@ export function NDFL() {
             </li>
           </ul>
         </div>
-        <div className="border border-4 border-success-subtle rounded-4 p-2 p-sm-3 d-flex align-items-center justify-content-center fw-bold">
+        <div className="custom-border custom-border-width-3 rounded-4 p-2 p-sm-3 d-flex align-items-center justify-content-center fw-bold">
           <div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="currentColor"
-              className="bi bi-exclamation-circle-fill text-success me-2"
+              className={`bi bi-exclamation-circle-fill ${theme === "green" ? "text-success" : ""} me-2`}
               width="32"
               height="30"
               viewBox="0 0 16 16"

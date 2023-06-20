@@ -1,9 +1,14 @@
 import { Image } from "react-bootstrap";
+import { useContext } from "react";
 import underConstruction from "../../assets/images/under-construction.webp";
+import { ThemeContext } from "../../contexts/ThemeContext.jsx";
+import { SEO } from "../../components/SEO/SEO.jsx";
 
 export function Currency() {
+  const [theme] = useContext(ThemeContext);
   return (
     <div>
+      <SEO theme={theme} />
       <div className="container text-start">
         <div className="row mb-4">
           <div className="col">

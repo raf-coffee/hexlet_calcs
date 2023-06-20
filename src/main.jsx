@@ -7,14 +7,13 @@ import { Mortgage } from "./pages/Finance/Mortgage.jsx";
 import { NDFL } from "./pages/Finance/NDFL.jsx";
 import { NDS } from "./pages/Finance/NDS.jsx";
 import { Base64Decoder } from "./pages/Tech/Base64Decoder.jsx";
-import { Dream } from "./pages/Health/Dream.jsx";
 import { IdealWeight } from "./pages/Health/IdealWeight.jsx";
 import { IMT } from "./pages/Health/IMT.jsx";
 import { Currency } from "./pages/Currency/Currency.jsx";
 import { Index } from "./pages/index.jsx";
 import { BodyType } from "./pages/Health/BodyType.jsx";
+import { ThemeProvider } from "./contexts/ThemeContext.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./index.css";
 
 const router = createBrowserRouter([
   {
@@ -46,10 +45,6 @@ const router = createBrowserRouter([
         element: <Base64Decoder />,
       },
       {
-        path: "dream",
-        element: <Dream />,
-      },
-      {
         path: "ideal-weight",
         element: <IdealWeight />,
       },
@@ -70,7 +65,9 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>
+  <ThemeProvider>
+    <React.StrictMode>
+      <RouterProvider router={router} />
+    </React.StrictMode>
+  </ThemeProvider>
 );

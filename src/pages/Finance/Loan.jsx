@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -10,6 +10,8 @@ import { CountButton } from "../../components/CountButton/CountButton.jsx";
 import { KeyRateChart } from "../../components/KeyRateChart/KeyRateChart.jsx";
 import { Loader } from "../../components/Loader/Loader.jsx";
 import { ScrollToTop } from "../../components/ScrollToTop/ScrollToTop.jsx";
+import { SEO } from "../../components/SEO/SEO.jsx";
+import { ThemeContext } from "../../contexts/ThemeContext.jsx";
 import annuitet from "../../assets/images/payment_annuitet.webp";
 import diff from "../../assets/images/payment_diff.webp";
 
@@ -35,6 +37,7 @@ const formSchema = z.object({
 export function Loan() {
   const [result, setResult] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [theme] = useContext(ThemeContext);
   const {
     register,
     handleSubmit,
@@ -51,6 +54,7 @@ export function Loan() {
 
   return (
     <>
+      <SEO theme={theme} />
       <Row xs={1} md={2} className="mb-4">
         <Col className="mb-5 mb-md-5">
           <h3 className="mb-md-5 font-pt-sans-700">Кредитный калькулятор</h3>
@@ -64,7 +68,7 @@ export function Loan() {
                   <Form.Select aria-label="Вариант расчета" {...register("variants")}>
                     <option value="monthly">Расчёт ежемесячного платежа</option>
                     <option value="term">Расчёт срока кредита</option>
-                    <option value="maxSum">Расчёт максимальной суммы кредиты</option>
+                    <option value="maxSum">Расчёт максимальной суммы кредита</option>
                   </Form.Select>
                 </Col>
               </Row>
@@ -116,7 +120,7 @@ export function Loan() {
 
       <div className="font-pt-sans-400">
         <h3 className="font-pt-sans-700">Описание калькулятора</h3>
-        <div className="border border-3 border-success-subtle p-3 mb-4">
+        <div className="custom-border p-3 mb-4">
           <p>Кредитный калькулятор осуществляет 3 типа расчетов:</p>
           <ul className="ps-3 ps-md-5 mb-0 mb-md-2">
             <li>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -11,6 +11,8 @@ import { CountButton } from "../../components/CountButton/CountButton.jsx";
 import { Loader } from "../../components/Loader/Loader.jsx";
 import { ScrollToTop } from "../../components/ScrollToTop/ScrollToTop.jsx";
 import { imt } from "../../calcs/health/imt/imt.js";
+import { ThemeContext } from "../../contexts/ThemeContext.jsx";
+import { SEO } from "../../components/SEO/SEO.jsx";
 
 const formSchema = z.object({
   height: z.coerce
@@ -28,6 +30,7 @@ const formSchema = z.object({
 export function IMT() {
   const [result, setResult] = useState();
   const [isLoading, setIsLoading] = useState(false);
+  const [theme] = useContext(ThemeContext);
   const {
     register,
     handleSubmit,
@@ -44,6 +47,7 @@ export function IMT() {
 
   return (
     <>
+      <SEO theme={theme} />
       <Row xs={1} md={2} className="mb-4">
         <Col className="mb-5">
           <h3 className="mb-3 mb-xl-5 font-pt-sans-700">Калькулятор индекса массы тела</h3>
