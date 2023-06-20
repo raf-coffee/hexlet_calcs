@@ -91,8 +91,14 @@ const options = {
       intersect: false,
     },
   },
+  maintainAspectRatio: false,
+  responsive: true,
 };
 
 export function KeyRateChart() {
-  return <Line options={options} data={dataArray} />;
+  return (
+    <div className="chart-container">
+      <Line options={options} data={dataArray} />
+    </div>
+  );
 }

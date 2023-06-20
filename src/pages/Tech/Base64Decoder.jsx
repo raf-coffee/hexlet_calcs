@@ -2,7 +2,9 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Form } from "react-bootstrap";
+import Form from "react-bootstrap/Form";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import { CountButton } from "../../components/CountButton/CountButton.jsx";
 import { Loader } from "../../components/Loader/Loader.jsx";
 import { base64 } from "../../calcs/tech/base64/base64.js";
@@ -36,46 +38,48 @@ export function Base64Decoder() {
 
   return (
     <>
-      <div className="container">
-        <div className="row mb-4">
-          <div className="col-sm mb-5">
-            <h3 className="mb-5 font-pt-sans-700">Кодирование в base64</h3>
-            <Form onSubmit={handleSubmit(handleFormSubmit)}>
-              <Form.Group className="mb-4 row" controlId="text">
-                <div className="col-3 text-nowrap">
-                  <Form.Label controlId="textarea" label="Введите текст">
+      <Row xs={1} md={2} className="mb-4">
+        <Col className="mb-5">
+          <h3 className="mb-md-3 mb-xl-5 font-pt-sans-700">Кодирование в base64</h3>
+          <Form onSubmit={handleSubmit(handleFormSubmit)}>
+            <Form.Group className="mb-4" controlId="text">
+              <Row>
+                <Col xs={12} xl={3}>
+                  <Form.Label label="Введите текст" className="mb-xl-0">
                     Введите текст:
                   </Form.Label>
-                </div>
-                <div className="col-9">
+                </Col>
+                <Col xs={12} xl={9}>
                   <Form.Control as="textarea" style={{ height: "100px" }} {...register("text")} />
                   {errors?.text?.message && <p className="text-danger">{errors.text.message}</p>}
-                </div>
-              </Form.Group>
-              <Form.Group className="mb-4 row" controlId="variants">
-                <div className="col-3 text-nowrap">
-                  <Form.Label>Вариант расчета</Form.Label>
-                </div>
-                <div className="col-9">
+                </Col>
+              </Row>
+            </Form.Group>
+            <Form.Group className="mb-4" controlId="variants">
+              <Row className="align-items-center">
+                <Col xs={12} xl={3}>
+                  <Form.Label className="mb-xl-0">Вариант расчета:</Form.Label>
+                </Col>
+                <Col xs={12} xl={9}>
                   <Form.Select aria-label="Вариант расчета" {...register("action")}>
                     <option value="utf16ToB64">Кодировать</option>
                     <option value="b64ToUtf16">Декодировать</option>
                   </Form.Select>
-                </div>
-              </Form.Group>
-              <CountButton disabled={Object.entries(errors).length > 0 || isLoading} color="bg-deep-green" />
-            </Form>
+                </Col>
+              </Row>
+            </Form.Group>
+            <CountButton disabled={Object.entries(errors).length > 0 || isLoading} color="bg-deep-green" />
+          </Form>
+        </Col>
+        <Col className="mb-5">
+          <h3 className="mb-4 font-pt-sans-700">Результат</h3>
+          <div className="w-100 h-75 p-4 bg-secondary-subtle border border-3 border-secondary text-break overflow-y-auto min-height">
+            {!isLoading && result}
+            {isLoading && <Loader />}
           </div>
-          <div className="col-sm mb-5">
-            <h3 className="mb-4 font-pt-sans-700">Результат</h3>
-            <div className="w-100 h-75 p-4 bg-secondary-subtle border border-3 border-secondary text-break overflow-y-auto">
-              {!isLoading && result}
-              {isLoading && <Loader />}
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="container font-pt-sans-400">
+        </Col>
+      </Row>
+      <div className="font-pt-sans-400">
         <div className="mb-5">
           <h3 className="font-pt-sans-700">Что такое base64?</h3>
           <p>

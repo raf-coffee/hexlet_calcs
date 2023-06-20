@@ -1,10 +1,14 @@
 import { useState } from "react";
-import { Form, Table } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { CountButton } from "../../components/CountButton/CountButton.jsx";
+import Form from "react-bootstrap/Form";
+import Table from "react-bootstrap/Table";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import { ScrollToTop } from "../../components/ScrollToTop/ScrollToTop.jsx";
 import { Loader } from "../../components/Loader/Loader.jsx";
+import { CountButton } from "../../components/CountButton/CountButton.jsx";
 
 const formSchema = z.object({
   sum: z.coerce
@@ -59,100 +63,120 @@ export function Mortgage() {
   };
 
   return (
-    <div>
-      <div className="container text-start">
-        <div className="row mb-4">
-          <div className="col-sm mb-5">
-            <h3 className="mb-5 font-pt-sans-700">Ипотечный калькулятор</h3>
-            <Form onSubmit={handleSubmit(handleFormSubmit)}>
-              <Form.Group className="mb-4 row" controlId="sum">
-                <div className="col-4 text-nowrap">
-                  <Form.Label className="col-4">Стоимость недвижимости</Form.Label>
-                </div>
-                <div className="col-8">
+    <>
+      <Row xs={1} md={2} className="mb-4">
+        <Col className="mb-5">
+          <h3 className="mb-md-5 font-pt-sans-700">Ипотечный калькулятор</h3>
+          <Form onSubmit={handleSubmit(handleFormSubmit)}>
+            <Form.Group className="mb-4" controlId="sum">
+              <Row className="align-items-center">
+                <Col xs={12} xl={5}>
+                  <Form.Label className="mb-xl-0">Стоимость недвижимости:</Form.Label>
+                </Col>
+                <Col xs={12} xl={7}>
                   <Form.Control type="text" {...register("sum")} />
-                </div>
+                </Col>
                 {errors?.sum?.message && <p className="text-danger">{errors.sum.message}</p>}
-              </Form.Group>
-              <Form.Group className="mb-4 row" controlId="firstPay">
-                <div className="col-4 text-nowrap">
-                  <Form.Label>Первоначальный взнос</Form.Label>
-                </div>
-                <div className="d-flex col-8">
-                  <Form.Control type="text" {...register("firstPay.sum")} />
-                  <Form.Select aria-label="Первоначальный взнос" {...register("firstPay.type")}>
-                    <option value="ruble">Рубли</option>
-                    <option value="percentage">%</option>
-                  </Form.Select>
-                </div>
+              </Row>
+            </Form.Group>
+            <Form.Group className="mb-4" controlId="firstPay">
+              <Row className="align-items-center">
+                <Col xs={12} xl={5}>
+                  <Form.Label className="mb-xl-0">Первоначальный взнос:</Form.Label>
+                </Col>
+                <Col xs={12} xl={7}>
+                  <Row>
+                    <Col xs={7}>
+                      <Form.Control type="text" {...register("firstPay.sum")} />
+                    </Col>
+                    <Col xs={5}>
+                      <Form.Select aria-label="Первоначальный взнос" {...register("firstPay.type")}>
+                        <option value="ruble">Рубли</option>
+                        <option value="percentage">%</option>
+                      </Form.Select>
+                    </Col>
+                  </Row>
+                </Col>
                 {errors?.firstPay?.sum?.message && <p className="text-danger">{errors.firstPay.sum.message}</p>}
-              </Form.Group>
-              <Form.Group className="mb-4 row" controlId="sumOfLoan">
-                <div className="col-4 text-nowrap">
-                  <Form.Label>Сумма кредита</Form.Label>
-                </div>
-                <div className="col-8">
+              </Row>
+            </Form.Group>
+            <Form.Group className="mb-4" controlId="sumOfLoan">
+              <Row className="align-items-center">
+                <Col xs={7} xl={5}>
+                  <Form.Label className="mb-xl-0">Сумма кредита:</Form.Label>
+                </Col>
+                <Col xs={5} xl={7}>
                   <span className="fw-bold">0</span> рублей
-                </div>
-              </Form.Group>
-              <Form.Group className="mb-4 row" controlId="creditTerm">
-                <div className="col-4 text-nowrap">
-                  <Form.Label>Срок кредита</Form.Label>
-                </div>
-                <div className="d-flex col-8">
-                  <Form.Control type="text" {...register("creditTerm.term")} />
-                  <Form.Select aria-label="Срок кредита" {...register("creditTerm.type")}>
-                    <option value="years">лет</option>
-                    <option value="months">месяцев</option>
-                  </Form.Select>
-                </div>
+                </Col>
+              </Row>
+            </Form.Group>
+            <Form.Group className="mb-4" controlId="creditTerm">
+              <Row className="align-items-center">
+                <Col xs={12} xl={5}>
+                  <Form.Label className="mb-xl-0">Срок кредита:</Form.Label>
+                </Col>
+                <Col xs={12} xl={7}>
+                  <Row>
+                    <Col xs={7}>
+                      <Form.Control type="text" {...register("creditTerm.term")} />
+                    </Col>
+                    <Col xs={5}>
+                      <Form.Select aria-label="Срок кредита" {...register("creditTerm.type")}>
+                        <option value="years">лет</option>
+                        <option value="months">месяцев</option>
+                      </Form.Select>
+                    </Col>
+                  </Row>
+                </Col>
                 {errors?.creditTerm?.term?.message && <p className="text-danger">{errors.creditTerm.term.message}</p>}
-              </Form.Group>
-              <Form.Group className="mb-4 row" controlId="interestRate">
-                <div className="text-nowrap col-4">
-                  <Form.Label>Процентная ставка (%)</Form.Label>
-                </div>
-                <div className="col-8">
+              </Row>
+            </Form.Group>
+            <Form.Group className="mb-4" controlId="interestRate">
+              <Row className="align-items-center">
+                <Col xs={12} xl={5}>
+                  <Form.Label className="mb-xl-0">Процентная ставка (%):</Form.Label>
+                </Col>
+                <Col xs={12} xl={7}>
                   <Form.Control type="text" {...register("interestRate")} />
-                </div>
+                </Col>
                 {errors?.interestRate?.message && <p className="text-danger">{errors.interestRate.message}</p>}
-              </Form.Group>
-              <Form.Group key="nds-checkbox" controlId="payType" className="d-flex">
-                <Form.Label className="me-4">Тип ежемесячных платежей</Form.Label>
-                <div onChange={handleCheckboxToggle}>
-                  <Form.Check
-                    name="ann"
-                    value="ann"
-                    type="radio"
-                    label="Аннуитетные"
-                    id="nds-checkbox-1"
-                    checked={checked === "ann"}
-                    {...register("payType")}
-                  />
-                  <Form.Check
-                    name="diff"
-                    value="diff"
-                    type="radio"
-                    label="Дифференцированные"
-                    id="nds-checkbox-2"
-                    checked={checked === "diff"}
-                    {...register("payType")}
-                  />
-                </div>
-              </Form.Group>
-              <CountButton disabled={Object.entries(errors).length > 0 || isLoading} color="bg-deep-green" />
-            </Form>
+              </Row>
+            </Form.Group>
+            <Form.Group key="nds-checkbox" controlId="payType" className="mb-4">
+              <Form.Label className="mb-xl-0 me-4">Тип ежемесячных платежей</Form.Label>
+              <div onChange={handleCheckboxToggle}>
+                <Form.Check
+                  name="ann"
+                  value="ann"
+                  type="radio"
+                  label="Аннуитетные"
+                  id="nds-checkbox-1"
+                  checked={checked === "ann"}
+                  {...register("payType")}
+                />
+                <Form.Check
+                  name="diff"
+                  value="diff"
+                  type="radio"
+                  label="Дифференцированные"
+                  id="nds-checkbox-2"
+                  checked={checked === "diff"}
+                  {...register("payType")}
+                />
+              </div>
+            </Form.Group>
+            <CountButton disabled={Object.entries(errors).length > 0 || isLoading} color="bg-deep-green" />
+          </Form>
+        </Col>
+        <Col className="mb-5">
+          <h3 className="mb-md-4 font-pt-sans-700">Результат</h3>
+          <div className="w-100 h-75 p-4 bg-secondary-subtle border border-3 border-secondary min-height">
+            {!isLoading && result}
+            {isLoading && <Loader />}
           </div>
-          <div className="col-sm mb-5">
-            <h3 className="mb-4 font-pt-sans-700">Результат</h3>
-            <div className="w-100 h-75 p-4 bg-secondary-subtle border border-3 border-secondary">
-              {!isLoading && result}
-              {isLoading && <Loader />}
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="container font-pt-sans-400">
+        </Col>
+      </Row>
+      <div className="font-pt-sans-400">
         <h3 className="fw-bold mb-3">Расчет ипотеки онлайн</h3>
         <div className="mb-4">
           <p>
@@ -217,7 +241,7 @@ export function Mortgage() {
           </p>
         </div>
         <div className="mb-4">
-          <Table responsive className="table-bordered d-inline-block" style={{ minWidth: "350px" }}>
+          <Table responsive className="table-bordered d-inline-block min-table-width">
             <caption className="caption-top">
               Таблица 1. Демонстрация влияния процентной ставки на параметры кредита.
             </caption>
@@ -285,6 +309,7 @@ export function Mortgage() {
           <p>В настоящее время наиболее распространен аннуитетный платеж.</p>
         </div>
       </div>
-    </div>
+      <ScrollToTop />
+    </>
   );
 }

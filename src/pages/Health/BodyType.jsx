@@ -1,11 +1,14 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Form } from "react-bootstrap";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import Form from "react-bootstrap/Form";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import { CountButton } from "../../components/CountButton/CountButton.jsx";
-import { bodyType } from "../../calcs/health/bodyType/bodyType.js";
 import { Loader } from "../../components/Loader/Loader.jsx";
+import { ScrollToTop } from "../../components/ScrollToTop/ScrollToTop.jsx";
+import { bodyType } from "../../calcs/health/bodyType/bodyType.js";
 
 const formSchema = z.object({
   height: z.coerce
@@ -50,78 +53,86 @@ export function BodyType() {
 
   return (
     <>
-      <div className="container">
-        <div className="row mb-4">
-          <div className="col-sm mb-5">
-            <h3 className="mb-5 font-pt-sans-700">Калькулятор типа телосложения</h3>
-            <Form onSubmit={handleSubmit(handleFormSubmit)}>
-              <Form.Group className="mb-4 row" controlId="height">
-                <div className="col-4 text-nowrap">
-                  <Form.Label>Рост (см)</Form.Label>
-                </div>
-                <div className="col-8">
+      <Row xs={1} md={2} className="mb-4">
+        <Col className="mb-4">
+          <h3 className="mb-md-5 font-pt-sans-700">Калькулятор типа телосложения</h3>
+          <Form onSubmit={handleSubmit(handleFormSubmit)}>
+            <Form.Group className="mb-4" controlId="height">
+              <Row className="align-items-center">
+                <Col xs={12} xl={5}>
+                  <Form.Label className="mb-xl-0">Рост (см):</Form.Label>
+                </Col>
+                <Col xs={12} xl={7}>
                   <Form.Control type="text" name="height" {...register("height")} />
-                </div>
+                </Col>
                 {errors?.height?.message && <p className="text-danger">{errors.height.message}</p>}
-              </Form.Group>
-              <Form.Group className="mb-4 row" controlId="weight">
-                <div className="col-4 text-nowrap">
-                  <Form.Label>Вес (кг)</Form.Label>
-                </div>
-                <div className="col-8">
+              </Row>
+            </Form.Group>
+            <Form.Group className="mb-4" controlId="weight">
+              <Row className="align-items-center">
+                <Col xs={12} xl={5}>
+                  <Form.Label className="mb-xl-0">Вес (кг):</Form.Label>
+                </Col>
+                <Col xs={12} xl={7}>
                   <Form.Control type="text" name="weight" {...register("weight")} />
-                </div>
+                </Col>
                 {errors?.weight?.message && <p className="text-danger">{errors.weight.message}</p>}
-              </Form.Group>
-              <Form.Group className="mb-4 row" controlId="age">
-                <div className="col-4 text-nowrap">
-                  <Form.Label className="col-4">Обхват груди (см)</Form.Label>
-                </div>
-                <div className="col-8">
+              </Row>
+            </Form.Group>
+            <Form.Group className="mb-4" controlId="age">
+              <Row className="align-items-center">
+                <Col xs={12} xl={5}>
+                  <Form.Label className="mb-xl-0">Обхват груди (см):</Form.Label>
+                </Col>
+                <Col xs={12} xl={7}>
                   <Form.Control type="text" name="bust" {...register("bust")} />
-                </div>
+                </Col>
                 {errors?.bust?.message && <p className="text-danger">{errors.bust.message}</p>}
-              </Form.Group>
-              <Form.Group className="mb-4 row" controlId="wrist">
-                <div className="col-4 text-nowrap">
-                  <Form.Label>Обхват запястья (см)</Form.Label>
-                </div>
-                <div className="col-8">
+              </Row>
+            </Form.Group>
+            <Form.Group className="mb-4" controlId="wrist">
+              <Row className="align-items-center">
+                <Col xs={12} xl={5}>
+                  <Form.Label className="mb-xl-0">Обхват запястья (см):</Form.Label>
+                </Col>
+                <Col xs={12} xl={7}>
                   <Form.Control type="text" name="carpus" {...register("carpus")} />
-                </div>
+                </Col>
                 {errors?.carpus?.message && <p className="text-danger">{errors.carpus.message}</p>}
-              </Form.Group>
-              <Form.Group className="mb-4 row" controlId="sex">
-                <div className="col-4 text-nowrap">
-                  <Form.Label className="col-4">Пол</Form.Label>
-                </div>
-                <div className="col-8">
+              </Row>
+            </Form.Group>
+            <Form.Group className="mb-4" controlId="sex">
+              <Row className="align-items-center">
+                <Col xs={12} xl={5}>
+                  <Form.Label className="mb-xl-0">Пол</Form.Label>
+                </Col>
+                <Col xs={12} xl={7}>
                   <Form.Select aria-label="Пол" name="sex" {...register("sex")}>
                     <option value="male">Мужской</option>
                     <option value="female">Женский</option>
                   </Form.Select>
-                </div>
-              </Form.Group>
-              <CountButton disabled={Object.entries(errors).length > 0 || isLoading} color="bg-deep-green" />
-            </Form>
+                </Col>
+              </Row>
+            </Form.Group>
+            <CountButton disabled={Object.entries(errors).length > 0 || isLoading} color="bg-deep-green" />
+          </Form>
+        </Col>
+        <Col className="mb-4">
+          <h3 className="mb-md-4 font-pt-sans-700">Результат</h3>
+          <div className="w-100 h-75 p-4 bg-secondary-subtle border border-3 border-secondary min-height">
+            {!isLoading && result && (
+              <>
+                <p>Тип телосложения:</p>
+                {Object.values(result).map((value) => (
+                  <p key={value}>{value}</p>
+                ))}
+              </>
+            )}
+            {isLoading && <Loader />}
           </div>
-          <div className="col-sm mb-5">
-            <h3 className="mb-4 font-pt-sans-700">Результат</h3>
-            <div className="w-100 h-75 p-4 bg-secondary-subtle border border-3 border-secondary">
-              {!isLoading && result && (
-                <>
-                  <p>Тип телосложения:</p>
-                  {Object.values(result).map((value) => (
-                    <p key={value}>{value}</p>
-                  ))}
-                </>
-              )}
-              {isLoading && <Loader />}
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="container font-pt-sans-400">
+        </Col>
+      </Row>
+      <div className="font-pt-sans-400">
         <div className="mb-5">
           <h3 className="font-pt-sans-700">Что такое тип телосложения?</h3>
           <p>
@@ -196,14 +207,13 @@ export function BodyType() {
             тоньше). А когда окружность запястья превышает 16 см, то из обхвата большого таза отнимают 10 см.
           </p>
         </div>
-        <div className="mb-5">
-          <p>
-            Калькулятор типа телосложения может быть полезен для людей, которые стремятся к улучшению своего здоровья и
-            желают следить за своим весом. Данный калькулятор поможет пользователю понять свой тип телосложения и
-            определить, какие изменения в образе жизни необходимы для достижения лучших результатов.
-          </p>
-        </div>
+        <p>
+          Калькулятор типа телосложения может быть полезен для людей, которые стремятся к улучшению своего здоровья и
+          желают следить за своим весом. Данный калькулятор поможет пользователю понять свой тип телосложения и
+          определить, какие изменения в образе жизни необходимы для достижения лучших результатов.
+        </p>
       </div>
+      <ScrollToTop />
     </>
   );
 }
