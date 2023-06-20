@@ -1,13 +1,16 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Form, Table, Row, Col } from "react-bootstrap";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import Form from "react-bootstrap/Form";
+import Table from "react-bootstrap/Table";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import { WeightChart } from "../../components/WeightChart/WeightChart.jsx";
 import { CountButton } from "../../components/CountButton/CountButton.jsx";
 import { Loader } from "../../components/Loader/Loader.jsx";
-import { imt } from "../../calcs/health/imt/imt.js";
 import { ScrollToTop } from "../../components/ScrollToTop/ScrollToTop.jsx";
+import { imt } from "../../calcs/health/imt/imt.js";
 
 const formSchema = z.object({
   height: z.coerce

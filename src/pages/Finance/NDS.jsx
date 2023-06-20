@@ -1,12 +1,15 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Col, Form, Row, Table } from "react-bootstrap";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import Form from "react-bootstrap/Form";
+import Table from "react-bootstrap/Table";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import { CountButton } from "../../components/CountButton/CountButton.jsx";
 import { Loader } from "../../components/Loader/Loader.jsx";
-import { nds } from "../../calcs/finance/nds/nds.js";
 import { ScrollToTop } from "../../components/ScrollToTop/ScrollToTop.jsx";
+import { nds } from "../../calcs/finance/nds/nds.js";
 
 const formSchema = z.object({
   nb: z.coerce

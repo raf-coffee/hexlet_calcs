@@ -1,14 +1,17 @@
 import { useState } from "react";
-import { Form, Image, Row, Col } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import Form from "react-bootstrap/Form";
+import Image from "react-bootstrap/Image";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import { CountButton } from "../../components/CountButton/CountButton.jsx";
 import { KeyRateChart } from "../../components/KeyRateChart/KeyRateChart.jsx";
 import { Loader } from "../../components/Loader/Loader.jsx";
+import { ScrollToTop } from "../../components/ScrollToTop/ScrollToTop.jsx";
 import annuitet from "../../assets/images/payment_annuitet.webp";
 import diff from "../../assets/images/payment_diff.webp";
-import { ScrollToTop } from "../../components/ScrollToTop/ScrollToTop.jsx";
 
 const formSchema = z.object({
   variants: z.coerce.string(),

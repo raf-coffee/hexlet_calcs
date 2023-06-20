@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Form, Row, Col } from "react-bootstrap";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import Form from "react-bootstrap/Form";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import { CountButton } from "../../components/CountButton/CountButton.jsx";
 import { Loader } from "../../components/Loader/Loader.jsx";
-import { bodyType } from "../../calcs/health/bodyType/bodyType.js";
 import { ScrollToTop } from "../../components/ScrollToTop/ScrollToTop.jsx";
+import { bodyType } from "../../calcs/health/bodyType/bodyType.js";
 
 const formSchema = z.object({
   height: z.coerce

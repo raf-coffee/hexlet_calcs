@@ -1,8 +1,10 @@
 import { useState } from "react";
-import { Col, Form, Row } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import Form from "react-bootstrap/Form";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import { CountButton } from "../../components/CountButton/CountButton.jsx";
 import { Loader } from "../../components/Loader/Loader.jsx";
 import { ScrollToTop } from "../../components/ScrollToTop/ScrollToTop.jsx";
