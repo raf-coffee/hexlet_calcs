@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -8,6 +8,8 @@ import Col from "react-bootstrap/Col";
 import { CountButton } from "../../components/CountButton/CountButton.jsx";
 import { Loader } from "../../components/Loader/Loader.jsx";
 import { base64 } from "../../calcs/tech/base64/base64.js";
+import { ThemeContext } from "../../contexts/ThemeContext.jsx";
+import { SEO } from "../../components/SEO/SEO.jsx";
 
 const formSchema = z.object({
   text: z.coerce.string().trim().min(1, { message: "Строка должна содержать как минимум один символ" }),
@@ -17,6 +19,7 @@ const formSchema = z.object({
 export function Base64Decoder() {
   const [result, setResult] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [theme] = useContext(ThemeContext);
   const {
     register,
     handleSubmit,
@@ -38,6 +41,7 @@ export function Base64Decoder() {
 
   return (
     <>
+      <SEO theme={theme} />
       <Row xs={1} md={2} className="mb-4">
         <Col className="mb-5">
           <h3 className="mb-md-3 mb-xl-5 font-pt-sans-700">Кодирование в base64</h3>

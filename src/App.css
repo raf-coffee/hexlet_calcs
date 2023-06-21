@@ -15,8 +15,7 @@
   font-weight: 700;
 }
 
-#root {
-  margin: 0 auto;
+[data-bs-theme="green"] {
   --white-yellow: #ffee9415;
   --dark-green: #212d26;
   --custom-primary: rgba(171, 245, 145, 0.8);
@@ -26,10 +25,22 @@
   --active-category-header: #21504d;
   --active-link-color: #057d59;
   --button-hover: #539250;
+  --filter-color: initial;
 }
+
+[data-bs-theme="dark"] {
+  --dark-green: #adb5bd;
+  --custom-tertiary: rgba(126, 131, 117, 0.41);
+  --category-header: #212427;
+  --active-category-header: #6d7a88;
+  --active-link-color: #adb5bd;
+  --filter-color: grayscale(90%) brightness(40%);
+}
+
 body {
   color: var(--dark-green);
 }
+
 main {
   margin: 0 auto;
 }
@@ -40,6 +51,52 @@ main {
   text-decoration: none;
   color: var(--dark-green);
   font-size: 3rem;
+  line-height: 1;
+}
+
+.theme-toggler {
+  background-color: var(--active-link-color);
+}
+
+.header-container,
+.footer-container {
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-template-rows: 1fr;
+}
+
+.header-text,
+.footer-text {
+  grid-column-start: 1;
+  grid-row-start: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 2;
+}
+
+.header-img,
+.footer-img {
+  grid-column-start: 1;
+  grid-row-start: 1;
+}
+
+.menu-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  height: 100%;
+}
+
+.menu-img {
+  grid-column-start: 1;
+  grid-row-start: 1;
+}
+
+.menu-text {
+  grid-column-start: 1;
+  grid-row-start: 1;
+  z-index: 2;
 }
 
 .desc {
@@ -60,6 +117,14 @@ main {
   color: var(--category-header);
 }
 
+.custom-border {
+  border: 2px solid var(--active-link-color);
+}
+
+.custom-border-width-3 {
+  border-width: 3px;
+}
+
 .font-pt-sans-400 {
   font-family: "PT Sans Caption", sans-serif;
   font-weight: 400;
@@ -78,7 +143,12 @@ main {
   height: 98px;
 }
 
-.bg-image-custom {
+.bg-image-header {
+  background-image: url("./assets/images/header.webp");
+  background-size: cover;
+}
+
+.bg-image-footer {
   background-image: url("./assets/images/header.webp");
   background-size: cover;
 }
@@ -101,6 +171,15 @@ main {
 .bg-image-tech {
   background-image: url("./assets/images/tech.webp");
   background-size: 100% 100%;
+}
+
+.bg-image-header,
+.bg-image-footer,
+.bg-image-finance,
+.bg-image-health,
+.bg-image-tech,
+.bg-image-currency {
+  filter: var(--filter-color);
 }
 
 .bg-deep-green {
@@ -169,6 +248,7 @@ main {
   right: 15px;
   background-color: transparent;
   border: transparent;
+  z-index: 2;
 }
 
 .chart-container {

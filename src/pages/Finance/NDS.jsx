@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -10,6 +10,8 @@ import { CountButton } from "../../components/CountButton/CountButton.jsx";
 import { Loader } from "../../components/Loader/Loader.jsx";
 import { ScrollToTop } from "../../components/ScrollToTop/ScrollToTop.jsx";
 import { nds } from "../../calcs/finance/nds/nds.js";
+import { SEO } from "../../components/SEO/SEO.jsx";
+import { ThemeContext } from "../../contexts/ThemeContext.jsx";
 
 const formSchema = z.object({
   nb: z.coerce
@@ -29,6 +31,7 @@ export function NDS() {
   const [checked, setChecked] = useState("accrue");
   const [result, setResult] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [theme] = useContext(ThemeContext);
   const {
     register,
     handleSubmit,
@@ -49,6 +52,7 @@ export function NDS() {
 
   return (
     <>
+      <SEO theme={theme} />
       <Row xs={1} md={2} className="mb-4">
         <Col className="mb-5">
           <h3 className="mb-md-5 font-pt-sans-700">Калькулятор НДС</h3>

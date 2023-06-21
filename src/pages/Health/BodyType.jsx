@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -9,6 +9,8 @@ import { CountButton } from "../../components/CountButton/CountButton.jsx";
 import { Loader } from "../../components/Loader/Loader.jsx";
 import { ScrollToTop } from "../../components/ScrollToTop/ScrollToTop.jsx";
 import { bodyType } from "../../calcs/health/bodyType/bodyType.js";
+import { ThemeContext } from "../../contexts/ThemeContext.jsx";
+import { SEO } from "../../components/SEO/SEO.jsx";
 
 const formSchema = z.object({
   height: z.coerce
@@ -37,6 +39,7 @@ const formSchema = z.object({
 export function BodyType() {
   const [result, setResult] = useState();
   const [isLoading, setIsLoading] = useState(false);
+  const [theme] = useContext(ThemeContext);
   const {
     register,
     handleSubmit,
@@ -53,6 +56,7 @@ export function BodyType() {
 
   return (
     <>
+      <SEO theme={theme} />
       <Row xs={1} md={2} className="mb-4">
         <Col className="mb-4">
           <h3 className="mb-md-5 font-pt-sans-700">Калькулятор типа телосложения</h3>
@@ -154,7 +158,7 @@ export function BodyType() {
             в основу схемы соматотипирования по М.В. Черноруцкому.
           </p>
           <p>Индекс Пинье рассчитывается по формуле:</p>
-          <p className="text-center p-4 text-uppercase border border-3 border-warning rounded bg-white-yellow">
+          <p className="text-center p-4 text-uppercase custom-border custom-border-width-3 rounded bg-white-yellow">
             Рост в см - (вес в кг + окружность груди в см)
           </p>
         </div>
@@ -165,7 +169,7 @@ export function BodyType() {
             1921 году в качестве "показателя полноты" швейцарским врачом Фрицем Рорером.
           </p>
           <p>Индекс Рорера рассчитывается по формуле:</p>
-          <p className="text-center p-4 text-uppercase border border-3 border-warning rounded bg-white-yellow">
+          <p className="text-center p-4 text-uppercase custom-border custom-border-width-3 rounded bg-white-yellow">
             Масса тела в кг / (Рост в м)<sup>3</sup>
           </p>
         </div>

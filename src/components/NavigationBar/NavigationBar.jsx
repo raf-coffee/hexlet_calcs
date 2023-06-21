@@ -37,19 +37,22 @@ export function NavigationBar() {
               >
                 Финансовые
               </h2>
-              <div className="p-2 text-center bg-image-finance flex-grow-1">
-                <NavLink to="nds" onClick={handleCollapseMenu} className="d-block py-1 link">
-                  Калькулятор НДС
-                </NavLink>
-                <NavLink to="mortgage" onClick={handleCollapseMenu} className="d-block py-1 link">
-                  Ипотечный калькулятор
-                </NavLink>
-                <NavLink to="ndfl" onClick={handleCollapseMenu} className="d-block py-1 link">
-                  Калькулятор НДФЛ
-                </NavLink>
-                <NavLink to="loan" onClick={handleCollapseMenu} className="d-block py-1 link">
-                  Кредитный калькулятор
-                </NavLink>
+              <div className="menu-container">
+                <div className="bg-image-finance menu-img" />
+                <div className="p-2 text-center flex-grow-1 menu-text">
+                  <NavLink to="nds" onClick={handleCollapseMenu} className="d-block py-1 link">
+                    Калькулятор НДС
+                  </NavLink>
+                  <NavLink to="mortgage" onClick={handleCollapseMenu} className="d-block py-1 link">
+                    Ипотечный калькулятор
+                  </NavLink>
+                  <NavLink to="ndfl" onClick={handleCollapseMenu} className="d-block py-1 link">
+                    Калькулятор НДФЛ
+                  </NavLink>
+                  <NavLink to="loan" onClick={handleCollapseMenu} className="d-block py-1 link">
+                    Кредитный калькулятор
+                  </NavLink>
+                </div>
               </div>
             </Col>
             <Col className="d-flex flex-column me-lg-2 p-0">
@@ -60,19 +63,19 @@ export function NavigationBar() {
               >
                 Здоровье
               </h2>
-              <div className="p-2 text-center bg-image-health flex-grow-1">
-                <NavLink to="imt" onClick={handleCollapseMenu} className="d-block py-1 link">
-                  Калькулятор индекса массы тела
-                </NavLink>
-                <NavLink to="body-type" onClick={handleCollapseMenu} className="d-block py-1 link">
-                  Калькулятор типа телосложения
-                </NavLink>
-                <NavLink to="ideal-weight" onClick={handleCollapseMenu} className="d-block py-1 link">
-                  Калькулятор идеального веса
-                </NavLink>
-                <NavLink to="dream" onClick={handleCollapseMenu} className="d-block py-1 link">
-                  Калькулятор сна
-                </NavLink>
+              <div className="menu-container">
+                <div className="bg-image-finance menu-img" />
+                <div className="p-2 text-center flex-grow-1 menu-text">
+                  <NavLink to="imt" onClick={handleCollapseMenu} className="d-block py-1 link">
+                    Калькулятор индекса массы тела
+                  </NavLink>
+                  <NavLink to="body-type" onClick={handleCollapseMenu} className="d-block py-1 link">
+                    Калькулятор типа телосложения
+                  </NavLink>
+                  <NavLink to="ideal-weight" onClick={handleCollapseMenu} className="d-block py-1 link">
+                    Калькулятор идеального веса
+                  </NavLink>
+                </div>
               </div>
             </Col>
             <Col className="d-flex flex-column me-lg-2 p-0">
@@ -83,10 +86,13 @@ export function NavigationBar() {
               >
                 Технические
               </h2>
-              <div className="p-2 text-center bg-image-tech flex-grow-1">
-                <NavLink to="base64" onClick={handleCollapseMenu} className="d-block py-1 link">
-                  Кодировщик Base64
-                </NavLink>
+              <div className="menu-container">
+                <div className="bg-image-finance menu-img" />
+                <div className="p-2 text-center flex-grow-1 menu-text">
+                  <NavLink to="base64" onClick={handleCollapseMenu} className="d-block py-1 link">
+                    Кодировщик Base64
+                  </NavLink>
+                </div>
               </div>
             </Col>
             <Col className="d-flex flex-column p-0">
@@ -97,10 +103,13 @@ export function NavigationBar() {
               >
                 Валюты
               </h2>
-              <div className="p-2 text-center bg-image-currency flex-grow-1">
-                <NavLink to="currency" onClick={handleCollapseMenu} className="d-block py-1 link">
-                  Конвертер валют
-                </NavLink>
+              <div className="menu-container">
+                <div className="bg-image-finance menu-img" />
+                <div className="p-2 text-center flex-grow-1 menu-text">
+                  <NavLink to="currency" onClick={handleCollapseMenu} className="d-block py-1 link">
+                    Конвертер валют
+                  </NavLink>
+                </div>
               </div>
             </Col>
           </Nav>
