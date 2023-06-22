@@ -42,7 +42,7 @@ export function IMT() {
     setTimeout(() => {
       setIsLoading(false);
       setResult(imt(e.height, e.weight));
-    }, 2000);
+    }, 1000);
   };
 
   return (
