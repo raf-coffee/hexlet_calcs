@@ -8,7 +8,12 @@ export function Currency() {
   const [theme] = useContext(ThemeContext);
   return (
     <div>
-      <SEO theme={theme} />
+      <SEO
+        theme={theme}
+        name="description"
+        content="Калькулятор валют поможет вам быстро перевести любую сумму из одной валюты в другую."
+        title="Валютный калькулятор"
+      />
       <div className="container text-start">
         <div className="row mb-4">
           <div className="col">

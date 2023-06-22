@@ -47,7 +47,12 @@ export function IMT() {
 
   return (
     <>
-      <SEO theme={theme} />
+      <SEO
+        theme={theme}
+        title="Индекс массы тела - онлайн калькулятор"
+        name="description"
+        content="Калькулятор ИМТ позволит быстро рассчитать ваш Индекс Массы Тела."
+      />
       <Row xs={1} md={2} className="mb-4">
         <Col className="mb-5">
           <h3 className="mb-3 mb-xl-5 font-pt-sans-700">Калькулятор индекса массы тела</h3>

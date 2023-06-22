@@ -47,12 +47,17 @@ export function NDS() {
     setTimeout(() => {
       setIsLoading(false);
       setResult(nds(data));
-    }, 2000);
+    }, 1000);
   };
 
   return (
     <>
-      <SEO theme={theme} />
+      <SEO
+        theme={theme}
+        title="НДС - онлайн калькулятор"
+        name="description"
+        content="Калькулятор НДС позволит вам за несколько секунд выделить или начислить НДС."
+      />
       <Row xs={1} md={2} className="mb-4">
         <Col className="mb-5">
           <h3 className="mb-md-5 font-pt-sans-700">Калькулятор НДС</h3>

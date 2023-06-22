@@ -41,7 +41,12 @@ export function Base64Decoder() {
 
   return (
     <>
-      <SEO theme={theme} />
+      <SEO
+        theme={theme}
+        title="Кодировщик в base64"
+        name="description"
+        content="Кодировщик в base64 позволяет кодировать или декодировать информацию в или из base64."
+      />
       <Row xs={1} md={2} className="mb-4">
         <Col className="mb-5">
           <h3 className="mb-md-3 mb-xl-5 font-pt-sans-700">Кодирование в base64</h3>

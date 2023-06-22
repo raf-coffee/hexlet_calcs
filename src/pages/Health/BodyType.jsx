@@ -56,7 +56,12 @@ export function BodyType() {
 
   return (
     <>
-      <SEO theme={theme} />
+      <SEO
+        theme={theme}
+        title="Тип теплосложения - онлайн калькулятор"
+        name="description"
+        content="Калькулятор типа телосложения поможет понять свой тип телосложения и определить, какие изменения в образе жизни необходимы для достижения лучших результатов."
+      />
       <Row xs={1} md={2} className="mb-4">
         <Col className="mb-4">
           <h3 className="mb-md-5 font-pt-sans-700">Калькулятор типа телосложения</h3>
