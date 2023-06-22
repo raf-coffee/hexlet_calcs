@@ -19,16 +19,22 @@ export function NavigationBar() {
     <Navbar expand="lg" expanded={expanded} className="py-0 py-lg-2">
       <Container className="justify-content-end">
         {expanded ? (
-          <CloseButton onClick={() => setExpanded((prev) => !prev)} className=" my-3 my-lg-0 close-button" />
+          <CloseButton
+            onClick={() => setExpanded((prev) => !prev)}
+            aria-controls="navigation"
+            aria-label="Close menu"
+            className="my-3 my-lg-0 close-button"
+          />
         ) : (
           <Navbar.Toggle
-            aria-controls="basic-navbar-nav"
+            aria-controls="navigation"
+            aria-label="Open menu"
             onClick={() => setExpanded((prev) => !prev)}
             className="my-3 my-lg-0"
           />
         )}
         <Navbar.Collapse>
-          <Nav activeKey="/" className="w-100 mx-auto mb-5">
+          <Nav activeKey="/" id="navigation" className="w-100 mx-auto mb-5">
             <Col className="d-flex flex-column me-lg-2 p-0">
               <h2
                 className={`bg-color-custom text-center px-1 mb-0 letter-spacing-1 ${
