@@ -47,7 +47,7 @@ export function NDS() {
     setTimeout(() => {
       setIsLoading(false);
       setResult(nds(data));
-    }, 2000);
+    }, 1000);
   };
 
   return (

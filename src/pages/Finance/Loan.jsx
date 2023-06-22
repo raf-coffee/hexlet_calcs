@@ -49,7 +49,7 @@ export function Loan() {
     setTimeout(() => {
       setIsLoading(false);
       setResult("We are currently working on this feature and will launch soon!");
-    }, 2000);
+    }, 500);
   };
 
   return (
