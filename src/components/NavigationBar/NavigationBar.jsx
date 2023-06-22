@@ -1,19 +1,15 @@
-import { useEffect, useState } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { useState } from "react";
+import { NavLink } from "react-router-dom";
 import { Container, Col, Nav, Navbar, CloseButton } from "react-bootstrap";
+import { useCategory } from "../../hooks/useCategory.js";
 
 export function NavigationBar() {
   const [expanded, setExpanded] = useState(false);
-  const [activeCategory, setActiveCategory] = useState("");
-  const location = useLocation();
+  const category = useCategory();
 
   const handleCollapseMenu = () => {
     setExpanded(false);
   };
-
-  useEffect(() => {
-    setActiveCategory(location.pathname);
-  }, [location]);
 
   return (
     <Navbar expand="lg" expanded={expanded} className="py-0 py-lg-2">
@@ -38,7 +34,7 @@ export function NavigationBar() {
             <Col className="d-flex flex-column me-lg-2 p-0">
               <h2
                 className={`bg-color-custom text-center px-1 mb-0 letter-spacing-1 ${
-                  ["/nds", "/ndfl", "/mortgage", "/loan"].includes(activeCategory) ? "active-category" : ""
+                  category === "finance" ? "active-category" : ""
                 }`}
               >
                 Финансовые
@@ -64,7 +60,7 @@ export function NavigationBar() {
             <Col className="d-flex flex-column me-lg-2 p-0">
               <h2
                 className={`bg-color-custom text-center px-1 mb-0 letter-spacing-1 ${
-                  ["/imt", "/ideal-weight", "/dream", "/body-type"].includes(activeCategory) ? "active-category" : ""
+                  category === "health" ? "active-category" : ""
                 }`}
               >
                 Здоровье
@@ -87,7 +83,7 @@ export function NavigationBar() {
             <Col className="d-flex flex-column me-lg-2 p-0">
               <h2
                 className={`bg-color-custom text-center px-1 mb-0 letter-spacing-1 ${
-                  ["/base64"].includes(activeCategory) ? "active-category" : ""
+                  category === "tech" ? "active-category" : ""
                 }`}
               >
                 Технические
@@ -104,7 +100,7 @@ export function NavigationBar() {
             <Col className="d-flex flex-column p-0">
               <h2
                 className={`bg-color-custom text-center px-1 mb-0 letter-spacing-1 ${
-                  ["/currency"].includes(activeCategory) ? "active-category" : ""
+                  category === "currency" ? "active-category" : ""
                 }`}
               >
                 Валюты
