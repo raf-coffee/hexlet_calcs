@@ -29,7 +29,7 @@ export function Layout() {
               </Col>
               <Col md={7}>
                 <Form.Select aria-label="Вариант расчета" defaultValue={theme} onChange={handleThemeChange}>
-                  <option value="green">Светлая тема</option>
+                  <option value="light">Светлая тема</option>
                   <option value="dark">Темная тема</option>
                 </Form.Select>
               </Col>

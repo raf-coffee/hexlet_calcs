@@ -17,7 +17,7 @@
   font-display: swap;
 }
 
-[data-bs-theme="green"] {
+[data-bs-theme="light"] {
   --white-yellow: #ffee9415;
   --dark-green: #212d26;
   --custom-primary: rgba(171, 245, 145, 0.8);
