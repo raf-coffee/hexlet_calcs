@@ -54,7 +54,12 @@ export function Loan() {
 
   return (
     <>
-      <SEO theme={theme} />
+      <SEO
+        theme={theme}
+        name="description"
+        content="Кредитный калькулятор - это удобный инструмент для расчета кредита онлайн."
+        title="Кредитный калькулятор"
+      />
       <Row xs={1} md={2} className="mb-4">
         <Col className="mb-5 mb-md-5">
           <h3 className="mb-md-5 font-pt-sans-700">Кредитный калькулятор</h3>

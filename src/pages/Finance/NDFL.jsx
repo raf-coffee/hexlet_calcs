@@ -46,7 +46,12 @@ export function NDFL() {
 
   return (
     <>
-      <SEO theme={theme} />
+      <SEO
+        theme={theme}
+        name="description"
+        content="Калькулятор НДФЛ предназначен для расчета налога на доход физических лиц (НДФЛ)."
+        title="НДФЛ - онлайн калькулятор"
+      />
       <Row xs={1} md={2} className="mb-4">
         <Col className="mb-5 mb-md-5">
           <h3 className="mb-3 mb-md-5 font-pt-sans-700">Калькулятор НДФЛ</h3>

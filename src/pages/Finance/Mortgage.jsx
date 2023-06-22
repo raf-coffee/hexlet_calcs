@@ -67,7 +67,12 @@ export function Mortgage() {
 
   return (
     <>
-      <SEO theme={theme} />
+      <SEO
+        theme={theme}
+        name="description"
+        content="Ипотечный калькулятор используется для рассчёта ключевых условий ипотеки: платежей, суммы, переплаты и сроков."
+        title="Ипотечный калькулятор"
+      />
       <Row xs={1} md={2} className="mb-4">
         <Col className="mb-5">
           <h3 className="mb-md-5 font-pt-sans-700">Ипотечный калькулятор</h3>

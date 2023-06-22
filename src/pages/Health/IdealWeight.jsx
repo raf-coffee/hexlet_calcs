@@ -47,7 +47,12 @@ export function IdealWeight() {
 
   return (
     <>
-      <SEO theme={theme} />
+      <SEO
+        theme={theme}
+        title="Идеальный вес - онлайн калькулятор"
+        name="description"
+        content="Калькулятор идеального веса поможет определить идеальный вес и узнать стоит ли вам сбросить лишние килограммы или наоборот набрать."
+      />
       <Row xs={1} md={2} className="mb-4">
         <Col className="mb-5">
           <h3 className="mb-md-4 mb-lg-5 font-pt-sans-700">Калькулятор идеального веса</h3>

@@ -7,11 +7,14 @@ export function Index() {
 
   return (
     <>
-      <SEO theme={theme} />
-      <div className="desc">
-        <h1>Онлайн калькуляторы, конвертеры и полезные инструменты</h1>
-        <p>Calcus - это каталог онлайн калькуляторов по различным тематикам.</p>
-      </div>
+      <SEO
+        theme={theme}
+        title="Calcus - Онлайн калькуляторы"
+        name="description"
+        content="Calcus - это каталог онлайн калькуляторов по различным тематикам."
+      />
+      <h1 className="font-pt-sans-700">Онлайн калькуляторы, конвертеры и полезные инструменты</h1>
+      <p className="font-pt-sans-400">Calcus - это каталог онлайн калькуляторов по различным тематикам.</p>
     </>
   );
 }
