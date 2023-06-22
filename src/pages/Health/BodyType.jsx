@@ -2,6 +2,8 @@ import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useLocation } from "react-router-dom";
+import { motion } from "framer-motion";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -45,6 +47,7 @@ export function BodyType() {
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: zodResolver(formSchema) });
+  const location = useLocation();
 
   const handleFormSubmit = (formData) => {
     setIsLoading(true);
@@ -55,7 +58,13 @@ export function BodyType() {
   };
 
   return (
-    <>
+    <motion.div
+      key={location.key}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.7 }}
+    >
       <SEO
         theme={theme}
         title="Тип теплосложения - онлайн калькулятор"
@@ -142,7 +151,13 @@ export function BodyType() {
         </Col>
       </Row>
       <div className="font-pt-sans-400">
-        <div className="mb-5">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="mb-5"
+        >
           <h3 className="font-pt-sans-700">Что такое тип телосложения?</h3>
           <p>
             Тип телосложения (соматотип) ─ это пропорции частей тела человека в сочетании с индивидуальными
@@ -151,8 +166,14 @@ export function BodyType() {
             реализуется в ходе естественных морфологических, физиологических и биохимических трансформаций организма в
             течение всей жизни человека.
           </p>
-        </div>
-        <div className="mb-5">
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="mb-5"
+        >
           <h3 className="font-pt-sans-700">Индекс Пинье</h3>
           <p>
             Был предложен в 1901 году Морисом–Шарлем–Жозефом Пинье. Чем меньше цифры индекса, тем организм считается
@@ -166,8 +187,14 @@ export function BodyType() {
           <p className="text-center p-4 text-uppercase custom-border custom-border-width-3 rounded bg-white-yellow">
             Рост в см - (вес в кг + окружность груди в см)
           </p>
-        </div>
-        <div className="mb-5">
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="mb-5"
+        >
           <h3 className="font-pt-sans-700">Индекс Рорера</h3>
           <p>
             Индекс Рорера (коэффициент упитанности), характеризует относительную плотность тела. Был впервые предложен в
@@ -177,8 +204,14 @@ export function BodyType() {
           <p className="text-center p-4 text-uppercase custom-border custom-border-width-3 rounded bg-white-yellow">
             Масса тела в кг / (Рост в м)<sup>3</sup>
           </p>
-        </div>
-        <div className="mb-5">
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="mb-5"
+        >
           <h3 className="font-pt-sans-700">Индекс Соловьева</h3>
           <p>
             Индекс Соловьёва используется для вычисления нормального веса с учетом трех типов телосложения человека.
@@ -204,8 +237,14 @@ export function BodyType() {
               </li>
             </ul>
           </div>
-        </div>
-        <div className="mb-5">
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="mb-5"
+        >
           <h3 className="font-pt-sans-700">Индекс Соловьева при беременности</h3>
           <p>
             Толщина костей также является важным параметром для врачей-акушеров при диагностике беременных. Поэтому в
@@ -215,14 +254,19 @@ export function BodyType() {
             окружность запястья беременной меньше 14 см, то из обхвата таза вычитают не 9, а 8 см (поскольку кости
             тоньше). А когда окружность запястья превышает 16 см, то из обхвата большого таза отнимают 10 см.
           </p>
-        </div>
-        <p>
+        </motion.div>
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+        >
           Калькулятор типа телосложения может быть полезен для людей, которые стремятся к улучшению своего здоровья и
           желают следить за своим весом. Данный калькулятор поможет пользователю понять свой тип телосложения и
           определить, какие изменения в образе жизни необходимы для достижения лучших результатов.
-        </p>
+        </motion.p>
       </div>
       <ScrollToTop />
-    </>
+    </motion.div>
   );
 }

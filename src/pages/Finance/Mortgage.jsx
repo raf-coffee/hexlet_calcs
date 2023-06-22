@@ -2,6 +2,8 @@ import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useLocation } from "react-router-dom";
+import { motion } from "framer-motion";
 import Form from "react-bootstrap/Form";
 import Table from "react-bootstrap/Table";
 import Row from "react-bootstrap/Row";
@@ -52,6 +54,7 @@ export function Mortgage() {
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: zodResolver(formSchema) });
+  const location = useLocation();
 
   const handleCheckboxToggle = (e) => {
     setChecked(e.target.value);
@@ -66,7 +69,13 @@ export function Mortgage() {
   };
 
   return (
-    <>
+    <motion.div
+      key={location.key}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.7 }}
+    >
       <SEO
         theme={theme}
         name="description"
@@ -185,7 +194,7 @@ export function Mortgage() {
           </div>
         </Col>
       </Row>
-      <div className="font-pt-sans-400">
+      <motion.div className="font- initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: .7}}pt-sans-400">
         <h3 className="fw-bold mb-3">Расчет ипотеки онлайн</h3>
         <div className="mb-4">
           <p>
@@ -227,7 +236,13 @@ export function Mortgage() {
             чтобы понять степень долговременной кредитной нагрузки.
           </p>
         </div>
-        <div className="mb-4">
+        <motion.div
+          className="mb-4"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+        >
           <h3 className="fw-bold">Процентная ставка</h3>
           <p>
             Процентная ставка - очень важный параметр при рассчете ипотеки. Измеряется в процентах годовых. Этот
@@ -248,8 +263,14 @@ export function Mortgage() {
             ставкой, ведь даже разница в пол процента отразиться на сумме ежемесячного платежа и на общей переплате по
             кредиту:
           </p>
-        </div>
-        <div className="mb-4">
+        </motion.div>
+        <motion.div
+          className="mb-4"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+        >
           <Table responsive className="table-bordered d-inline-block min-table-width">
             <caption className="caption-top">
               Таблица 1. Демонстрация влияния процентной ставки на параметры кредита.
@@ -289,8 +310,14 @@ export function Mortgage() {
               </tr>
             </tbody>
           </Table>
-        </div>
-        <div className="mb-4">
+        </motion.div>
+        <motion.div
+          className="mb-4"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+        >
           <h3 className="fw-bold">Фиксированная и плавающая процентная ставка</h3>
           <p>
             <span className="fw-bold">Фиксированная процентная ставка</span> - это ставка по кредиту, которая
@@ -304,8 +331,14 @@ export function Mortgage() {
             ежеквартально или раз в полгода). Вторая составляющая, фиксированная - это процент, который берет себе банк.
             Эта часть остается всегда постоянной.
           </p>
-        </div>
-        <div className="mb-4">
+        </motion.div>
+        <motion.div
+          className="mb-4"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+        >
           <h3 className="fw-bold">Аннуитетный и дифференцированный платеж</h3>
           <p>
             <span className="fw-bold">Аннуитетный платеж</span> – вариант ежемесячного платежа по кредиту, когда размер
@@ -316,9 +349,9 @@ export function Mortgage() {
             размер ежемесячного платежа по погашению кредита постепенно уменьшается к концу периода кредитования.
           </p>
           <p>В настоящее время наиболее распространен аннуитетный платеж.</p>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
       <ScrollToTop />
-    </>
+    </motion.div>
   );
 }

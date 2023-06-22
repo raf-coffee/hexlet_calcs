@@ -2,6 +2,8 @@ import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useLocation } from "react-router-dom";
+import { motion } from "framer-motion";
 import Form from "react-bootstrap/Form";
 import Table from "react-bootstrap/Table";
 import Row from "react-bootstrap/Row";
@@ -36,6 +38,7 @@ export function IMT() {
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: zodResolver(formSchema) });
+  const location = useLocation();
 
   const handleFormSubmit = (e) => {
     setIsLoading(true);
@@ -46,7 +49,13 @@ export function IMT() {
   };
 
   return (
-    <>
+    <motion.div
+      key={location.key}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.7 }}
+    >
       <SEO
         theme={theme}
         title="Индекс массы тела - онлайн калькулятор"
@@ -93,7 +102,13 @@ export function IMT() {
         </Col>
       </Row>
       <div className="font-pt-sans-400">
-        <div className="mb-4">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="mb-4"
+        >
           <h3 className="font-pt-sans-700">Индекс массы тела (ИМТ)</h3>
           <p>
             Индекс массы тела является показателем отношения веса и роста человека. Данный параметр помогает определить
@@ -126,8 +141,14 @@ export function IMT() {
             контроля в процессе опробования новой фитнес-программы или диеты.
           </p>
           <p>Калькулятор ИМТ определит точку отсчета и позволит прослеживать изменения веса тела.</p>
-        </div>
-        <div className="mb-4">
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="mb-4"
+        >
           <h3 className="font-pt-sans-700">Формула расчета индекса массы тела (ИМТ)</h3>
           <p>
             Для того, чтобы узнать свой ИМТ необходимо лишь свой вес в килограммах разделить на квадрат роста в метрах.
@@ -139,8 +160,14 @@ export function IMT() {
             Формула не учитывает пол и возраст человека, несмотря на то что ИМТ мужчин выше чем ИМТ женщин, а также ИМТ
             выше у людей среднего возраста, а у детей и пожилых людей этот показатель ниже.
           </p>
-        </div>
-        <div className="mb-4">
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="mb-4"
+        >
           <h3 className="font-pt-sans-700">Сводная таблица значений</h3>
           <p>
             Интерпретация показателей ИМТ, в соответствии с ремомендациями Всемирной Организации Здравоохранения (ВОЗ)
@@ -183,14 +210,19 @@ export function IMT() {
               </tr>
             </tbody>
           </Table>
-        </div>
-        <div>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+        >
           <h3 className="font-pt-sans-700">Статистика ИМТ</h3>
           <p>Статистика по процентному соотношению показателей индекса массы тела среди пользователей.</p>
           <WeightChart />
-        </div>
+        </motion.div>
       </div>
       <ScrollToTop />
-    </>
+    </motion.div>
   );
 }

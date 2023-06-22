@@ -2,6 +2,8 @@ import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useLocation } from "react-router-dom";
+import { motion } from "framer-motion";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -31,6 +33,7 @@ export function NDFL() {
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: zodResolver(formSchema) });
+  const location = useLocation();
 
   const handleCheckboxToggle = (e) => {
     setChecked(e.target.value);
@@ -45,7 +48,13 @@ export function NDFL() {
   };
 
   return (
-    <>
+    <motion.div
+      key={location.key}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.7 }}
+    >
       <SEO
         theme={theme}
         name="description"
@@ -121,7 +130,13 @@ export function NDFL() {
       <div className="font-pt-sans-400">
         <h3 className="fw-bold">Описание калькулятора</h3>
         <p>Налоговый калькулятор предназначен для расчета налога на доход физических лиц (НДФЛ).</p>
-        <div className="custom-border p-3 mb-4">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="custom-border p-3 mb-4"
+        >
           <p>Калькулятор налогов производит 2 типа расчетов:</p>
           <ul className="ps-3 ps-md-5 mb-0 mb-md-2">
             <li>
@@ -134,8 +149,14 @@ export function NDFL() {
               налога было удержано и какова была сумма до налогообложения.
             </li>
           </ul>
-        </div>
-        <div className="mb-4">
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="mb-4"
+        >
           <p>К доходам физического лица относятся:</p>
           <ul className="ps-3 ps-md-5 mb-0 mb-md-2">
             <li>
@@ -158,8 +179,14 @@ export function NDFL() {
               этом случае вам необходимо самостоятельно заботиться об уплате НДФЛ и подаче декларации.
             </li>
           </ul>
-        </div>
-        <div className="custom-border custom-border-width-3 rounded-4 p-2 p-sm-3 d-flex align-items-center justify-content-center fw-bold">
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="custom-border custom-border-width-3 rounded-4 p-2 p-sm-3 d-flex align-items-center justify-content-center fw-bold"
+        >
           <div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -173,9 +200,9 @@ export function NDFL() {
             </svg>
           </div>
           <p className="m-0">С 2021 года для доходов размером выше 5 000 000 рублей введена ставка 15%.</p>
-        </div>
+        </motion.div>
       </div>
       <ScrollToTop />
-    </>
+    </motion.div>
   );
 }

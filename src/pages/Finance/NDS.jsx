@@ -1,7 +1,9 @@
 import { useContext, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { motion } from "framer-motion";
 import Form from "react-bootstrap/Form";
 import Table from "react-bootstrap/Table";
 import Row from "react-bootstrap/Row";
@@ -37,6 +39,7 @@ export function NDS() {
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: zodResolver(formSchema) });
+  const location = useLocation();
 
   const handleCheckboxToggle = (e) => {
     setChecked(e.target.value);
@@ -51,7 +54,13 @@ export function NDS() {
   };
 
   return (
-    <>
+    <motion.div
+      key={location.key}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.7 }}
+    >
       <SEO
         theme={theme}
         title="НДС - онлайн калькулятор"
@@ -104,7 +113,13 @@ export function NDS() {
         </Col>
       </Row>
       <div className="font-pt-sans-400">
-        <div className="mb-4">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="mb-4"
+        >
           <h3 className="font-pt-sans-700">Что такое НДС</h3>
           <p>
             Любой проданный товар или оказанная услуга на территории России облагаются налогом в пользу государства. Это
@@ -113,8 +128,14 @@ export function NDS() {
             сейчас активно применяется в различных странах мира. В России он введен в 1992 году. В Евросоюзе этот налог
             называется VAT (Value Added Tax), а в США этого налога нет, вместо него действует налог с продаж.
           </p>
-        </div>
-        <div className="mb-4">
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="mb-4"
+        >
           <h3 className="font-pt-sans-700">Какой НДС в России?</h3>
           <p>В настоящее время действуют 3 ставки налога:</p>
           <div className="d-flex flex-column flex-md-row text-center">
@@ -139,8 +160,14 @@ export function NDS() {
               <p>Применяется при реализации товаров, вывезенных в таможенной процедуре экспорта.</p>
             </div>
           </div>
-        </div>
-        <div className="mb-4">
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="mb-4"
+        >
           <h3 className="font-pt-sans-700">История НДС в России</h3>
           <Table striped responsive className="table-bordered d-inline-block min-table-width">
             <thead className="font-pt-sans-700">
@@ -168,8 +195,13 @@ export function NDS() {
               </tr>
             </tbody>
           </Table>
-        </div>
-        <div>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+        >
           <h3 className="font-pt-sans-700">Вычисление НДС</h3>
           <div className="table-responsive-sm">
             <Table responsive striped className="table-bordered min-table-width">
@@ -193,9 +225,9 @@ export function NDS() {
               </tbody>
             </Table>
           </div>
-        </div>
+        </motion.div>
       </div>
       <ScrollToTop />
-    </>
+    </motion.div>
   );
 }

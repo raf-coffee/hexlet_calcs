@@ -2,6 +2,8 @@ import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useLocation } from "react-router-dom";
+import { motion } from "framer-motion";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -35,6 +37,7 @@ export function IdealWeight() {
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: zodResolver(formSchema) });
+  const location = useLocation();
 
   const handleFormSubmit = (data) => {
     const { height, bust, sex } = data;
@@ -46,7 +49,13 @@ export function IdealWeight() {
   };
 
   return (
-    <>
+    <motion.div
+      key={location.key}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.7 }}
+    >
       <SEO
         theme={theme}
         title="Идеальный вес - онлайн калькулятор"
@@ -112,26 +121,46 @@ export function IdealWeight() {
         </Col>
       </Row>
       <div className="font-pt-sans-400">
-        <h3 className="fw-bold mb-3">Описание калькулятора</h3>
-        <p>
-          Калькулятор веса поможет вам определить идеальный вес исходя из вашего реального роста. Благодаря полученным
-          данным вы сможете узнать стоит ли вам сбросить лишние килограммы или же наоборот набрать полезную массу тела.
-        </p>
-        <p>
-          Для характеристики физического развития ребенка применяют измерение антропометрических параметров и индексы
-          физического развития – формулы, которые выражают уровень физического развития на основании определенных
-          антропометрических параметров. Основными антропометрическими параметрами являются масса тела, длина тела и
-          окружность грудной клетки. При использовании метода индексов в состав формул могут входить такие
-          антропометрические показатели, как диаметры и окружности тела.
-        </p>
-        <div className="mb-5">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+        >
+          <h3 className="fw-bold mb-3">Описание калькулятора</h3>
+          <p>
+            Калькулятор веса поможет вам определить идеальный вес исходя из вашего реального роста. Благодаря полученным
+            данным вы сможете узнать стоит ли вам сбросить лишние килограммы или же наоборот набрать полезную массу
+            тела.
+          </p>
+          <p>
+            Для характеристики физического развития ребенка применяют измерение антропометрических параметров и индексы
+            физического развития – формулы, которые выражают уровень физического развития на основании определенных
+            антропометрических параметров. Основными антропометрическими параметрами являются масса тела, длина тела и
+            окружность грудной клетки. При использовании метода индексов в состав формул могут входить такие
+            антропометрические показатели, как диаметры и окружности тела.
+          </p>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="mb-5"
+        >
           <h3 className="font-pt-sans-700">Индекс Борнгардта</h3>
           <p>Индекс Борнгардта (1886 год) - индекс, использующий окружность груди в формуле расчета идеального веса.</p>
           <p className="text-center p-4 text-uppercase custom-border custom-border-width-3 rounded bg-white-yellow">
             Идеальный вес = Рост * Обхват груди / 240
           </p>
-        </div>
-        <div className="mb-5">
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="mb-5"
+        >
           <h3 className="font-pt-sans-700">Индекс Ноордена</h3>
           <p>
             Разработан диетологом Ноорденом, в начале XX века. Одна из редких формул нормального веса, которая не
@@ -140,14 +169,26 @@ export function IdealWeight() {
           <p className="text-center p-4 text-uppercase custom-border custom-border-width-3 rounded bg-white-yellow">
             Идеальный вес = Рост * 420 / 1000
           </p>
-        </div>
-        <div className="mb-5">
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="mb-5"
+        >
           <h3 className="font-pt-sans-700">Индекс Татоня</h3>
           <p className="text-center p-4 text-uppercase custom-border custom-border-width-3 rounded bg-white-yellow">
             Идеальный вес = Рост - (100 + (Рост - 100) / 20)
           </p>
-        </div>
-        <div className="mb-5">
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="mb-5"
+        >
           <h3 className="font-pt-sans-700">Индекс Девина</h3>
           <p>
             Формула, предложена доктором Дивайном (Devine) в 1974 году. Первоначально формула, учитывая ее точность,
@@ -162,8 +203,14 @@ export function IdealWeight() {
           <p className="text-center p-4 text-uppercase custom-border custom-border-width-3 rounded bg-white-yellow">
             Идеальный вес = 50 + 2.3 * (0.394 * рост - 60)
           </p>
-        </div>
-        <div className="mb-5">
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="mb-5"
+        >
           <h3 className="font-pt-sans-700">Индекс Брока</h3>
           <p>
             Формула для определения идеального веса была разработана в 1871 году французским хирургом и антропологом
@@ -178,21 +225,32 @@ export function IdealWeight() {
           <p className="text-center p-4 text-uppercase custom-border custom-border-width-3 rounded bg-white-yellow">
             Идеальный вес = (Рост - 100) * 0,9
           </p>
-        </div>
-        <div className="mb-5">
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="mb-5"
+        >
           <h3 className="font-pt-sans-700">Формула Лоренца</h3>
           <p className="text-center p-4 text-uppercase custom-border custom-border-width-3 rounded bg-white-yellow">
             Идеальный вес = Рост - 100 - ((Рост - 150) / 2)
           </p>
-        </div>
-        <p>
+        </motion.div>
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+        >
           Конечно же, полученные данные являются среднестатистическими, поскольку каждый организм человека уникальный, у
           каждого он функционирует совершенно по разному. Кроме того система не принимает во внимание питание и образ
           жизни человека. Однако, калькулятор веса позволит вам узнать приблизительный показатель идеального веса с той
           целью, чтобы вы в своей жизни смогли, по возможности, держаться как можно ближе своего полезного веса.
-        </p>
+        </motion.p>
       </div>
       <ScrollToTop />
-    </>
+    </motion.div>
   );
 }

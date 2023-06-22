@@ -1,7 +1,9 @@
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useLocation } from "react-router-dom";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { motion } from "framer-motion";
 import Form from "react-bootstrap/Form";
 import Image from "react-bootstrap/Image";
 import Row from "react-bootstrap/Row";
@@ -43,6 +45,7 @@ export function Loan() {
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: zodResolver(formSchema) });
+  const location = useLocation();
 
   const handleFormSubmit = () => {
     setIsLoading(true);
@@ -53,7 +56,13 @@ export function Loan() {
   };
 
   return (
-    <>
+    <motion.div
+      key={location.key}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.7 }}
+    >
       <SEO
         theme={theme}
         name="description"
@@ -125,7 +134,13 @@ export function Loan() {
 
       <div className="font-pt-sans-400">
         <h3 className="font-pt-sans-700">Описание калькулятора</h3>
-        <div className="custom-border p-3 mb-4">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="custom-border p-3 mb-4"
+        >
           <p>Кредитный калькулятор осуществляет 3 типа расчетов:</p>
           <ul className="ps-3 ps-md-5 mb-0 mb-md-2">
             <li>
@@ -145,23 +160,36 @@ export function Loan() {
               погашение кредита, калькулятор сообщит вам, сколько денег вы сможете занять на таких условиях.
             </li>
           </ul>
-        </div>
-        <p>
-          Кредитование населения является неотъемлимой частью экономики любой страны. Возможность кредитования повышает
-          спрос на товары и услуги, что является стимулом развития экономики.
-        </p>
-        <p>
-          Раз вы находитесь на этой странице, значит вы как минимум задумываетесь о получения кредита. Наш калькулятор
-          послужит вам помощником в предварительном расчете.
-        </p>
-        <p className="fw-bold">
-          Кредитный калькулятор - это удобный инструмент для быстрого самостоятельного расчета кредита онлайн.
-        </p>
-        <p className="mb-5">
-          Калькулятор универсален. Не имеет значения, в каком банке вы будете брать кредит. Не имеет значение и тип
-          займа: потребительский кредит, ипотека, кредит наличными. Результат всегда будет достаточно точным.
-        </p>
-        <div className="mb-5">
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+        >
+          <p>
+            Кредитование населения является неотъемлимой частью экономики любой страны. Возможность кредитования
+            повышает спрос на товары и услуги, что является стимулом развития экономики.
+          </p>
+          <p>
+            Раз вы находитесь на этой странице, значит вы как минимум задумываетесь о получения кредита. Наш калькулятор
+            послужит вам помощником в предварительном расчете.
+          </p>
+          <p className="fw-bold">
+            Кредитный калькулятор - это удобный инструмент для быстрого самостоятельного расчета кредита онлайн.
+          </p>
+          <p className="mb-5">
+            Калькулятор универсален. Не имеет значения, в каком банке вы будете брать кредит. Не имеет значение и тип
+            займа: потребительский кредит, ипотека, кредит наличными. Результат всегда будет достаточно точным.
+          </p>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="mb-5"
+        >
           <h3 className="font-pt-sans-700">Что такое процентная ставка и от чего она зависит?</h3>
           <p>
             Процентая ставка — самый важный параметр при расчете кредита. Измеряется в процентах годовых. Он показывает
@@ -169,8 +197,14 @@ export function Loan() {
             а ежедневно в размере ставки, разделенной на 365 дней.
           </p>
           <p>У каждого банка есть свои программы кредитования и свои процентные ставки.</p>
-        </div>
-        <div className="mb-5">
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="mb-5"
+        >
           <h3 className="font-pt-sans-700">Основные факторы, влияющие на процентную ставку:</h3>
           <ol className="ps-4">
             <li>
@@ -195,8 +229,14 @@ export function Loan() {
               клиентам многие банки предоставляют скидку в размере 0.3 - 0.6 процентных пункта.
             </li>
           </ol>
-        </div>
-        <div className="mb-1 mb-md-5">
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="mb-1 mb-md-5"
+        >
           <h3 className="font-pt-sans-700">Аннуитетный и дифференцированный платеж</h3>
           <p>
             Что такое аннуитетный и дифференцированный платеж? В чем разница между ними? Какой из них выгоднее для
@@ -236,9 +276,9 @@ export function Loan() {
               </p>
             </Col>
           </Row>
-        </div>
+        </motion.div>
       </div>
       <ScrollToTop />
-    </>
+    </motion.div>
   );
 }
