@@ -45,7 +45,7 @@ export function WeightChart() {
   const [theme] = useContext(ThemeContext);
 
   const colors = {
-    green: [
+    light: [
       "rgba(255, 99, 132, 0.5)",
       "rgba(12, 138, 138, 0.5)",
       "rgba(66, 20, 138, 0.5)",
