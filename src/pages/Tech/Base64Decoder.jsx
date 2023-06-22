@@ -2,6 +2,8 @@ import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useLocation } from "react-router-dom";
+import { motion } from "framer-motion";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -25,6 +27,7 @@ export function Base64Decoder() {
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: zodResolver(formSchema) });
+  const location = useLocation();
 
   const handleFormSubmit = (data) => {
     const { text, action } = data;
@@ -40,7 +43,13 @@ export function Base64Decoder() {
   };
 
   return (
-    <>
+    <motion.div
+      key={location.key}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.7 }}
+    >
       <SEO
         theme={theme}
         title="Кодировщик в base64"
@@ -89,7 +98,13 @@ export function Base64Decoder() {
         </Col>
       </Row>
       <div className="font-pt-sans-400">
-        <div className="mb-5">
+        <motion.div
+          className="mb-5"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+        >
           <h3 className="font-pt-sans-700">Что такое base64?</h3>
           <p>
             Base64 — стандарт кодирования двоичных данных при помощи только 64 символов ASCII. Алфавит кодирования
@@ -103,8 +118,14 @@ export function Base64Decoder() {
             между любыми устройствами. Эта система широко используется в электронной почте для представления бинарных
             файлов в тексте письма.
           </p>
-        </div>
-        <div className="mb-5">
+        </motion.div>
+        <motion.div
+          className="mb-5"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+        >
           <h3 className="font-pt-sans-700">Применение в веб-приложениях</h3>
           <p>
             Благодаря Base64 в html-документы можно включать бинарный контент, создавая единый документ без отдельно
@@ -113,8 +134,14 @@ export function Base64Decoder() {
             другим форматам сложнооформленных документов типа doc, docx, pdf. Некоторые приложения кодируют двоичные
             данные для удобства включения в URL, скрытые поля форм.
           </p>
-        </div>
-        <div className="mb-5">
+        </motion.div>
+        <motion.div
+          className="mb-5"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+        >
           <h3 className="font-pt-sans-700">Другие применения</h3>
           <p>Существует множество вариантов применения Base64. Например:</p>
           <ul>
@@ -137,8 +164,8 @@ export function Base64Decoder() {
               длинных SMS.
             </li>
           </ul>
-        </div>
+        </motion.div>
       </div>
-    </>
+    </motion.div>
   );
 }

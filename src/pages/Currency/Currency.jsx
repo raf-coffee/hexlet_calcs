@@ -1,13 +1,23 @@
-import { Image } from "react-bootstrap";
 import { useContext } from "react";
-import underConstruction from "../../assets/images/under-construction.webp";
+import { useLocation } from "react-router-dom";
+import { motion } from "framer-motion";
+import { Image } from "react-bootstrap";
 import { ThemeContext } from "../../contexts/ThemeContext.jsx";
 import { SEO } from "../../components/SEO/SEO.jsx";
+import underConstruction from "../../assets/images/under-construction.webp";
 
 export function Currency() {
   const [theme] = useContext(ThemeContext);
+  const location = useLocation();
+
   return (
-    <div>
+    <motion.div
+      key={location.key}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.7 }}
+    >
       <SEO
         theme={theme}
         name="description"
@@ -28,6 +38,6 @@ export function Currency() {
         <h3>Описание конвертера</h3>
         <Image src={underConstruction} className="img-fluid mx-auto d-block" />
       </div>
-    </div>
+    </motion.div>
   );
 }

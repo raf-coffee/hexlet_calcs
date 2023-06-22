@@ -19,7 +19,7 @@ ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, T
 export function KeyRateChart() {
   const [theme] = useContext(ThemeContext);
   const colors = {
-    green: "#75ab65",
+    light: "#75ab65",
     dark: "#adb5bd",
   };
 

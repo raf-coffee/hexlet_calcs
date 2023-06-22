@@ -1,6 +1,7 @@
 import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
+import { AnimatePresence } from "framer-motion";
 import { Layout } from "./components/Layout/Layout.jsx";
 import { Index } from "./pages/index.jsx";
 import { Base64Decoder } from "./pages/Tech/Base64Decoder.jsx";
@@ -69,7 +70,9 @@ export function App() {
   return (
     <HelmetProvider>
       <ThemeProvider>
-        <RouterProvider router={router} />
+        <AnimatePresence>
+          <RouterProvider router={router} />
+        </AnimatePresence>
       </ThemeProvider>
     </HelmetProvider>
   );
