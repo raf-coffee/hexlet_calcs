@@ -51,7 +51,7 @@ export function BodyType() {
     setTimeout(() => {
       setIsLoading(false);
       setResult(bodyType(formData));
-    }, 2000);
+    }, 1000);
   };
 
   return (

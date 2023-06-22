@@ -36,7 +36,7 @@ export function Base64Decoder() {
       } catch {
         setResult("Строка содержит не поддерживаемые символы");
       }
-    }, 2000);
+    }, 1000);
   };
 
   return (

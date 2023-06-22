@@ -24,10 +24,10 @@ export function Layout() {
           </Link>
           <Form.Group controlId="variants">
             <Row className="align-items-center">
-              <Col xs={5} className="text-end text-nowrap">
+              <Col md={5} className="text-end text-nowrap d-md-block d-none">
                 <Form.Label className="mb-0">Сменить тему:</Form.Label>
               </Col>
-              <Col xs={7}>
+              <Col md={7}>
                 <Form.Select aria-label="Вариант расчета" defaultValue={theme} onChange={handleThemeChange}>
                   <option value="green">Светлая тема</option>
                   <option value="dark">Темная тема</option>
