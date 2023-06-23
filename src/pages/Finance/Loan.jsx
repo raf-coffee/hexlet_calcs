@@ -15,29 +15,51 @@ import { ScrollToTop } from "../../components/ScrollToTop/ScrollToTop.jsx";
 import { SEO } from "../../components/SEO/SEO.jsx";
 import { ThemeContext } from "../../contexts/ThemeContext.jsx";
 import { animationConfig } from "../../../animationConfig.js";
+import { loan } from "../../calcs/finance/loan/loan.js";
 import annuitet from "../../assets/images/payment_annuitet.webp";
 import diff from "../../assets/images/payment_diff.webp";
 
 const formSchema = z.object({
-  variants: z.coerce.string(),
   sum: z.coerce
     .number({
       invalid_type_error: "Сумма кредита должна быть числом",
     })
     .positive({ message: "Сумма кредита должна быть больше 0" }),
-  monthlyPay: z.coerce
-    .number({
-      invalid_type_error: "Ежемесячный платёж должен быть числом",
+  creditTerm: z
+    .object({
+      term: z.coerce
+        .number({
+          invalid_type_error: "Срок кредита должен быть числом",
+        })
+        .positive({ message: "Срок кредита должен быть больше 0" }),
+      type: z.string(),
     })
-    .positive({ message: "Ежемесячный платёж должен быть больше 0" }),
+    .superRefine((data, ctx) => {
+      if (data.type === "years" && data.term > 50) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: "Срок кредита должен быть меньше 50 лет",
+          path: ["term"],
+        });
+      }
+      if (data.type === "months" && data.term > 600) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: "Срок кредита должен быть меньше 600 месяцев",
+          path: ["term"],
+        });
+      }
+    }),
   interestRate: z.coerce
     .number({
       invalid_type_error: "Процентная ставка должна быть числом",
     })
     .positive({ message: "Процентная ставка должна быть больше 0" }),
+  payType: z.string(),
 });
 
 export function Loan() {
+  const [checked, setChecked] = useState("ann");
   const [result, setResult] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [theme] = useContext(ThemeContext);
@@ -48,11 +70,15 @@ export function Loan() {
   } = useForm({ resolver: zodResolver(formSchema) });
   const location = useLocation();
 
-  const handleFormSubmit = () => {
+  const handleCheckboxToggle = (e) => {
+    setChecked(e.target.value);
+  };
+
+  const handleFormSubmit = (data) => {
     setIsLoading(true);
     setTimeout(() => {
       setIsLoading(false);
-      setResult("We are currently working on this feature and will launch soon!");
+      setResult(loan(data));
     }, 1000);
   };
 
@@ -74,20 +100,6 @@ export function Loan() {
         <Col className="mb-5 mb-md-5">
           <h3 className="mb-md-5 font-pt-sans-700">Кредитный калькулятор</h3>
           <Form onSubmit={handleSubmit(handleFormSubmit)}>
-            <Form.Group className="mb-4" controlId="variants">
-              <Row className="align-items-center">
-                <Col sm={12} xl={5}>
-                  <Form.Label className="mb-xl-0">Вариант расчета:</Form.Label>
-                </Col>
-                <Col xs={12} xl={7}>
-                  <Form.Select aria-label="Вариант расчета" {...register("variants")}>
-                    <option value="monthly">Расчёт ежемесячного платежа</option>
-                    <option value="term">Расчёт срока кредита</option>
-                    <option value="maxSum">Расчёт максимальной суммы кредита</option>
-                  </Form.Select>
-                </Col>
-              </Row>
-            </Form.Group>
             <Form.Group className="mb-4" controlId="sum">
               <Row className="align-items-center">
                 <Col xs={12} xl={5}>
@@ -99,15 +111,25 @@ export function Loan() {
                 {errors?.sum?.message && <p className="text-danger">{errors.sum.message}</p>}
               </Row>
             </Form.Group>
-            <Form.Group className="mb-4" controlId="monthlyPay">
+            <Form.Group className="mb-4" controlId="creditTerm">
               <Row className="align-items-center">
                 <Col xs={12} xl={5}>
-                  <Form.Label className="mb-xl-0">Ежемесячный платеж (руб.):</Form.Label>
+                  <Form.Label className="mb-xl-0">Срок кредита:</Form.Label>
                 </Col>
                 <Col xs={12} xl={7}>
-                  <Form.Control type="text" {...register("monthlyPay")} />
+                  <Row>
+                    <Col xs={7}>
+                      <Form.Control type="text" {...register("creditTerm.term")} />
+                    </Col>
+                    <Col xs={5}>
+                      <Form.Select aria-label="Срок кредита" {...register("creditTerm.type")}>
+                        <option value="years">лет</option>
+                        <option value="months">месяцев</option>
+                      </Form.Select>
+                    </Col>
+                  </Row>
                 </Col>
-                {errors?.monthlyPay?.message && <p className="text-danger">{errors.monthlyPay.message}</p>}
+                {errors?.creditTerm?.term?.message && <p className="text-danger">{errors.creditTerm.term.message}</p>}
               </Row>
             </Form.Group>
             <Form.Group className="mb-4" controlId="interestRate">
@@ -121,13 +143,47 @@ export function Loan() {
                 {errors?.interestRate?.message && <p className="text-danger">{errors.interestRate.message}</p>}
               </Row>
             </Form.Group>
+            <Form.Group key="nds-checkbox" controlId="payType" className="mb-4">
+              <Form.Label className="mb-xl-0 me-4">Тип ежемесячных платежей</Form.Label>
+              <div onChange={handleCheckboxToggle}>
+                <Form.Check
+                  name="ann"
+                  value="ann"
+                  type="radio"
+                  label="Аннуитетные"
+                  id="nds-checkbox-1"
+                  checked={checked === "ann"}
+                  {...register("payType")}
+                />
+                <Form.Check
+                  name="diff"
+                  value="diff"
+                  type="radio"
+                  label="Дифференцированные"
+                  id="nds-checkbox-2"
+                  checked={checked === "diff"}
+                  {...register("payType")}
+                />
+              </div>
+            </Form.Group>
             <CountButton disabled={Object.entries(errors).length > 0 || isLoading} color="bg-deep-green" />
           </Form>
         </Col>
         <Col className="mb-5">
           <h3 className="mb-md-4 font-pt-sans-700">Результат</h3>
           <div className="w-100 h-75 p-2 p-lg-4 bg-secondary-subtle border border-3 border-secondary min-height">
-            {!isLoading && result}
+            {!isLoading && result && (
+              <>
+                <p>
+                  Ежемесячный платёж:{" "}
+                  {Array.isArray(result.monthlySum)
+                    ? `${result.monthlySum[0].toFixed(2)}...${result.monthlySum[1].toFixed(2)}`
+                    : result.monthlySum.toFixed(2)}
+                </p>
+                <p>Начисленные проценты: {result.percentagesSum.toFixed(2)}</p>
+                <p>Общая сумма: {result.generalSum.toFixed(2)}</p>
+              </>
+            )}
             {isLoading && <Loader />}
           </div>
         </Col>

@@ -29,14 +29,31 @@ const formSchema = z.object({
       .positive({ message: "Первоначальный взнос должен быть больше 0" }),
     type: z.string(),
   }),
-  creditTerm: z.object({
-    term: z.coerce
-      .number({
-        invalid_type_error: "Срок кредита должен быть числом",
-      })
-      .positive({ message: "Срок кредита должен быть больше 0" }),
-    type: z.string(),
-  }),
+  creditTerm: z
+    .object({
+      term: z.coerce
+        .number({
+          invalid_type_error: "Срок кредита должен быть числом",
+        })
+        .positive({ message: "Срок кредита должен быть больше 0" }),
+      type: z.string(),
+    })
+    .superRefine((data, ctx) => {
+      if (data.type === "years" && data.term > 50) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: "Срок кредита должен быть меньше 50 лет",
+          path: ["term"],
+        });
+      }
+      if (data.type === "months" && data.term > 600) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: "Срок кредита должен быть меньше 600 месяцев",
+          path: ["term"],
+        });
+      }
+    }),
   interestRate: z.coerce
     .number({
       invalid_type_error: "Процентная ставка должна быть числом",
