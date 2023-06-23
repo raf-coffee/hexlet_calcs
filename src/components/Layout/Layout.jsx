@@ -45,8 +45,8 @@ export function Layout() {
         <div className="bg-image-footer footer-height footer-img" />
         <Container className="footer-text">
           <div>2023 © calcus</div>
-          <div>All rights reserved</div>
-          <div>made by group 43</div>
+          <div className="text-center">All rights reserved</div>
+          <div className="text-end">made by group 43</div>
         </Container>
       </footer>
     </div>

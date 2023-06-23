@@ -14,6 +14,7 @@ import { Loader } from "../../components/Loader/Loader.jsx";
 import { ScrollToTop } from "../../components/ScrollToTop/ScrollToTop.jsx";
 import { SEO } from "../../components/SEO/SEO.jsx";
 import { ThemeContext } from "../../contexts/ThemeContext.jsx";
+import { animationConfig } from "../../../animationConfig.js";
 import annuitet from "../../assets/images/payment_annuitet.webp";
 import diff from "../../assets/images/payment_diff.webp";
 
@@ -61,7 +62,7 @@ export function Loan() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.7 }}
+      transition={{ duration: animationConfig.pageTransitionDuration }}
     >
       <SEO
         theme={theme}
@@ -138,7 +139,7 @@ export function Loan() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: animationConfig.scrollAnimationDuration }}
           className="custom-border p-3 mb-4"
         >
           <p>Кредитный калькулятор осуществляет 3 типа расчетов:</p>
@@ -165,7 +166,7 @@ export function Loan() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: animationConfig.scrollAnimationDuration }}
         >
           <p>
             Кредитование населения является неотъемлимой частью экономики любой страны. Возможность кредитования
@@ -187,7 +188,7 @@ export function Loan() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: animationConfig.scrollAnimationDuration }}
           className="mb-5"
         >
           <h3 className="font-pt-sans-700">Что такое процентная ставка и от чего она зависит?</h3>
@@ -202,7 +203,7 @@ export function Loan() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: animationConfig.scrollAnimationDuration }}
           className="mb-5"
         >
           <h3 className="font-pt-sans-700">Основные факторы, влияющие на процентную ставку:</h3>
@@ -234,7 +235,7 @@ export function Loan() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: animationConfig.scrollAnimationDuration }}
           className="mb-1 mb-md-5"
         >
           <h3 className="font-pt-sans-700">Аннуитетный и дифференцированный платеж</h3>

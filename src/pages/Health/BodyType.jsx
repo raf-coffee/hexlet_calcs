@@ -11,8 +11,9 @@ import { CountButton } from "../../components/CountButton/CountButton.jsx";
 import { Loader } from "../../components/Loader/Loader.jsx";
 import { ScrollToTop } from "../../components/ScrollToTop/ScrollToTop.jsx";
 import { bodyType } from "../../calcs/health/bodyType/bodyType.js";
-import { ThemeContext } from "../../contexts/ThemeContext.jsx";
 import { SEO } from "../../components/SEO/SEO.jsx";
+import { ThemeContext } from "../../contexts/ThemeContext.jsx";
+import { animationConfig } from "../../../animationConfig.js";
 
 const formSchema = z.object({
   height: z.coerce
@@ -63,7 +64,7 @@ export function BodyType() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.7 }}
+      transition={{ duration: animationConfig.pageTransitionDuration }}
     >
       <SEO
         theme={theme}
@@ -155,7 +156,7 @@ export function BodyType() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: animationConfig.scrollAnimationDuration }}
           className="mb-5"
         >
           <h3 className="font-pt-sans-700">Что такое тип телосложения?</h3>
@@ -171,7 +172,7 @@ export function BodyType() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: animationConfig.scrollAnimationDuration }}
           className="mb-5"
         >
           <h3 className="font-pt-sans-700">Индекс Пинье</h3>
@@ -192,7 +193,7 @@ export function BodyType() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: animationConfig.scrollAnimationDuration }}
           className="mb-5"
         >
           <h3 className="font-pt-sans-700">Индекс Рорера</h3>
@@ -209,7 +210,7 @@ export function BodyType() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: animationConfig.scrollAnimationDuration }}
           className="mb-5"
         >
           <h3 className="font-pt-sans-700">Индекс Соловьева</h3>
@@ -242,7 +243,7 @@ export function BodyType() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: animationConfig.scrollAnimationDuration }}
           className="mb-5"
         >
           <h3 className="font-pt-sans-700">Индекс Соловьева при беременности</h3>
@@ -259,7 +260,7 @@ export function BodyType() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: animationConfig.scrollAnimationDuration }}
         >
           Калькулятор типа телосложения может быть полезен для людей, которые стремятся к улучшению своего здоровья и
           желают следить за своим весом. Данный калькулятор поможет пользователю понять свой тип телосложения и

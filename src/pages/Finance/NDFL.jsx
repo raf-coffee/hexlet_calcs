@@ -12,6 +12,7 @@ import { Loader } from "../../components/Loader/Loader.jsx";
 import { ScrollToTop } from "../../components/ScrollToTop/ScrollToTop.jsx";
 import { SEO } from "../../components/SEO/SEO.jsx";
 import { ThemeContext } from "../../contexts/ThemeContext.jsx";
+import { animationConfig } from "../../../animationConfig.js";
 
 const formSchema = z.object({
   sum: z.coerce
@@ -53,7 +54,7 @@ export function NDFL() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.7 }}
+      transition={{ duration: animationConfig.pageTransitionDuration }}
     >
       <SEO
         theme={theme}
@@ -134,7 +135,7 @@ export function NDFL() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: animationConfig.scrollAnimationDuration }}
           className="custom-border p-3 mb-4"
         >
           <p>Калькулятор налогов производит 2 типа расчетов:</p>
@@ -154,7 +155,7 @@ export function NDFL() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: animationConfig.scrollAnimationDuration }}
           className="mb-4"
         >
           <p>К доходам физического лица относятся:</p>
@@ -184,7 +185,7 @@ export function NDFL() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: animationConfig.scrollAnimationDuration }}
           className="custom-border custom-border-width-3 rounded-4 p-2 p-sm-3 d-flex align-items-center justify-content-center fw-bold"
         >
           <div>

@@ -13,8 +13,9 @@ import { CountButton } from "../../components/CountButton/CountButton.jsx";
 import { Loader } from "../../components/Loader/Loader.jsx";
 import { ScrollToTop } from "../../components/ScrollToTop/ScrollToTop.jsx";
 import { imt } from "../../calcs/health/imt/imt.js";
-import { ThemeContext } from "../../contexts/ThemeContext.jsx";
 import { SEO } from "../../components/SEO/SEO.jsx";
+import { ThemeContext } from "../../contexts/ThemeContext.jsx";
+import { animationConfig } from "../../../animationConfig.js";
 
 const formSchema = z.object({
   height: z.coerce
@@ -54,7 +55,7 @@ export function IMT() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.7 }}
+      transition={{ duration: animationConfig.pageTransitionDuration }}
     >
       <SEO
         theme={theme}
@@ -106,7 +107,7 @@ export function IMT() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: animationConfig.scrollAnimationDuration }}
           className="mb-4"
         >
           <h3 className="font-pt-sans-700">Индекс массы тела (ИМТ)</h3>
@@ -146,7 +147,7 @@ export function IMT() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: animationConfig.scrollAnimationDuration }}
           className="mb-4"
         >
           <h3 className="font-pt-sans-700">Формула расчета индекса массы тела (ИМТ)</h3>
@@ -165,7 +166,7 @@ export function IMT() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: animationConfig.scrollAnimationDuration }}
           className="mb-4"
         >
           <h3 className="font-pt-sans-700">Сводная таблица значений</h3>
@@ -215,7 +216,7 @@ export function IMT() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: animationConfig.scrollAnimationDuration }}
         >
           <h3 className="font-pt-sans-700">Статистика ИМТ</h3>
           <p>Статистика по процентному соотношению показателей индекса массы тела среди пользователей.</p>
