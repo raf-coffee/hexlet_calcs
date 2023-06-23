@@ -13,6 +13,7 @@ import { ScrollToTop } from "../../components/ScrollToTop/ScrollToTop.jsx";
 import { perfect } from "../../calcs/health/perfectWeight/perfectWeight.js";
 import { SEO } from "../../components/SEO/SEO.jsx";
 import { ThemeContext } from "../../contexts/ThemeContext.jsx";
+import { animationConfig } from "../../../animationConfig.js";
 
 const formSchema = z.object({
   height: z.coerce
@@ -54,7 +55,7 @@ export function IdealWeight() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.7 }}
+      transition={{ duration: animationConfig.pageTransitionDuration }}
     >
       <SEO
         theme={theme}
@@ -125,7 +126,7 @@ export function IdealWeight() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: animationConfig.scrollAnimationDuration }}
         >
           <h3 className="fw-bold mb-3">Описание калькулятора</h3>
           <p>
@@ -145,7 +146,7 @@ export function IdealWeight() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: animationConfig.scrollAnimationDuration }}
           className="mb-5"
         >
           <h3 className="font-pt-sans-700">Индекс Борнгардта</h3>
@@ -158,7 +159,7 @@ export function IdealWeight() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: animationConfig.scrollAnimationDuration }}
           className="mb-5"
         >
           <h3 className="font-pt-sans-700">Индекс Ноордена</h3>
@@ -174,7 +175,7 @@ export function IdealWeight() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: animationConfig.scrollAnimationDuration }}
           className="mb-5"
         >
           <h3 className="font-pt-sans-700">Индекс Татоня</h3>
@@ -186,7 +187,7 @@ export function IdealWeight() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: animationConfig.scrollAnimationDuration }}
           className="mb-5"
         >
           <h3 className="font-pt-sans-700">Индекс Девина</h3>
@@ -208,7 +209,7 @@ export function IdealWeight() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: animationConfig.scrollAnimationDuration }}
           className="mb-5"
         >
           <h3 className="font-pt-sans-700">Индекс Брока</h3>
@@ -230,7 +231,7 @@ export function IdealWeight() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: animationConfig.scrollAnimationDuration }}
           className="mb-5"
         >
           <h3 className="font-pt-sans-700">Формула Лоренца</h3>
@@ -242,7 +243,7 @@ export function IdealWeight() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: animationConfig.scrollAnimationDuration }}
         >
           Конечно же, полученные данные являются среднестатистическими, поскольку каждый организм человека уникальный, у
           каждого он функционирует совершенно по разному. Кроме того система не принимает во внимание питание и образ

@@ -9,9 +9,10 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { CountButton } from "../../components/CountButton/CountButton.jsx";
 import { Loader } from "../../components/Loader/Loader.jsx";
+import { SEO } from "../../components/SEO/SEO.jsx";
 import { base64 } from "../../calcs/tech/base64/base64.js";
 import { ThemeContext } from "../../contexts/ThemeContext.jsx";
-import { SEO } from "../../components/SEO/SEO.jsx";
+import { animationConfig } from "../../../animationConfig.js";
 
 const formSchema = z.object({
   text: z.coerce.string().trim().min(1, { message: "Строка должна содержать как минимум один символ" }),
@@ -48,7 +49,7 @@ export function Base64Decoder() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.7 }}
+      transition={{ duration: animationConfig.pageTransitionDuration }}
     >
       <SEO
         theme={theme}
@@ -103,7 +104,7 @@ export function Base64Decoder() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: animationConfig.scrollAnimationDuration }}
         >
           <h3 className="font-pt-sans-700">Что такое base64?</h3>
           <p>
@@ -124,7 +125,7 @@ export function Base64Decoder() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: animationConfig.scrollAnimationDuration }}
         >
           <h3 className="font-pt-sans-700">Применение в веб-приложениях</h3>
           <p>
@@ -140,7 +141,7 @@ export function Base64Decoder() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: animationConfig.scrollAnimationDuration }}
         >
           <h3 className="font-pt-sans-700">Другие применения</h3>
           <p>Существует множество вариантов применения Base64. Например:</p>

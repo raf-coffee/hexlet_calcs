@@ -13,6 +13,7 @@ import { Loader } from "../../components/Loader/Loader.jsx";
 import { CountButton } from "../../components/CountButton/CountButton.jsx";
 import { SEO } from "../../components/SEO/SEO.jsx";
 import { ThemeContext } from "../../contexts/ThemeContext.jsx";
+import { animationConfig } from "../../../animationConfig.js";
 
 const formSchema = z.object({
   sum: z.coerce
@@ -74,7 +75,7 @@ export function Mortgage() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.7 }}
+      transition={{ duration: animationConfig.pageTransitionDuration }}
     >
       <SEO
         theme={theme}
@@ -194,7 +195,13 @@ export function Mortgage() {
           </div>
         </Col>
       </Row>
-      <motion.div className="font- initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: .7}}pt-sans-400">
+      <motion.div
+        className="font-pt-sans-400"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: animationConfig.scrollAnimationDuration }}
+      >
         <h3 className="fw-bold mb-3">Расчет ипотеки онлайн</h3>
         <div className="mb-4">
           <p>
@@ -241,7 +248,7 @@ export function Mortgage() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: animationConfig.scrollAnimationDuration }}
         >
           <h3 className="fw-bold">Процентная ставка</h3>
           <p>
@@ -269,7 +276,7 @@ export function Mortgage() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: animationConfig.scrollAnimationDuration }}
         >
           <Table responsive className="table-bordered d-inline-block min-table-width">
             <caption className="caption-top">
@@ -316,7 +323,7 @@ export function Mortgage() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: animationConfig.scrollAnimationDuration }}
         >
           <h3 className="fw-bold">Фиксированная и плавающая процентная ставка</h3>
           <p>
@@ -337,7 +344,7 @@ export function Mortgage() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: animationConfig.scrollAnimationDuration }}
         >
           <h3 className="fw-bold">Аннуитетный и дифференцированный платеж</h3>
           <p>

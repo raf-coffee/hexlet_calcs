@@ -14,6 +14,7 @@ import { ScrollToTop } from "../../components/ScrollToTop/ScrollToTop.jsx";
 import { nds } from "../../calcs/finance/nds/nds.js";
 import { SEO } from "../../components/SEO/SEO.jsx";
 import { ThemeContext } from "../../contexts/ThemeContext.jsx";
+import { animationConfig } from "../../../animationConfig.js";
 
 const formSchema = z.object({
   nb: z.coerce
@@ -59,7 +60,7 @@ export function NDS() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.7 }}
+      transition={{ duration: animationConfig.pageTransitionDuration }}
     >
       <SEO
         theme={theme}
@@ -117,7 +118,7 @@ export function NDS() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: animationConfig.scrollAnimationDuration }}
           className="mb-4"
         >
           <h3 className="font-pt-sans-700">Что такое НДС</h3>
@@ -133,7 +134,7 @@ export function NDS() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: animationConfig.scrollAnimationDuration }}
           className="mb-4"
         >
           <h3 className="font-pt-sans-700">Какой НДС в России?</h3>
@@ -165,7 +166,7 @@ export function NDS() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: animationConfig.scrollAnimationDuration }}
           className="mb-4"
         >
           <h3 className="font-pt-sans-700">История НДС в России</h3>
@@ -200,7 +201,7 @@ export function NDS() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: animationConfig.scrollAnimationDuration }}
         >
           <h3 className="font-pt-sans-700">Вычисление НДС</h3>
           <div className="table-responsive-sm">
