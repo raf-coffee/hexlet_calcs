@@ -14,6 +14,7 @@ import { CountButton } from "../../components/CountButton/CountButton.jsx";
 import { SEO } from "../../components/SEO/SEO.jsx";
 import { ThemeContext } from "../../contexts/ThemeContext.jsx";
 import { animationConfig } from "../../../animationConfig.js";
+import { mortgage } from "../../calcs/finance/mortgage/mortgage.js";
 
 const formSchema = z.object({
   sum: z.coerce
@@ -78,11 +79,11 @@ export function Mortgage() {
     setChecked(e.target.value);
   };
 
-  const handleFormSubmit = () => {
+  const handleFormSubmit = (data) => {
     setIsLoading(true);
     setTimeout(() => {
       setIsLoading(false);
-      setResult("We are currently working on this feature and will launch soon!");
+      setResult(mortgage(data));
     }, 1000);
   };
 
@@ -207,7 +208,18 @@ export function Mortgage() {
         <Col className="mb-5">
           <h3 className="mb-md-4 font-pt-sans-700">Результат</h3>
           <div className="w-100 h-75 p-4 bg-secondary-subtle border border-3 border-secondary min-height">
-            {!isLoading && result}
+            {!isLoading && result && (
+              <>
+                <p>
+                  Ежемесячный платёж:{" "}
+                  {Array.isArray(result.monthlySum)
+                    ? `${result.monthlySum[0].toFixed(2)}...${result.monthlySum[1].toFixed(2)}`
+                    : result.monthlySum.toFixed(2)}
+                </p>
+                <p>Начисленные проценты: {result.percentagesSum.toFixed(2)}</p>
+                <p>Общая сумма: {result.generalSum.toFixed(2)}</p>
+              </>
+            )}
             {isLoading && <Loader />}
           </div>
         </Col>
