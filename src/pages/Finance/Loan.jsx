@@ -15,11 +15,11 @@ import { ScrollToTop } from "../../components/ScrollToTop/ScrollToTop.jsx";
 import { SEO } from "../../components/SEO/SEO.jsx";
 import { ThemeContext } from "../../contexts/ThemeContext.jsx";
 import { animationConfig } from "../../../animationConfig.js";
+import { loan } from "../../calcs/finance/loan/loan.js";
 import annuitet from "../../assets/images/payment_annuitet.webp";
 import diff from "../../assets/images/payment_diff.webp";
 
 const formSchema = z.object({
-  variants: z.coerce.string(),
   sum: z.coerce
     .number({
       invalid_type_error: "Сумма кредита должна быть числом",
@@ -55,9 +55,8 @@ const formSchema = z.object({
       invalid_type_error: "Процентная ставка должна быть числом",
     })
     .positive({ message: "Процентная ставка должна быть больше 0" }),
+  payType: z.string(),
 });
-
-//   data.type === "years" && data.term < 50,{ message: "low 50", path: ["term"]}),
 
 export function Loan() {
   const [checked, setChecked] = useState("ann");
@@ -75,11 +74,11 @@ export function Loan() {
     setChecked(e.target.value);
   };
 
-  const handleFormSubmit = () => {
+  const handleFormSubmit = (data) => {
     setIsLoading(true);
     setTimeout(() => {
       setIsLoading(false);
-      setResult("We are currently working on this feature and will launch soon!");
+      setResult(loan(data));
     }, 1000);
   };
 
@@ -101,20 +100,6 @@ export function Loan() {
         <Col className="mb-5 mb-md-5">
           <h3 className="mb-md-5 font-pt-sans-700">Кредитный калькулятор</h3>
           <Form onSubmit={handleSubmit(handleFormSubmit)}>
-            <Form.Group className="mb-4" controlId="variants">
-              <Row className="align-items-center">
-                <Col sm={12} xl={5}>
-                  <Form.Label className="mb-xl-0">Вариант расчета:</Form.Label>
-                </Col>
-                <Col xs={12} xl={7}>
-                  <Form.Select aria-label="Вариант расчета" {...register("variants")}>
-                    <option value="monthly">Расчёт ежемесячного платежа</option>
-                    <option value="term">Расчёт срока кредита</option>
-                    <option value="maxSum">Расчёт максимальной суммы кредита</option>
-                  </Form.Select>
-                </Col>
-              </Row>
-            </Form.Group>
             <Form.Group className="mb-4" controlId="sum">
               <Row className="align-items-center">
                 <Col xs={12} xl={5}>
@@ -187,7 +172,18 @@ export function Loan() {
         <Col className="mb-5">
           <h3 className="mb-md-4 font-pt-sans-700">Результат</h3>
           <div className="w-100 h-75 p-2 p-lg-4 bg-secondary-subtle border border-3 border-secondary min-height">
-            {!isLoading && result}
+            {!isLoading && result && (
+              <>
+                <p>
+                  Ежемесячный платёж:{" "}
+                  {Array.isArray(result.monthlySum)
+                    ? `${result.monthlySum[0].toFixed(2)}...${result.monthlySum[1].toFixed(2)}`
+                    : result.monthlySum.toFixed(2)}
+                </p>
+                <p>Начисленные проценты: {result.percentagesSum.toFixed(2)}</p>
+                <p>Общая сумма: {result.generalSum.toFixed(2)}</p>
+              </>
+            )}
             {isLoading && <Loader />}
           </div>
         </Col>
