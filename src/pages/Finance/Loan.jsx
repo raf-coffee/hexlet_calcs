@@ -25,11 +25,31 @@ const formSchema = z.object({
       invalid_type_error: "Сумма кредита должна быть числом",
     })
     .positive({ message: "Сумма кредита должна быть больше 0" }),
-  monthlyPay: z.coerce
-    .number({
-      invalid_type_error: "Ежемесячный платёж должен быть числом",
+  creditTerm: z
+    .object({
+      term: z.coerce
+        .number({
+          invalid_type_error: "Срок кредита должен быть числом",
+        })
+        .positive({ message: "Срок кредита должен быть больше 0" }),
+      type: z.string(),
     })
-    .positive({ message: "Ежемесячный платёж должен быть больше 0" }),
+    .superRefine((data, ctx) => {
+      if (data.type === "years" && data.term > 50) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: "Срок кредита должен быть меньше 50 лет",
+          path: ["term"],
+        });
+      }
+      if (data.type === "months" && data.term > 600) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: "Срок кредита должен быть меньше 600 месяцев",
+          path: ["term"],
+        });
+      }
+    }),
   interestRate: z.coerce
     .number({
       invalid_type_error: "Процентная ставка должна быть числом",
@@ -37,7 +57,10 @@ const formSchema = z.object({
     .positive({ message: "Процентная ставка должна быть больше 0" }),
 });
 
+//   data.type === "years" && data.term < 50,{ message: "low 50", path: ["term"]}),
+
 export function Loan() {
+  const [checked, setChecked] = useState("ann");
   const [result, setResult] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [theme] = useContext(ThemeContext);
@@ -47,6 +70,10 @@ export function Loan() {
     formState: { errors },
   } = useForm({ resolver: zodResolver(formSchema) });
   const location = useLocation();
+
+  const handleCheckboxToggle = (e) => {
+    setChecked(e.target.value);
+  };
 
   const handleFormSubmit = () => {
     setIsLoading(true);
@@ -99,15 +126,25 @@ export function Loan() {
                 {errors?.sum?.message && <p className="text-danger">{errors.sum.message}</p>}
               </Row>
             </Form.Group>
-            <Form.Group className="mb-4" controlId="monthlyPay">
+            <Form.Group className="mb-4" controlId="creditTerm">
               <Row className="align-items-center">
                 <Col xs={12} xl={5}>
-                  <Form.Label className="mb-xl-0">Ежемесячный платеж (руб.):</Form.Label>
+                  <Form.Label className="mb-xl-0">Срок кредита:</Form.Label>
                 </Col>
                 <Col xs={12} xl={7}>
-                  <Form.Control type="text" {...register("monthlyPay")} />
+                  <Row>
+                    <Col xs={7}>
+                      <Form.Control type="text" {...register("creditTerm.term")} />
+                    </Col>
+                    <Col xs={5}>
+                      <Form.Select aria-label="Срок кредита" {...register("creditTerm.type")}>
+                        <option value="years">лет</option>
+                        <option value="months">месяцев</option>
+                      </Form.Select>
+                    </Col>
+                  </Row>
                 </Col>
-                {errors?.monthlyPay?.message && <p className="text-danger">{errors.monthlyPay.message}</p>}
+                {errors?.creditTerm?.term?.message && <p className="text-danger">{errors.creditTerm.term.message}</p>}
               </Row>
             </Form.Group>
             <Form.Group className="mb-4" controlId="interestRate">
@@ -120,6 +157,29 @@ export function Loan() {
                 </Col>
                 {errors?.interestRate?.message && <p className="text-danger">{errors.interestRate.message}</p>}
               </Row>
+            </Form.Group>
+            <Form.Group key="nds-checkbox" controlId="payType" className="mb-4">
+              <Form.Label className="mb-xl-0 me-4">Тип ежемесячных платежей</Form.Label>
+              <div onChange={handleCheckboxToggle}>
+                <Form.Check
+                  name="ann"
+                  value="ann"
+                  type="radio"
+                  label="Аннуитетные"
+                  id="nds-checkbox-1"
+                  checked={checked === "ann"}
+                  {...register("payType")}
+                />
+                <Form.Check
+                  name="diff"
+                  value="diff"
+                  type="radio"
+                  label="Дифференцированные"
+                  id="nds-checkbox-2"
+                  checked={checked === "diff"}
+                  {...register("payType")}
+                />
+              </div>
             </Form.Group>
             <CountButton disabled={Object.entries(errors).length > 0 || isLoading} color="bg-deep-green" />
           </Form>
