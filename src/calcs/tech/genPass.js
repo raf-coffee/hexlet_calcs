@@ -10,7 +10,7 @@
 
 */
 const generatePass = (length, lowerCase, upperCase, numbers, symbols, noAmbigChars, noBrackets, noRepeat) => {
-    if (lowerCase && upperCase && numbers && symbols) {
+    if (!lowerCase && !upperCase && !numbers && !symbols) {
         return 'Пожалуйста, включите хотя бы один набор символов, из которых будет состоять пароль.';
     }
     let symbolSet = "";
@@ -26,14 +26,13 @@ const generatePass = (length, lowerCase, upperCase, numbers, symbols, noAmbigCha
         symbolSet += "0123456789";
     }
     if (symbols) {
-        symbolSet += `!"#$%&'()*+,-./:;<=>?@[]^_`;
-        symbolSet += "{|}~`";
+        symbolSet += "!\"#$%&'()*+,-./:;<=>?@[]^_{|}~`";
     }
     if (noAmbigChars) {
-        symbolSet = symbolSet.replace(/[iIl1L| o0O '\-_":;.,`]/g, '');
+        symbolSet = symbolSet.replace(/[iIl1L| o0O '\-_":;.,`]/g, "");
     }
     if (noBrackets) {
-       symbolSet = symbolSet.replace(/[<>()[\]{}]/g, '');
+       symbolSet = symbolSet.replace(/[<>()[\]{}]/g, "");
     }
     
     if (symbolSet.length < length && noRepeat) {
