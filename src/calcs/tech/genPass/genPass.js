@@ -67,9 +67,17 @@ export const generatePass = ({
   }
 
   if (window.crypto.getRandomValues) {
-    password = Array.from(crypto.getRandomValues(new Uint32Array(passLength)))
-      .map((char) => symbolSet[char % symbolSet.length])
-      .join("");
+    for (let i = 0; i < passLength; i += 1) {
+      const arr = Array.from(crypto.getRandomValues(new Uint32Array(passLength)));
+      const addingCharacter = symbolSet[arr[i] % symbolSet.length];
+      if (!noRepeat) {
+        password += addingCharacter;
+      } else if (password.includes(addingCharacter)) {
+        i -= 1;
+      } else {
+        password += addingCharacter;
+      }
+    }
   } else {
     for (let i = 0; i < passLength; i += 1) {
       const addingCharacter = symbolSet.charAt(Math.floor(Math.random() * symbolSet.length));
@@ -80,7 +88,6 @@ export const generatePass = ({
       }
     }
   }
-
   const entropy = passwordEntropy(symbolSet.length, passLength);
   const strength = passwordStrength(entropy);
 
