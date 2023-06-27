@@ -10,6 +10,7 @@ const paths = {
   "/imt": "health",
   "/base64": "tech",
   "/currency": "currency",
+  "/password-generator": "tech",
 };
 
 export const useCategory = () => {

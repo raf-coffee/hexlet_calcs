@@ -16,6 +16,7 @@ import { Loan } from "./pages/Finance/Loan.jsx";
 import { NDS } from "./pages/Finance/NDS.jsx";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { PasswordGenerator } from "./pages/Tech/passwordGenerator.jsx";
 
 const router = createBrowserRouter([
   {
@@ -61,6 +62,10 @@ const router = createBrowserRouter([
       {
         path: "currency",
         element: <Currency />,
+      },
+      {
+        path: "password-generator",
+        element: <PasswordGenerator />,
       },
     ],
   },
