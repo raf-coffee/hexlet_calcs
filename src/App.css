@@ -350,6 +350,7 @@ main {
 @media (min-width: 1081px) {
   .mb-middle {
     margin-bottom: 3rem;
+    color: hsl(193, 30%, 41%);
   }
 }
 

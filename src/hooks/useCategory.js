@@ -11,6 +11,7 @@ const paths = {
   "/base64": "tech",
   "/currency": "currency",
   "/password-generator": "tech",
+  "/convert-css": "tech",
 };
 
 export const useCategory = () => {
