@@ -352,3 +352,28 @@ main {
     margin-bottom: 3rem;
   }
 }
+
+@media (prefers-color-scheme: light) {
+  [data-bs-theme="light"] {
+    --white-yellow: #ffee9415;
+    --dark-green: #212d26;
+    --custom-primary: rgba(171, 245, 145, 0.8);
+    --custom-secondary: #75ab65;
+    --custom-tertiary: rgba(150, 169, 140, 0.41);
+    --category-header: #afffca;
+    --active-category-header: #21504d;
+    --active-link-color: #057d59;
+    --button-hover: #539250;
+    --filter-color: initial;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  [data-bs-theme="dark"] {
+    --dark-green: #adb5bd;
+    --custom-tertiary: rgba(126, 131, 117, 0.41);
+    --category-header: #212427;
+    --active-category-header: #6d7a88;
+    --active-link-color: #adb5bd;
+    --filter-color: grayscale(90%) brightness(40%);
+  }
+}

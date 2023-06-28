@@ -2,8 +2,13 @@ import { useLayoutEffect, useState } from "react";
 
 const getTheme = () => {
   const theme = localStorage.getItem("theme");
-  if (!theme || theme === "green") {
-    return "light";
+  const preferLight = window.matchMedia("(prefers-color-scheme: light)").matches;
+
+  if (!theme) {
+    return preferLight ? "light" : "dark";
+  }
+  if (theme === "green") {
+    return preferLight ? "light" : "dark";
   }
   return theme;
 };
