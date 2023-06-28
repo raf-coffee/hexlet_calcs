@@ -97,6 +97,9 @@ export function NavigationBar() {
                   <NavLink to="password-generator" onClick={handleCollapseMenu} className="d-block py-1 link">
                     Генератор паролей
                   </NavLink>
+                  <NavLink to="convert-css" onClick={handleCollapseMenu} className="d-block py-1 link">
+                    Конвертер CSS
+                  </NavLink>
                 </div>
               </div>
             </Col>

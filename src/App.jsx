@@ -17,6 +17,7 @@ import { NDS } from "./pages/Finance/NDS.jsx";
 import { PasswordGenerator } from "./pages/Tech/passwordGenerator.jsx";
 import "./App.css";
 import "./index.css";
+import { ConvertCSS } from "./pages/Tech/ConvertCSS.jsx";
 
 const router = createBrowserRouter([
   {
@@ -66,6 +67,10 @@ const router = createBrowserRouter([
       {
         path: "password-generator",
         element: <PasswordGenerator />,
+      },
+      {
+        path: "convert-css",
+        element: <ConvertCSS />,
       },
     ],
   },

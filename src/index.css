@@ -2677,7 +2677,9 @@ fieldset:disabled .btn {
 [data-bs-theme="dark"] .btn-close {
   filter: var(--bs-btn-close-white-filter);
 }
-
+.text-danger {
+  color: red;
+}
 .text-bg-primary {
   color: #fff !important;
   background-color: RGBA(13, 110, 253, var(--bs-bg-opacity, 1)) !important;
