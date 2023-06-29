@@ -13,6 +13,7 @@ import { SEO } from "../../components/SEO/SEO.jsx";
 import { ThemeContext } from "../../contexts/ThemeContext.jsx";
 import { animationConfig } from "../../../animationConfig.js";
 import { formatter } from "../../calcs/tech/convertCSS/convertCSS.js";
+import { ScrollToTop } from "../../components/ScrollToTop/ScrollToTop.jsx";
 
 function validateColors(data) {
   if (!data) return false;
@@ -217,6 +218,7 @@ export function ConvertCSS() {
           </p>
         </motion.div>
       </div>
+      <ScrollToTop />
     </motion.div>
   );
 }
