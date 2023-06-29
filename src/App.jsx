@@ -15,9 +15,9 @@ import { NDFL } from "./pages/Finance/NDFL.jsx";
 import { Loan } from "./pages/Finance/Loan.jsx";
 import { NDS } from "./pages/Finance/NDS.jsx";
 import { PasswordGenerator } from "./pages/Tech/passwordGenerator.jsx";
-import "./App.css";
-import "./index.css";
 import { ConvertCSS } from "./pages/Tech/ConvertCSS.jsx";
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const router = createBrowserRouter([
   {
