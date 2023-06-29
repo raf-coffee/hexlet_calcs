@@ -111,7 +111,7 @@ export function Loan() {
                 {errors?.sum?.message && <p className="text-danger">{errors.sum.message}</p>}
               </Row>
             </Form.Group>
-            <Form.Group className="mb-4" controlId="creditTerm">
+            <Form.Group className="mb-4">
               <Row className="align-items-center">
                 <Col xs={12} xl={5}>
                   <Form.Label className="mb-xl-0">Срок кредита:</Form.Label>
@@ -303,7 +303,7 @@ export function Loan() {
             <Col lg={5} className="border border-2 border-secondary-subtle p-2 p-md-3">
               <h4>Аннуитетный</h4>
               <p className="py-2 p-md-2">Равные ежемесячные суммы на протяжении всего срока кредитования.</p>
-              <Image src={annuitet} fluid />
+              <Image src={annuitet} alt="График платежей - аннуитетный платеж" fluid />
               <p className="border-bottom border-2 border-secondary py-2 p-md-2">
                 Доля процентов и доля основного долга в каждом месяце рассчитываются таким образом, чтобы общая сумма
                 была неизменной.
@@ -319,7 +319,7 @@ export function Loan() {
             <Col lg={5} className="border border-2 border-secondary-subtle p-2 p-md-3">
               <h4>Дифференцированный</h4>
               <p className="py-2 p-md-2">Сумма ежемесячного платежа уменьшается к концу срока кредитования.</p>
-              <Image src={diff} fluid />
+              <Image src={diff} alt="График платежей - дифференцированный платеж" fluid />
               <p className="border-bottom border-2 border-secondary py-2 p-md-2">
                 Доля основного долга остается неизменной, а доля процентов с каждым месяцем уменьшается, так как
                 уменьшается общая сумма долга.
