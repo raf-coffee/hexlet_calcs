@@ -17,6 +17,7 @@ import { animationConfig } from "../../../animationConfig.js";
 const formSchema = z.object({
   text: z.coerce.string().trim().min(1, { message: "Строка должна содержать как минимум один символ" }),
   action: z.coerce.string(),
+  scheme: z.coerce.string(),
 });
 
 export function Base64Decoder() {
@@ -31,14 +32,14 @@ export function Base64Decoder() {
   const location = useLocation();
 
   const handleFormSubmit = (data) => {
-    const { text, action } = data;
+    const { text, action, scheme } = data;
     setIsLoading(true);
     setTimeout(() => {
       setIsLoading(false);
       try {
-        setResult(base64(text, action));
+        setResult(base64(text, action, scheme));
       } catch {
-        setResult("Строка содержит не поддерживаемые символы");
+        setResult("ОШИБКА: Строка содержит не поддерживаемые символы");
       }
     }, 1000);
   };
@@ -81,8 +82,21 @@ export function Base64Decoder() {
                 </Col>
                 <Col xs={12} xl={9}>
                   <Form.Select aria-label="Вариант расчета" {...register("action")}>
-                    <option value="utf16ToB64">Кодировать</option>
-                    <option value="b64ToUtf16">Декодировать</option>
+                    <option value="encode">Кодировать</option>
+                    <option value="decode">Декодировать</option>
+                  </Form.Select>
+                </Col>
+              </Row>
+            </Form.Group>
+            <Form.Group className="mb-4" controlId="scheme">
+              <Row className="align-items-center">
+                <Col xs={12} xl={3}>
+                  <Form.Label className="mb-xl-0">Кодировка:</Form.Label>
+                </Col>
+                <Col xs={12} xl={9}>
+                  <Form.Select aria-label="Выберите кодировку" {...register("scheme")}>
+                    <option value="utf8">UTF-8</option>
+                    <option value="utf16">UTF-16</option>
                   </Form.Select>
                 </Col>
               </Row>

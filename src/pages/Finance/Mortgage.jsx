@@ -116,7 +116,7 @@ export function Mortgage() {
                 {errors?.sum?.message && <p className="text-danger">{errors.sum.message}</p>}
               </Row>
             </Form.Group>
-            <Form.Group className="mb-4" controlId="firstPay">
+            <Form.Group className="mb-4">
               <Row className="align-items-center">
                 <Col xs={12} xl={5}>
                   <Form.Label className="mb-xl-0">Первоначальный взнос:</Form.Label>
@@ -147,7 +147,7 @@ export function Mortgage() {
                 </Col>
               </Row>
             </Form.Group>
-            <Form.Group className="mb-4" controlId="creditTerm">
+            <Form.Group className="mb-4">
               <Row className="align-items-center">
                 <Col xs={12} xl={5}>
                   <Form.Label className="mb-xl-0">Срок кредита:</Form.Label>

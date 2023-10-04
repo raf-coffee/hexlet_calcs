@@ -20,10 +20,27 @@ const fromBinary = (binary) => {
   return result.str;
 };
 
-export const base64 = (string, action) => {
+const fromUTF8 = (str) =>
+  btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, (match, p1) => String.fromCharCode(`0x${p1}`)));
+
+const toUTF8 = (str) =>
+  decodeURIComponent(
+    atob(str)
+      .split("")
+      .map((c) => `%${`00${c.charCodeAt(0).toString(16)}`.slice(-2)}`)
+      .join("")
+  );
+
+export const base64 = (string, action, scheme) => {
   const actions = {
-    b64ToUtf16: () => fromBinary(atob(string)),
-    utf16ToB64: () => btoa(toBinary(string)),
+    utf16: {
+      encode: () => btoa(toBinary(string)),
+      decode: () => fromBinary(atob(string)),
+    },
+    utf8: {
+      encode: () => fromUTF8(string),
+      decode: () => toUTF8(string),
+    },
   };
-  return actions[action]();
+  return actions[scheme][action]();
 };
