@@ -5,6 +5,9 @@ import react from "@vitejs/plugin-react";
 // eslint-disable-next-line
 export default defineConfig({
   plugins: [react()],
+  build: {
+    target: "esnext",
+  },
   test: {
     environment: "jsdom",
   },

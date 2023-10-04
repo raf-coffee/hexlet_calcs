@@ -98,7 +98,7 @@ export function NavigationBar() {
                     Генератор паролей
                   </NavLink>
                   <NavLink to="convert-css" onClick={handleCollapseMenu} className="d-block py-1 link">
-                    Конвертер CSS
+                    Конвертер CSS цветов
                   </NavLink>
                 </div>
               </div>
